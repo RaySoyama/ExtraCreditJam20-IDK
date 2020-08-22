@@ -63,30 +63,31 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
-
-        blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
-
-        if (firing && Time.time >= firingStart + fireDuration)
+		blastEnd.position = blastDestination;
+		if (firing && Time.time >= firingStart + fireDuration)
 		{
 			firing = false;
-        }
+			blastDiss = 0f;
+			blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
+		}
 		else if (firing)
 		{
 			blastEnd.position = blastDestination;
 
 			//firing
-			//blastDiss = Mathf.Lerp(blastDiss, 1, Time.deltaTime * 5);
-			blastDiss = 1f;
-        }
+			blastDiss = ((firingStart + fireDuration) - Time.time) / fireDuration;
+			//blastDiss = Mathf.Lerp(blastDiss, 0f, Time.deltaTime + fireDuration * 0.05f);
+			//blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * ((firingStart + fireDuration) - Time.time));
+			blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
+		}
         else if (!firing)
         {
-            //blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * ((firingStart + fireDuration) - Time.time));
 			blastDiss = 0f;
 		}
+		
 
-        //Camera Movement
-        cam.transform.position = camPos.position;
+		//Camera Movement
+		cam.transform.position = camPos.position;
         cam.transform.LookAt(transform.position + lookOffset);
         camPos.LookAt(transform.position + lookOffset);
 
@@ -134,7 +135,8 @@ public class PlayerController : MonoBehaviour
 				blastDestination = hit.point;
 				firing = true;
 				firingStart = Time.time;
-            }
+				blastDiss = 1f;
+			}
         }
 
         //Mouse moves
