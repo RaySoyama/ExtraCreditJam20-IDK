@@ -17,12 +17,11 @@ public class EnemySpawner : MonoBehaviour
     public float difficulty = 1f;
     public AnimationCurve difficultyProgression;
     public float waveFrequency = 5.0f;
-    public float spawnRadius = 0.5f;
     public float stackTimer = 0.1f;
-
-    public float currentDifficulty = 0f;
-    
+    public float spawnRadius = 0.5f;
+    public Vector3 spawnOffset = Vector3.zero;
     public List<Enemy> spawnables = new List<Enemy>();
+    [ReadOnlyField] public float currentDifficulty = 0f;
 
     List<Enemy> toSpawn = new List<Enemy>();
     float waveProgress = 0f;
@@ -67,7 +66,7 @@ public class EnemySpawner : MonoBehaviour
         if(toSpawn.Count > 0 && stackProgress >= stackTimer)
         {
             stackProgress = 0f;
-            Instantiate(toSpawn[0].enemyPrefab, transform.position + (Random.insideUnitSphere * spawnRadius), Quaternion.Euler(toSpawn[0].startRotation));
+            Instantiate(toSpawn[0].enemyPrefab, transform.position + spawnOffset + (Random.insideUnitSphere * spawnRadius), Quaternion.Euler(toSpawn[0].startRotation));
             toSpawn.Remove(toSpawn[0]);
         }
     }
@@ -75,6 +74,6 @@ public class EnemySpawner : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, spawnRadius);
+        Gizmos.DrawWireSphere(transform.position + spawnOffset, spawnRadius);
     }
 }
