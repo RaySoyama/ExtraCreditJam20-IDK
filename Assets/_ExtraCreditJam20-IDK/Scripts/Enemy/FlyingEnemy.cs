@@ -98,11 +98,7 @@ public class FlyingEnemy : EnemyController
     }
     protected override void OnAttack()
     {
-        if (TargetPylon == null || TargetPylon.PylonIsDestroyed == true)
-        {
-            OnSearchStart();
-            return;
-        }
+
 
         base.OnAttack();
 
@@ -111,6 +107,12 @@ public class FlyingEnemy : EnemyController
 
         if (TimeToNextAttack <= 0.0f)
         {
+            if (TargetPylon == null || TargetPylon.PylonIsDestroyed == true)
+            {
+                OnSearchStart();
+                return;
+            }
+            
             animCtrl.SetTrigger("shoot");
             timeToNextAttack = 1.0f / EnemyAttackSpeed;
         }
