@@ -23,8 +23,6 @@ public class CameraBillboard : MonoBehaviour
     [SerializeField]
     private float maxRange = 5;
 
-    public GameObject test;
-
     void Start()
     {
         localStartPosition = transform.localPosition;
@@ -33,13 +31,13 @@ public class CameraBillboard : MonoBehaviour
     void Update()
     {
 
-        if (Vector3.Distance(test.transform.position, transform.position) < minRange)
+        if (Vector3.Distance(PlayerController.instance.transform.position, transform.position) < minRange)
         {
             transform.localScale = localStartScale;
         }
-        else if (Vector3.Distance(test.transform.position, transform.position) < maxRange)
+        else if (Vector3.Distance(PlayerController.instance.transform.position, transform.position) < maxRange)
         {
-            transform.localScale = localStartScale * (1.0f - ((Vector3.Distance(test.transform.position, transform.position) - minRange) / (maxRange - minRange)));
+            transform.localScale = localStartScale * (1.0f - ((Vector3.Distance(PlayerController.instance.transform.position, transform.position) - minRange) / (maxRange - minRange)));
         }
         else
         {
@@ -57,6 +55,16 @@ public class CameraBillboard : MonoBehaviour
 
         transform.localPosition = localStartPosition;
         transform.position = transform.position + transform.rotation * Vector3.forward * OffsetToCamera;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, maxRange);
+
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, minRange);
     }
 
 }

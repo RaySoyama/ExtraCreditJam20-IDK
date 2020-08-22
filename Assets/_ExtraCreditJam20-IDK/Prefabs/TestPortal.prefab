@@ -18845,7 +18845,7 @@ Transform:
   m_GameObject: {fileID: 1294141783613923284}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1992, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 1294141783766669056}
   - {fileID: 1294141782383008937}
@@ -18894,11 +18894,11 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   waveFrequency: 5
-  spawnRadius: 20
+  spawnRadius: 3
   stackTimer: 0.1
   currentDifficulty: 0
   spawnables:
-  - enemyPrefab: {fileID: 3351471175499445086, guid: 69144c4918c2ddd4ca7d3f06189df273,
+  - enemyPrefab: {fileID: 8745537704839173118, guid: 5182374bfd6d89d4b926298922b6b3c7,
       type: 3}
     spawnCost: 1
     startRotation: {x: 0, y: 0, z: 0}

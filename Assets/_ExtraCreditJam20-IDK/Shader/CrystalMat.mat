@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material 1
+  m_Name: CrystalMat
   m_Shader: {fileID: -6465566751694194690, guid: 795817dafbb59814f9717d36ee64185c,
     type: 3}
   m_ShaderKeywords: 

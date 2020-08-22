@@ -22,6 +22,8 @@ public class PylonController : MonoBehaviour
         }
     }
 
+    public Transform shootTarget;
+
     public bool PylonIsDestroyed
     {
         get
@@ -41,9 +43,10 @@ public class PylonController : MonoBehaviour
     private Image pylonHealthUI = null;
 
     [SerializeField]
-    private Renderer renderer = null;
+    private Renderer renderRef = null;
 
     private Material material = null;
+
 
     private void Start()
     {
@@ -51,9 +54,10 @@ public class PylonController : MonoBehaviour
 
         pylonCurrentHealth = PylonStartHealth;
 
-        material = renderer.material;
+        material = renderRef.material;
     }
 
+    [ContextMenu("ActivatePylon")]
     public void ActivatePylon()
     {
         PylonManager.instance.ActivatePylon(this);

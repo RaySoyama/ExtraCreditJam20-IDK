@@ -60,7 +60,7 @@ public class FlyingEnemy : EnemyController
     }
     protected override void OnSearch()
     {
-        if (TargetPylon == null)
+        if (TargetPylon == null || TargetPylon.PylonIsDestroyed == true)
         {
             OnSearchStart();
             return;
@@ -68,18 +68,18 @@ public class FlyingEnemy : EnemyController
 
         base.OnSearch();
         //move to target Jank edition
-        transform.LookAt(TargetPylon.transform.position + unitSphereVal);
+        transform.LookAt(TargetPylon.shootTarget.position + unitSphereVal);
         transform.Translate(Vector3.forward * EnemySpeed * Time.deltaTime);
 
         //distance check. Will not work if the enemy is too close
-        if (Vector3.Distance(transform.position, TargetPylon.transform.position + unitSphereVal) <= 0.1f)
+        if (Vector3.Distance(transform.position, TargetPylon.shootTarget.position + unitSphereVal) <= 0.1f)
         {
             OnSearchEnd();
         }
     }
     protected override void OnSearchEnd()
     {
-        transform.LookAt(TargetPylon.transform.position);
+        transform.LookAt(TargetPylon.shootTarget.position);
         base.OnSearchEnd();
     }
 
@@ -91,7 +91,7 @@ public class FlyingEnemy : EnemyController
     }
     protected override void OnAttack()
     {
-        if (TargetPylon == null)
+        if (TargetPylon == null || TargetPylon.PylonIsDestroyed == true)
         {
             OnSearchStart();
             return;

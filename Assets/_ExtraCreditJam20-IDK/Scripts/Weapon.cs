@@ -59,6 +59,6 @@ public class Weapon : MonoBehaviour
     public void Fire()
     {
         fireQueued = true;
-        laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, shotLength * 3.0f);
+        laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, shotLength * 6.0f);
     }
 }

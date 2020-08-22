@@ -39,7 +39,14 @@ public class PylonManager : MonoBehaviour
     }
     void Start()
     {
-
+        //For testing
+        foreach (var pylon in AllPylons)
+        {
+            if (Random.Range(0.0f, 1.0f) >= 0.5f)
+            {
+                pylon.ActivatePylon();
+            }
+        }
     }
 
     void Update()
