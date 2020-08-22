@@ -76,16 +76,26 @@ public class PlayerController : MonoBehaviour
 
 		//Mouse
 		//Clicks
-		if (Input.GetMouseButtonDown(1))
+		if (Input.GetMouseButtonDown(0))
 		{
 			RaycastHit hit;
-			Vector3 rayVect = transform.position + lookOffset - camPos.position;
+			Vector3 heading = (transform.position + lookOffset) - camPos.position;
+			Vector3 rayVect = heading / heading.magnitude;
 
 			if (Physics.Raycast(transform.position + lookOffset, rayVect, out hit))
 			{
 				Debug.Log(hit.distance);
 			}
-				
+			Debug.DrawRay(transform.position + lookOffset, rayVect);
+		}
+
+		//REMOVE FOR DEBUG
+		if (Input.GetMouseButton(0))
+		{
+			RaycastHit hit;
+			Vector3 heading = (transform.position + lookOffset) - camPos.position;
+			Vector3 rayVect = heading / heading.magnitude;
+			Debug.DrawRay(transform.position, rayVect, Color.red, 1f, true);
 		}
 
 		//Mouse moves
