@@ -122,15 +122,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //REMOVE FOR DEBUG
-        if (Input.GetMouseButton(0))
-        {
-            RaycastHit hit;
-            Vector3 heading = (transform.position + lookOffset) - camPos.position;
-            Vector3 rayVect = heading / heading.magnitude;
-            Debug.DrawRay(transform.position, rayVect, Color.red, 1f, true);
-        }
-
         //Mouse moves
         transform.Rotate(new Vector3(0f, Input.GetAxis("Mouse X") * Time.deltaTime * lookSpeed, 0f));
 

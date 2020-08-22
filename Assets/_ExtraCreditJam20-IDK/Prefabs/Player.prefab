@@ -64,8 +64,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camPos: {fileID: 4093502294704758554}
-  blastStart: {fileID: 2718786091969431685}
-  blastEnd: {fileID: 1035212300001332364}
+  blastStart: {fileID: 871333218434869786}
+  blastEnd: {fileID: 4979500593176988061}
   jumpForce: 800
   moveForce: 18
   maxSpeed: 12
@@ -228,15 +228,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4289942851671896422}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2718786091969431685 stripped
+--- !u!4 &871333218434869786 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 2176331262463932899, guid: 788b214870f1ba44bbd45bf3cc1dab86,
+  m_CorrespondingSourceObject: {fileID: 4008037339064425340, guid: 788b214870f1ba44bbd45bf3cc1dab86,
     type: 3}
   m_PrefabInstance: {fileID: 4289942851671896422}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1035212300001332364 stripped
+--- !u!4 &4979500593176988061 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 3879042187455954410, guid: 788b214870f1ba44bbd45bf3cc1dab86,
+  m_CorrespondingSourceObject: {fileID: 9120437009365104891, guid: 788b214870f1ba44bbd45bf3cc1dab86,
     type: 3}
   m_PrefabInstance: {fileID: 4289942851671896422}
   m_PrefabAsset: {fileID: 0}
