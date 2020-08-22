@@ -64,12 +64,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camPos: {fileID: 4093502294704758554}
-  blastStart: {fileID: 5038158746472429877}
-  blastEnd: {fileID: 929438301597964978}
-  blasts:
-  - {fileID: 3233902234096827221}
-  - {fileID: 2125749225820894629}
-  - {fileID: 7820205351022097158}
   jumpForce: 800
   moveForce: 18
   maxSpeed: 12
@@ -77,6 +71,13 @@ MonoBehaviour:
   gravity: 28
   lowGravity: 17
   fireDuration: 1
+  blastStart: {fileID: 5038158746472429877}
+  blastEnd: {fileID: 929438301597964978}
+  blasts:
+  - {fileID: 3233902234096827221}
+  - {fileID: 2125749225820894629}
+  - {fileID: 7820205351022097158}
+  epParticle: {fileID: 6931329931682407880}
 --- !u!54 &4093502294593914856
 Rigidbody:
   m_ObjectHideFlags: 0

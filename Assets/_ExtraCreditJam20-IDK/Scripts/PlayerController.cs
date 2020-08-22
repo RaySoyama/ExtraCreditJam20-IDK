@@ -12,10 +12,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 lookOffset = new Vector3(0f, 2.5f, 0f);
 
-	public Transform blastStart;
-	public Transform blastEnd;
-    public List<GameObject> blasts;
-    float blastDiss = 0f;
+	
 
     public float jumpForce;
     public float moveForce;
@@ -38,7 +35,14 @@ public class PlayerController : MonoBehaviour
 
 	private Vector3 blastDestination = Vector3.zero;
 
-    private void Awake()
+	public Transform blastStart;
+	public Transform blastEnd;
+	public List<GameObject> blasts;
+	float blastDiss = 0f;
+
+	public ParticleSystem epParticle;
+
+	private void Awake()
     {
         if (instance == null)
         {
@@ -81,9 +85,12 @@ public class PlayerController : MonoBehaviour
 
 			//firing
 			blastDiss = ((firingStart + fireDuration) - Time.time) / fireDuration;
-            //blastDiss = Mathf.Lerp(blastDiss, 0f, Time.deltaTime + fireDuration * 0.05f);
-            //blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * ((firingStart + fireDuration) - Time.time));
-            foreach (var blast in blasts)
+			//blastDiss = Mathf.Lerp(blastDiss, 0f, Time.deltaTime + fireDuration * 0.05f);
+			//blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * ((firingStart + fireDuration) - Time.time));
+			var em = epParticle.emission;
+			em.enabled = true;
+
+			foreach (var blast in blasts)
             {
                 blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
             }
@@ -91,6 +98,8 @@ public class PlayerController : MonoBehaviour
         else if (!firing)
         {
 			blastDiss = 0f;
+			var em = epParticle.emission;
+			em.enabled = false;
 		}
 		
 
