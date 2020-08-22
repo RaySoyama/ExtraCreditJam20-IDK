@@ -54,20 +54,15 @@ public class PylonManager : MonoBehaviour
     }
     void Start()
     {
-		//For testing
-		//foreach (var pylon in AllPylons)
-		//{
-		//	if (Random.Range(0.0f, 1.0f) >= 0.5f)
-		//	{
-		//		pylon.ActivatePylon();
-		//	}
-		//}
+		
 	}
 
     void Update()
     {
 		if (Time.time >= lastPortalSpawnTick + portalSpawnTick)
 		{
+			lastPortalSpawnTick = Time.time;
+
 			foreach (PylonController p in allActivePylons)
 			{
 				float roll = Random.Range(0f, 1f);
@@ -83,7 +78,7 @@ public class PylonManager : MonoBehaviour
 					else
 					{
 						float x = Random.Range(0f, 25f);
-						float y = Random.Range(30f, 40f);
+						float y = Random.Range(40f, 60f);
 						float z = Random.Range(0f, 25f);
 
 						Vector3 spawnPoint = new Vector3(x, y, z) + p.gameObject.transform.position;
@@ -100,6 +95,7 @@ public class PylonManager : MonoBehaviour
 	{
 		if (!overheated && heatLevel >= heatThreshold)
 		{
+			
 			overheated = true;
 			//activate some pylons
 			foreach (var pylon in AllPylons)
@@ -120,6 +116,10 @@ public class PylonManager : MonoBehaviour
 		{
 			overheated = false;
 			//deactivate all pylons
+			foreach (var pylon in allActivePylons)
+			{
+				pylon.DeActivatePylon();
+			}
 		}
 
 		if (overheated)
