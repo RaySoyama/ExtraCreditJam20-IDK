@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
 
 	public Transform blastStart;
 	public Transform blastEnd;
+    public GameObject blast;
+    float blastDiss = 0f;
 
     public float jumpForce;
     public float moveForce;
@@ -61,14 +63,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-		if (firing && Time.time > firingStart + fireDuration)
+        
+
+        blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
+
+        if (firing && Time.time > firingStart + fireDuration)
 		{
 			firing = false;
-		}
+        }
 		else if (firing)
 		{
 			blastEnd.position = blastDestination;
-		}
+
+            //firing
+            blastDiss = Mathf.Lerp(blastDiss, 1, Time.deltaTime * 5);
+        }
+        else if (!firing)
+        {
+            blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * 5);
+        }
 
         //Camera Movement
         cam.transform.position = camPos.position;
