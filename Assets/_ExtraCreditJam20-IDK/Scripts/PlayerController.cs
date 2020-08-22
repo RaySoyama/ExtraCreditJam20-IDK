@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
 	public Transform blastStart;
 	public Transform blastEnd;
-    public GameObject blast;
+    public List<GameObject> blasts;
     float blastDiss = 0f;
 
     public float jumpForce;
@@ -68,7 +69,10 @@ public class PlayerController : MonoBehaviour
 		{
 			firing = false;
 			blastDiss = 0f;
-			blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
+            foreach(var blast in blasts)
+            {
+                blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
+            }
 		}
 		else if (firing)
 		{
@@ -76,10 +80,13 @@ public class PlayerController : MonoBehaviour
 
 			//firing
 			blastDiss = ((firingStart + fireDuration) - Time.time) / fireDuration;
-			//blastDiss = Mathf.Lerp(blastDiss, 0f, Time.deltaTime + fireDuration * 0.05f);
-			//blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * ((firingStart + fireDuration) - Time.time));
-			blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
-		}
+            //blastDiss = Mathf.Lerp(blastDiss, 0f, Time.deltaTime + fireDuration * 0.05f);
+            //blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * ((firingStart + fireDuration) - Time.time));
+            foreach (var blast in blasts)
+            {
+                blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
+            }
+        }
         else if (!firing)
         {
 			blastDiss = 0f;

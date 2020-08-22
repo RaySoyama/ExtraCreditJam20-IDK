@@ -27,11 +27,11 @@ Transform:
   m_LocalPosition: {x: -46.911854, y: -1.2721412, z: -8.7314625}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 7607935236364980959}
+  - {fileID: 2335233591316611568}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7934895817621189940
+--- !u!1001 &2874092511427683867
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -93,21 +93,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4066393796746875616, guid: e62a2dcbd9f501b4899cc2b2f66df9c4,
+    - target: {fileID: -5740187162596691598, guid: e62a2dcbd9f501b4899cc2b2f66df9c4,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c6dd5b83892c9f44c9721ce8c09ff3d4, type: 2}
+      objectReference: {fileID: 2100000, guid: 94c714c7addf4e94496e1c38e7c956cb, type: 2}
+    - target: {fileID: -5296634020079204107, guid: e62a2dcbd9f501b4899cc2b2f66df9c4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c64126d1d95d4a34088a31a47dc6d9e2, type: 2}
     - target: {fileID: 919132149155446097, guid: e62a2dcbd9f501b4899cc2b2f66df9c4,
         type: 3}
       propertyPath: m_Name
       value: Beam
       objectReference: {fileID: 0}
+    - target: {fileID: 2296611093377724952, guid: e62a2dcbd9f501b4899cc2b2f66df9c4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c6dd5b83892c9f44c9721ce8c09ff3d4, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e62a2dcbd9f501b4899cc2b2f66df9c4, type: 3}
---- !u!4 &7607935236364980959 stripped
+--- !u!4 &2335233591316611568 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e62a2dcbd9f501b4899cc2b2f66df9c4,
     type: 3}
-  m_PrefabInstance: {fileID: 7934895817621189940}
+  m_PrefabInstance: {fileID: 2874092511427683867}
   m_PrefabAsset: {fileID: 0}
