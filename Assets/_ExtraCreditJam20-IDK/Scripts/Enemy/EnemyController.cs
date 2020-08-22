@@ -3,6 +3,17 @@
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
+    protected State enemyState = State.IDLE;
+    public State EnemyState
+    {
+        get
+        {
+            return enemyState;
+        }
+    }
+
+
+    [SerializeField]
     protected string enemyName = "DefaultName";
     public string EnemyName
     {
@@ -18,7 +29,7 @@ public class EnemyController : MonoBehaviour
     {
         get
         {
-            return EnemySpeed;
+            return enemySpeed;
         }
     }
 
@@ -52,42 +63,105 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    protected float attackSpeed = 1;
-    public float AttackSpeed
+    [SerializeField, ReadOnlyField]
+    protected float timeToNextAttack = 0;
+    public float TimeToNextAttack
     {
         get
         {
-            return attackSpeed;
+            return timeToNextAttack;
+        }
+    }
+
+    [SerializeField]
+    protected float enemyAttackSpeed = 1;
+    public float EnemyAttackSpeed
+    {
+        get
+        {
+            return enemyAttackSpeed;
+        }
+    }
+
+    [SerializeField]
+    protected float enemyAttackRange = 10;
+    public float EnemyAttackRange
+    {
+        get
+        {
+            return enemyAttackRange;
+        }
+    }
+
+
+    [SerializeField] //[ReadOnlyField]
+    protected GameObject targetPylon = null;
+    public GameObject TargetPylon
+    {
+        get
+        {
+            return targetPylon;
         }
     }
 
 
 
-
+    //Don't forget to unsub to the events
     public delegate void EnemyEvent();
+    public EnemyEvent OnEnemySpawn;
     public EnemyEvent OnEnemyAttack;
     public EnemyEvent OnEnemyHit;
     public EnemyEvent OnEnemyDeath;
 
-    protected virtual void OnSpawn()
-    {
 
+    public enum State
+    {
+        IDLE,
+        SPAWN,
+        SEARCH,
+        ATTACK,
+        DEATH
     }
 
-    protected virtual void OnSearch()
-    {
 
+    protected virtual void OnSpawnStart()
+    {
+        enemyState = State.SPAWN;
+    }
+    protected virtual void OnSpawn() { }
+    protected virtual void OnSpawnEnd()
+    {
+        OnSearchStart();
     }
 
-    protected virtual void OnAttack()
-    {
 
+    protected virtual void OnSearchStart()
+    {
+        enemyState = State.SEARCH;
+    }
+    protected virtual void OnSearch() { }
+    protected virtual void OnSearchEnd()
+    {
+        OnAttackStart();
     }
 
-    protected virtual void OnDeath()
+    protected virtual void OnAttackStart()
     {
-
+        enemyState = State.ATTACK;
     }
+    protected virtual void OnAttack() { }
+    protected virtual void OnAttackEnd() { }
 
+    protected virtual void OnDeathStart()
+    {
+        enemyState = State.DEATH;
+    }
+    protected virtual void OnDeath() { }
+    protected virtual void OnDeathEnd() { }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, EnemyAttackRange);
+    }
 }
