@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 lookOffset = new Vector3(0f, 2.5f, 0f);
 
+	public Transform blastStart;
+	public Transform blastEnd;
+
     public float jumpForce;
     public float moveForce;
 
@@ -24,6 +27,13 @@ public class PlayerController : MonoBehaviour
     private float camDistance;
 
     private bool isGrounded = false;
+
+	private bool firing = false;
+	private float firingStart = 0f;
+
+	public float fireDuration;
+
+	private Vector3 blastDestination = Vector3.zero;
 
     private void Awake()
     {
@@ -51,6 +61,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+		if (firing && Time.time > firingStart + fireDuration)
+		{
+			firing = false;
+		}
+		else if (firing)
+		{
+			blastEnd.position = blastDestination;
+		}
+
         //Camera Movement
         cam.transform.position = camPos.position;
         cam.transform.LookAt(transform.position + lookOffset);
@@ -86,7 +105,7 @@ public class PlayerController : MonoBehaviour
 
         //Mouse
         //Clicks
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !firing)
         {
             RaycastHit hit;
             Vector3 heading = (transform.position + lookOffset) - camPos.position;
@@ -96,9 +115,11 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(r, out hit))
             {
-                Debug.Log(hit.distance);
+				blastEnd.position = hit.point;
+				blastDestination = hit.point;
+				firing = true;
+				firingStart = Time.time;
             }
-            //Gizmos.DrawRay(r);
         }
 
         //REMOVE FOR DEBUG
