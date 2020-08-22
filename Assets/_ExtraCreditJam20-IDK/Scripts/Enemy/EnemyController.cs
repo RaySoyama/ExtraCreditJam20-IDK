@@ -95,14 +95,16 @@ public class EnemyController : MonoBehaviour
 
 
     [SerializeField] //[ReadOnlyField]
-    protected GameObject targetPylon = null;
-    public GameObject TargetPylon
+    protected PylonController targetPylon = null;
+    public PylonController TargetPylon
     {
         get
         {
             return targetPylon;
         }
     }
+
+    protected Vector3 unitSphereVal;
 
 
 
@@ -163,5 +165,11 @@ public class EnemyController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, EnemyAttackRange);
+
+        if (EnemyState == State.SEARCH)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(TargetPylon.transform.position + unitSphereVal, 0.5f);
+        }
     }
 }

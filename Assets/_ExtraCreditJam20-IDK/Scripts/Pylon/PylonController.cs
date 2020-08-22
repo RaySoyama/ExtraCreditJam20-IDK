@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.UI;
 public class PylonController : MonoBehaviour
 {
     [SerializeField]
@@ -21,6 +21,9 @@ public class PylonController : MonoBehaviour
         }
     }
 
+
+    public Image pylonHealthUI = null;
+
     private void Start()
     {
         pylonCurrentHealth = PylonStartHealth;
@@ -31,6 +34,15 @@ public class PylonController : MonoBehaviour
         //damage number validation
 
         pylonCurrentHealth -= damage;
+
+        if (pylonHealthUI != null)
+        {
+            pylonHealthUI.fillAmount = PylonCurrentHealth / PylonStartHealth;
+        }
+        else
+        {
+            Debug.LogError("Missing reference to Pylon Health UI");
+        }
 
         if (PylonCurrentHealth <= 0)
         {
