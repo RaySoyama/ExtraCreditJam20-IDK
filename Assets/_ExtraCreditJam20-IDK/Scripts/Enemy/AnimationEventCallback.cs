@@ -13,8 +13,6 @@ public class AnimationEventCallback : MonoBehaviour
     public void Explode()
     {
         EventCall?.Invoke("Explode");
-
-        Debug.Log("workie");
     }
 
 }

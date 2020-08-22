@@ -7,7 +7,15 @@ public class FlyingEnemy : EnemyController
     private Weapon laserWeapon = null;
 
     [SerializeField]
-    private List<startRandomForce> debris = new List<startRandomForce>();
+    private List<Rigidbody> debris = new List<Rigidbody>();
+    public float debrisIntensity = 1000;
+    [SerializeField]
+    private float debrisDuration = 5.0f;
+    [SerializeField]
+    private bool debrisIsReadyToDestroy = false;
+    [SerializeField, ReadOnlyField]
+    private float debrisTime = 0.0f;
+
 
     [SerializeField]
     private AnimationEventCallback animationEvent;
@@ -19,6 +27,7 @@ public class FlyingEnemy : EnemyController
         OnSpawnStart();
         enemyState = State.SPAWN;
         animationEvent.EventCall += Blast;
+        animationEvent.EventCall += Explode;
     }
 
     void Update()
@@ -116,7 +125,7 @@ public class FlyingEnemy : EnemyController
                 OnSearchStart();
                 return;
             }
-            
+
             animCtrl.SetTrigger("shoot");
             timeToNextAttack = 1.0f / EnemyAttackSpeed;
         }
@@ -127,7 +136,7 @@ public class FlyingEnemy : EnemyController
         base.OnAttackEnd();
     }
 
-    [ContextMenu("killEnemies")]
+    [ContextMenu("Kill")]
     protected override void OnDeathStart()
     {
         base.OnDeathStart();
@@ -136,12 +145,33 @@ public class FlyingEnemy : EnemyController
     protected override void OnDeath()
     {
         base.OnDeath();
-        OnDeathEnd();
+        debrisTime += Time.deltaTime;
+
+        if (debrisTime >= debrisDuration && debrisIsReadyToDestroy == false)
+        {
+            debrisTime = 0;
+            debrisIsReadyToDestroy = true;
+        }
+
+        //Lerp Scale down
+        if (debrisIsReadyToDestroy == true)
+        {
+            foreach (Rigidbody piece in debris)
+            {
+                piece.transform.localScale = Vector3.Lerp(Vector3.one, Vector3.zero, debrisTime);
+            }
+        }
+
+        if (debrisTime >= 1.0f && debrisIsReadyToDestroy == true)
+        {
+            OnDeathEnd();
+        }
+
     }
     protected override void OnDeathEnd()
     {
         base.OnDeathEnd();
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 
 
@@ -184,18 +214,16 @@ public class FlyingEnemy : EnemyController
             return;
         }
 
-        Debug.Log("workie3");
-
-        //do thing
-        foreach (var piece in debris)
+        foreach (Rigidbody piece in debris)
         {
             piece.gameObject.SetActive(true);
-            Debug.Log("workie2");
+            piece.AddForce(new Vector3(Random.Range(-debrisIntensity, debrisIntensity), Random.Range(0, debrisIntensity), Random.Range(-debrisIntensity, debrisIntensity)));
         }
     }
 
     private void OnDestroy()
     {
         animationEvent.EventCall -= Blast;
+        animationEvent.EventCall -= Explode;
     }
 }
