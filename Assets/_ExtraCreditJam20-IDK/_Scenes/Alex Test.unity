@@ -196,12 +196,12 @@ PrefabInstance:
     - target: {fileID: 5095187935541389137, guid: d4b38b352fdfe744a928ffd42107c06b,
         type: 3}
       propertyPath: heatLoss
-      value: 0.2
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 5095187935541389137, guid: d4b38b352fdfe744a928ffd42107c06b,
         type: 3}
       propertyPath: heatGain
-      value: 0.6
+      value: 0.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
