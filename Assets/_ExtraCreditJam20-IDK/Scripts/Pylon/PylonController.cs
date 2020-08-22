@@ -12,6 +12,7 @@ public class PylonController : MonoBehaviour
         }
     }
 
+    [SerializeField, ReadOnlyField]
     private float pylonCurrentHealth = 20;
     public float PylonCurrentHealth
     {
@@ -21,8 +22,28 @@ public class PylonController : MonoBehaviour
         }
     }
 
+    public bool PylonIsDestroyed
+    {
+        get
+        {
+            if (PylonCurrentHealth <= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
 
-    public Image pylonHealthUI = null;
+    [SerializeField]
+    private Image pylonHealthUI = null;
+
+    [SerializeField]
+    private Renderer renderer = null;
+
+    private Material material = null;
 
     private void Start()
     {
@@ -30,7 +51,21 @@ public class PylonController : MonoBehaviour
 
         pylonCurrentHealth = PylonStartHealth;
 
+        material = renderer.material;
+    }
 
+    public void ActivatePylon()
+    {
+        PylonManager.instance.ActivatePylon(this);
+        material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
+        material.SetFloat("pylonActive", 1.0f);
+    }
+
+    public void DeActivatePylon()
+    {
+        PylonManager.instance.DeActivatePylon(this);
+        material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
+        material.SetFloat("pylonActive", 0.0f);
     }
 
     public void TakeDamage(float damage)
@@ -38,6 +73,7 @@ public class PylonController : MonoBehaviour
         //damage number validation
 
         pylonCurrentHealth -= damage;
+        material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
 
         if (pylonHealthUI != null)
         {
@@ -48,11 +84,10 @@ public class PylonController : MonoBehaviour
             Debug.LogError("Missing reference to Pylon Health UI");
         }
 
-        if (PylonCurrentHealth <= 0)
+        if (PylonIsDestroyed)
         {
-
             //DEAD
-            PylonManager.instance.RemovePylonFromList(this);
+            PylonManager.instance.DeActivatePylon(this);
         }
     }
 }

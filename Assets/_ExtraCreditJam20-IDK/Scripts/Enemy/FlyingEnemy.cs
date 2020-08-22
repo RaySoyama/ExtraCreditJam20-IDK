@@ -60,6 +60,12 @@ public class FlyingEnemy : EnemyController
     }
     protected override void OnSearch()
     {
+        if (TargetPylon == null)
+        {
+            OnSearchStart();
+            return;
+        }
+
         base.OnSearch();
         //move to target Jank edition
         transform.LookAt(TargetPylon.transform.position + unitSphereVal);
@@ -85,6 +91,12 @@ public class FlyingEnemy : EnemyController
     }
     protected override void OnAttack()
     {
+        if (TargetPylon == null)
+        {
+            OnSearchStart();
+            return;
+        }
+
         base.OnAttack();
 
         //"Attack"
@@ -134,10 +146,12 @@ public class FlyingEnemy : EnemyController
     protected override void OnDeath()
     {
         base.OnDeath();
+        OnDeathEnd();
     }
     protected override void OnDeathEnd()
     {
         base.OnDeathEnd();
+        Destroy(gameObject);
     }
 
 }

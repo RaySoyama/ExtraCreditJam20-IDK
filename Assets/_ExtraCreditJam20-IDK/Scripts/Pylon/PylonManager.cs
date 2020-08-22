@@ -6,6 +6,16 @@ public class PylonManager : MonoBehaviour
     public static PylonManager instance = null;
 
     [SerializeField, ReadOnlyField]
+    private List<PylonController> allPylons = new List<PylonController>();
+    public List<PylonController> AllPylons
+    {
+        get
+        {
+            return allPylons;
+        }
+    }
+
+    [SerializeField, ReadOnlyField]
     private List<PylonController> allActivePylons = new List<PylonController>();
     public List<PylonController> AllActivePylons
     {
@@ -39,10 +49,15 @@ public class PylonManager : MonoBehaviour
 
     public void AddPylonToList(PylonController pylon)
     {
+        allPylons.Add(pylon);
+    }
+
+    public void ActivatePylon(PylonController pylon)
+    {
         allActivePylons.Add(pylon);
     }
 
-    public void RemovePylonFromList(PylonController pylon)
+    public void DeActivatePylon(PylonController pylon)
     {
         allActivePylons.Remove(pylon);
     }

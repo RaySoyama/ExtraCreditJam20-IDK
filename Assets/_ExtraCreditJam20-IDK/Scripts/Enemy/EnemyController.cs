@@ -94,7 +94,7 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    [SerializeField] //[ReadOnlyField]
+    [SerializeField, ReadOnlyField]
     protected PylonController targetPylon = null;
     public PylonController TargetPylon
     {
@@ -141,6 +141,14 @@ public class EnemyController : MonoBehaviour
     {
         enemyState = State.SEARCH;
 
+        //if no pylons
+        if (PylonManager.instance.AllActivePylons.Count <= 0)
+        {
+            OnDeathStart();
+            return;
+        }
+
+        //Find closest pylon
         float shortestDistance = float.MaxValue;
         PylonController closestPylon = null;
 
