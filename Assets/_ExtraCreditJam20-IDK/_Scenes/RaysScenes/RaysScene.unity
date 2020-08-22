@@ -222,6 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 607988024}
+  - component: {fileID: 607988025}
   - component: {fileID: 607988023}
   - component: {fileID: 607988022}
   - component: {fileID: 607988021}
@@ -307,6 +308,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &607988025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607988020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1526384162c3f4bbf16ab6f25ab5b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pylonStartHealth: 20
 --- !u!1 &1301725907
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,6 +527,7 @@ MonoBehaviour:
   enemyStartHealth: 1
   enemyHealth: 1
   enemyDamage: 1
+  timeToNextAttack: 0
   enemyAttackSpeed: 1
   enemyAttackRange: 10
   targetPylon: {fileID: 607988020}
