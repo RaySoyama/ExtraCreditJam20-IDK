@@ -26,7 +26,11 @@ public class PylonController : MonoBehaviour
 
     private void Start()
     {
+        PylonManager.instance.AddPylonToList(this);
+
         pylonCurrentHealth = PylonStartHealth;
+
+
     }
 
     public void TakeDamage(float damage)
@@ -46,7 +50,9 @@ public class PylonController : MonoBehaviour
 
         if (PylonCurrentHealth <= 0)
         {
-            //dead
+
+            //DEAD
+            PylonManager.instance.RemovePylonFromList(this);
         }
     }
 }

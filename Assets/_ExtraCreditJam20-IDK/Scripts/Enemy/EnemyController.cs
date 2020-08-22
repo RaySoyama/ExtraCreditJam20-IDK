@@ -140,6 +140,28 @@ public class EnemyController : MonoBehaviour
     protected virtual void OnSearchStart()
     {
         enemyState = State.SEARCH;
+
+        float shortestDistance = float.MaxValue;
+        PylonController closestPylon = null;
+
+        foreach (PylonController pylon in PylonManager.instance.AllActivePylons)
+        {
+            if (Vector3.Distance(transform.position, pylon.transform.position) < shortestDistance)
+            {
+                shortestDistance = Vector3.Distance(transform.position, pylon.transform.position);
+                closestPylon = pylon;
+            }
+        }
+
+        if (closestPylon == null)
+        {
+            //tf do i do
+            Debug.LogError("WTF NO PYLONS");
+        }
+        else
+        {
+            targetPylon = closestPylon;
+        }
     }
     protected virtual void OnSearch() { }
     protected virtual void OnSearchEnd()
