@@ -2,12 +2,19 @@
 
 public class FlyingEnemy : EnemyController
 {
-    public Weapon laserWeapon = null;
+    [SerializeField]
+    private Weapon laserWeapon = null;
 
+    [SerializeField]
+    private AnimationEventCallback animationEvent;
+
+    [SerializeField]
+    private Animator animCtrl;
     void Start()
     {
         OnSpawnStart();
         enemyState = State.SPAWN;
+        animationEvent.EventCall += Blast;
     }
 
     void Update()
@@ -104,31 +111,7 @@ public class FlyingEnemy : EnemyController
 
         if (TimeToNextAttack <= 0.0f)
         {
-            OnEnemyAttack?.Invoke();
-
-            //Do damage
-            if (TargetPylon != null)
-            {
-                TargetPylon.TakeDamage(EnemyDamage);
-            }
-            else
-            {
-                Debug.LogError("Missing reference to Target Pylon");
-            }
-
-
-            //Show Laser
-            if (laserWeapon != null)
-            {
-                laserWeapon.shotLength = EnemyAttackRange;
-                laserWeapon.Fire();
-            }
-            else
-            {
-                Debug.LogError("Missing reference to Laser Weapon");
-            }
-
-            Debug.Log("Enemy Attack");
+            animCtrl.SetTrigger("shoot");
             timeToNextAttack = 1.0f / EnemyAttackSpeed;
         }
 
@@ -154,4 +137,41 @@ public class FlyingEnemy : EnemyController
         Destroy(gameObject);
     }
 
+
+    private void Blast(string eventName)
+    {
+        if (eventName != "Blast")
+        {
+            return;
+        }
+
+        OnEnemyAttack?.Invoke();
+
+        //Do damage
+        if (TargetPylon != null)
+        {
+            TargetPylon.TakeDamage(EnemyDamage);
+        }
+        else
+        {
+            Debug.LogError("Missing reference to Target Pylon");
+        }
+
+        //Show Laser
+        if (laserWeapon != null)
+        {
+            laserWeapon.shotLength = EnemyAttackRange;
+            laserWeapon.Fire();
+        }
+        else
+        {
+            Debug.LogError("Missing reference to Laser Weapon");
+        }
+
+    }
+
+    private void OnDestroy()
+    {
+        animationEvent.EventCall -= Blast;
+    }
 }

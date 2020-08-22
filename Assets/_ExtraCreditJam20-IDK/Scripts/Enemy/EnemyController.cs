@@ -93,7 +93,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
     [SerializeField, ReadOnlyField]
     protected PylonController targetPylon = null;
     public PylonController TargetPylon

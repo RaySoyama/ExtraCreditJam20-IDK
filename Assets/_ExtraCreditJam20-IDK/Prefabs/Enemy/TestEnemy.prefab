@@ -4782,6 +4782,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7349174332237502173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4350794649282324746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90a4049fc3e0e542b64763e3d4530af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8745537704839173118
 GameObject:
   m_ObjectHideFlags: 0
@@ -4836,10 +4848,12 @@ MonoBehaviour:
   enemyHealth: 1
   enemyDamage: 1
   timeToNextAttack: 0
-  enemyAttackSpeed: 1
+  enemyAttackSpeed: 3
   enemyAttackRange: 10
   targetPylon: {fileID: 0}
   laserWeapon: {fileID: 8745537704839173112}
+  animationEvent: {fileID: 7349174332237502173}
+  animCtrl: {fileID: 1553616412297822941}
 --- !u!114 &8745537704839173112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4996,7 +5010,7 @@ PrefabInstance:
     - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.27
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
         type: 3}
@@ -5043,6 +5057,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3351471175499445086, guid: 69144c4918c2ddd4ca7d3f06189df273,
         type: 3}
       propertyPath: m_Name
@@ -5051,7 +5080,7 @@ PrefabInstance:
     - target: {fileID: 3351471175499445086, guid: 69144c4918c2ddd4ca7d3f06189df273,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69144c4918c2ddd4ca7d3f06189df273, type: 3}
