@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
         blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
 
-        if (firing && Time.time > firingStart + fireDuration)
+        if (firing && Time.time >= firingStart + fireDuration)
 		{
 			firing = false;
         }
@@ -75,13 +75,15 @@ public class PlayerController : MonoBehaviour
 		{
 			blastEnd.position = blastDestination;
 
-            //firing
-            blastDiss = Mathf.Lerp(blastDiss, 1, Time.deltaTime * 5);
+			//firing
+			//blastDiss = Mathf.Lerp(blastDiss, 1, Time.deltaTime * 5);
+			blastDiss = 1f;
         }
         else if (!firing)
         {
-            blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * 5);
-        }
+            //blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * ((firingStart + fireDuration) - Time.time));
+			blastDiss = 0f;
+		}
 
         //Camera Movement
         cam.transform.position = camPos.position;
