@@ -39,6 +39,16 @@ public class PylonController : MonoBehaviour
         }
     }
 
+    [SerializeField, ReadOnlyField]
+    private bool isEnabled = false;
+    public bool IsEnabled
+    {
+        get
+        {
+            return isEnabled;
+        }
+    }
+
     [SerializeField]
     private Image pylonHealthUI = null;
 
@@ -55,11 +65,14 @@ public class PylonController : MonoBehaviour
         pylonCurrentHealth = PylonStartHealth;
 
         material = renderRef.material;
+
+        isEnabled = false;
     }
 
     [ContextMenu("ActivatePylon")]
     public void ActivatePylon()
     {
+        isEnabled = true;
         PylonManager.instance.ActivatePylon(this);
         material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
         material.SetFloat("pylonActive", 1.0f);
@@ -67,6 +80,7 @@ public class PylonController : MonoBehaviour
     [ContextMenu("DeActivatePylon")]
     public void DeActivatePylon()
     {
+        isEnabled = false;
         PylonManager.instance.DeActivatePylon(this);
         material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
         material.SetFloat("pylonActive", 0.0f);
