@@ -215,6 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6697188056843670906}
+  - component: {fileID: 5095187935541389137}
   m_Layer: 0
   m_Name: Pylons
   m_TagString: Untagged
@@ -243,6 +244,24 @@ Transform:
   m_Father: {fileID: 1842354227727070064}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5095187935541389137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8811282847784742549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432862d2757c375469416c0832f45566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  portalLikelyHoodPerPylon: 0.25
+  portalSpawnTick: 3
+  portalPrefabs:
+  - {fileID: 1294141783613923284, guid: 18f06547edd5a3141a50dd879246c44f, type: 3}
+  allPylons: []
+  allActivePylons: []
 --- !u!1001 &997216593565357929
 PrefabInstance:
   m_ObjectHideFlags: 0

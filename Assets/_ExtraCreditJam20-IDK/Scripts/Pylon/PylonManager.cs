@@ -3,6 +3,14 @@ using UnityEngine;
 
 public class PylonManager : MonoBehaviour
 {
+	public float heatGain;
+	public float heatLoss;
+	public float heatThreshold;
+	[SerializeField, ReadOnlyField]
+	private float heatLevel;
+	[SerializeField, ReadOnlyField]
+	private bool overheated = false;
+
 	public float portalLikelyHoodPerPylon;
 	public float portalSpawnTick;
 
@@ -67,7 +75,7 @@ public class PylonManager : MonoBehaviour
 				if (roll <= portalLikelyHoodPerPylon)
 				{
 					GameObject portalToSpawn = portalPrefabs[Random.Range((int)0, portalPrefabs.Count)];
-					bool portalIsAGroundEnemySpawner = true;
+					bool portalIsAGroundEnemySpawner = false;
 					if (portalIsAGroundEnemySpawner)
 					{
 						//Spawn based on nav mesh
@@ -88,7 +96,30 @@ public class PylonManager : MonoBehaviour
 		}
     }
 
-    public void AddPylonToList(PylonController pylon)
+	private void FixedUpdate()
+	{
+		if (!overheated && heatLevel >= heatThreshold)
+		{
+			overheated = true;
+			//activate some pylons
+		}
+		else if (overheated && heatLevel <= 0f)
+		{
+			overheated = false;
+			//deactivate all pylons
+		}
+
+		if (overheated)
+		{
+			heatLevel -= heatLoss;
+		}
+		else
+		{
+			heatLevel += heatGain;
+		}
+	}
+
+	public void AddPylonToList(PylonController pylon)
     {
         allPylons.Add(pylon);
     }
