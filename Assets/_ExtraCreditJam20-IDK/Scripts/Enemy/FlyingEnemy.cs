@@ -71,6 +71,9 @@ public class FlyingEnemy : EnemyController
     protected override void OnSearchStart()
     {
         base.OnSearchStart();
+        animCtrl.ResetTrigger("shoot");
+        animCtrl.SetTrigger("stopShoot");
+
         unitSphereVal = Random.insideUnitSphere.normalized * EnemyAttackRange;
 
         if (unitSphereVal.y <= 0)

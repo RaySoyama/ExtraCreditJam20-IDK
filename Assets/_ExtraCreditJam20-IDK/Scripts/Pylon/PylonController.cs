@@ -64,7 +64,7 @@ public class PylonController : MonoBehaviour
         material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
         material.SetFloat("pylonActive", 1.0f);
     }
-
+    [ContextMenu("DeActivatePylon")]
     public void DeActivatePylon()
     {
         PylonManager.instance.DeActivatePylon(this);
