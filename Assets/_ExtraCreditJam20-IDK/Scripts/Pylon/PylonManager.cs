@@ -3,6 +3,13 @@ using UnityEngine;
 
 public class PylonManager : MonoBehaviour
 {
+	public float portalLikelyHoodPerPylon;
+	public float portalSpawnTick;
+
+	public List<GameObject> portalPrefabs;
+
+	private float lastPortalSpawnTick = 0f;
+
     public static PylonManager instance = null;
 
     [SerializeField, ReadOnlyField]
@@ -51,7 +58,34 @@ public class PylonManager : MonoBehaviour
 
     void Update()
     {
+		if (Time.time >= lastPortalSpawnTick + portalSpawnTick)
+		{
+			foreach (PylonController p in allActivePylons)
+			{
+				float roll = Random.Range(0f, 1f);
 
+				if (roll <= portalLikelyHoodPerPylon)
+				{
+					GameObject portalToSpawn = portalPrefabs[Random.Range((int)0, portalPrefabs.Count)];
+					bool portalIsAGroundEnemySpawner = true;
+					if (portalIsAGroundEnemySpawner)
+					{
+						//Spawn based on nav mesh
+					}
+					else
+					{
+						float x = Random.Range(0f, 8f);
+						float y = Random.Range(15f, 20f);
+						float z = Random.Range(0f, 8f);
+
+						Vector3 spawnPoint = new Vector3(x, y, z) + p.gameObject.transform.position;
+
+						GameObject newPortal = Instantiate(portalToSpawn, spawnPoint, Quaternion.identity);
+						newPortal.transform.LookAt(p.gameObject.transform.position);
+					}
+				}
+			}
+		}
     }
 
     public void AddPylonToList(PylonController pylon)

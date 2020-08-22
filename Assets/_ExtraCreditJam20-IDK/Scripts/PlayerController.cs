@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 		blastEnd.position = blastDestination;
+		blastEnd.LookAt(transform.position);
 		if (firing && Time.time >= firingStart + fireDuration)
 		{
 			firing = false;

@@ -1918,7 +1918,7 @@ PrefabInstance:
     - target: {fileID: 4093502294593914860, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: fireDuration
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4093502294593914871, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
