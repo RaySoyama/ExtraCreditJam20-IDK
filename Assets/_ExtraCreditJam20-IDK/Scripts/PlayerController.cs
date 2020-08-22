@@ -82,11 +82,13 @@ public class PlayerController : MonoBehaviour
 			Vector3 heading = (transform.position + lookOffset) - camPos.position;
 			Vector3 rayVect = heading / heading.magnitude;
 
-			if (Physics.Raycast(transform.position + lookOffset, rayVect, out hit))
+			Ray r = new Ray(transform.position + lookOffset, rayVect);
+
+			if (Physics.Raycast(r, out hit))
 			{
 				Debug.Log(hit.distance);
 			}
-			Debug.DrawRay(transform.position + lookOffset, rayVect);
+			//Gizmos.DrawRay(r);
 		}
 
 		//REMOVE FOR DEBUG
