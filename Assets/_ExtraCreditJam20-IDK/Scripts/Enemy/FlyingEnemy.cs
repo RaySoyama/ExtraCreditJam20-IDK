@@ -1,9 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class FlyingEnemy : EnemyController
 {
     [SerializeField]
     private Weapon laserWeapon = null;
+
+    [SerializeField]
+    private List<startRandomForce> debris = new List<startRandomForce>();
 
     [SerializeField]
     private AnimationEventCallback animationEvent;
@@ -123,10 +127,11 @@ public class FlyingEnemy : EnemyController
         base.OnAttackEnd();
     }
 
-
+    [ContextMenu("killEnemies")]
     protected override void OnDeathStart()
     {
         base.OnDeathStart();
+        animCtrl.SetTrigger("die");
     }
     protected override void OnDeath()
     {
@@ -136,7 +141,7 @@ public class FlyingEnemy : EnemyController
     protected override void OnDeathEnd()
     {
         base.OnDeathEnd();
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 
@@ -170,6 +175,23 @@ public class FlyingEnemy : EnemyController
             Debug.LogError("Missing reference to Laser Weapon");
         }
 
+    }
+
+    private void Explode(string eventName)
+    {
+        if (eventName != "Explode")
+        {
+            return;
+        }
+
+        Debug.Log("workie3");
+
+        //do thing
+        foreach (var piece in debris)
+        {
+            piece.gameObject.SetActive(true);
+            Debug.Log("workie2");
+        }
     }
 
     private void OnDestroy()

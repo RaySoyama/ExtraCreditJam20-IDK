@@ -10,4 +10,11 @@ public class AnimationEventCallback : MonoBehaviour
         EventCall?.Invoke("Blast");
     }
 
+    public void Explode()
+    {
+        EventCall?.Invoke("Explode");
+
+        Debug.Log("workie");
+    }
+
 }
