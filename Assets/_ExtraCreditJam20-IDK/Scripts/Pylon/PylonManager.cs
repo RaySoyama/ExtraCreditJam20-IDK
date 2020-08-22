@@ -54,15 +54,15 @@ public class PylonManager : MonoBehaviour
     }
     void Start()
     {
-        //For testing
-        foreach (var pylon in AllPylons)
-        {
-            if (Random.Range(0.0f, 1.0f) >= 0.5f)
-            {
-                pylon.ActivatePylon();
-            }
-        }
-    }
+		//For testing
+		//foreach (var pylon in AllPylons)
+		//{
+		//	if (Random.Range(0.0f, 1.0f) >= 0.5f)
+		//	{
+		//		pylon.ActivatePylon();
+		//	}
+		//}
+	}
 
     void Update()
     {
@@ -82,9 +82,9 @@ public class PylonManager : MonoBehaviour
 					}
 					else
 					{
-						float x = Random.Range(0f, 8f);
-						float y = Random.Range(15f, 20f);
-						float z = Random.Range(0f, 8f);
+						float x = Random.Range(0f, 25f);
+						float y = Random.Range(30f, 40f);
+						float z = Random.Range(0f, 25f);
 
 						Vector3 spawnPoint = new Vector3(x, y, z) + p.gameObject.transform.position;
 
@@ -102,6 +102,19 @@ public class PylonManager : MonoBehaviour
 		{
 			overheated = true;
 			//activate some pylons
+			foreach (var pylon in AllPylons)
+			{
+				if (Random.Range(0.0f, 1.0f) >= 0.5f)
+				{
+					pylon.ActivatePylon();
+				}
+			}
+
+			//If no pylons were activated pick a random one to activate.
+			if (allActivePylons.Count == 0)
+			{
+				allPylons[Random.Range((int)0, allPylons.Count)].ActivatePylon();
+			}
 		}
 		else if (overheated && heatLevel <= 0f)
 		{
