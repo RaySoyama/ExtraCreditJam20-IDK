@@ -2,6 +2,7 @@
 
 public class EnemyController : MonoBehaviour
 {
+    [SerializeField]
     protected string enemyName = "DefaultName";
     public string EnemyName
     {
@@ -11,6 +12,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    [SerializeField]
     protected float enemySpeed = 1;
     public float EnemySpeed
     {
@@ -20,6 +22,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    [SerializeField]
     protected float enemyStartHealth = 1;
     public float EnemyStartHealth
     {
@@ -29,6 +32,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    [SerializeField]
     protected float enemyHealth = 1;
     public float EnemyHealth
     {
@@ -38,6 +42,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    [SerializeField]
     protected float enemyDamage = 1;
     public float EnemyDamage
     {
@@ -47,6 +52,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    [SerializeField]
     protected float attackSpeed = 1;
     public float AttackSpeed
     {
@@ -55,6 +61,8 @@ public class EnemyController : MonoBehaviour
             return attackSpeed;
         }
     }
+
+
 
 
     public delegate void EnemyEvent();
