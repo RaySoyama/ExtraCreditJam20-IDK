@@ -154,7 +154,6 @@ public class PlayerController : MonoBehaviour
 
 	private void OnCollisionEnter(Collision collision)
 	{
-		Debug.Log(collision.gameObject.tag);
 		if (collision.gameObject.tag == "ground")
 		{
 			isGrounded = true;
