@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 
 	private Rigidbody rb;
 
+	private Vector3 lookOffset = new Vector3(0f, 2.5f, 0f);
+
 	public float jumpForce;
 	public float moveForce;
 
@@ -20,6 +22,8 @@ public class PlayerController : MonoBehaviour
 
 	private float currentGravity;
 	private float camDistance;
+
+	private bool isGrounded = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,14 +43,17 @@ public class PlayerController : MonoBehaviour
     {
 		//Camera Movement
 		cam.transform.position = camPos.position;
-		cam.transform.LookAt(transform.position);
-		camPos.LookAt(transform.position);
+		cam.transform.LookAt(transform.position + lookOffset);
+		camPos.LookAt(transform.position + lookOffset);
 
 		//Input
 		//Keys
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			rb.AddForce(transform.up * jumpForce);
+			if (isGrounded)
+			{
+				rb.AddForce(transform.up * jumpForce);
+			}
 		}
 
 		if (Input.GetKey(KeyCode.W))
@@ -68,44 +75,67 @@ public class PlayerController : MonoBehaviour
 		}
 
 		//Mouse
+		//Clicks
+		if (Input.GetMouseButtonDown(1))
+		{
+			RaycastHit hit;
+			Vector3 rayVect = transform.position + lookOffset - camPos.position;
+
+			if (Physics.Raycast(transform.position + lookOffset, rayVect, out hit))
+			{
+				Debug.Log(hit.distance);
+			}
+				
+		}
+
+		//Mouse moves
 		transform.Rotate(new Vector3(0f, Input.GetAxis("Mouse X") * Time.deltaTime * lookSpeed, 0f));
 
-		//float newY = camPos.position.y - (Input.GetAxis("Mouse Y") * Time.deltaTime * lookSpeed * 0.2f);
+		float zMax = -1f;
+		float yMin = -0.3f;
+		float ySet = -0.4f;
 
-		//newY = Mathf.Clamp(newY, 0.1f, 10f);
-		//camPos.transform.position = new Vector3(camPos.position.x, newY, camPos.position.z);
-
-		if (camPos.position.y < 0.1f)
+		//Cam Y movement when "on ground"
+		if (camPos.localPosition.y < yMin)
 		{
+			if (camPos.localPosition.z <= zMax && camPos.localPosition.z >= -camDistance)
+			{
+				camPos.localPosition = new Vector3(camPos.localPosition.x, ySet, camPos.localPosition.z + Input.GetAxis("Mouse Y") * Time.deltaTime * lookSpeed / 3f);
 
-			camPos.position = new Vector3(camPos.position.x, 0.08f, camPos.position.z);
-
-			if (camPos.position.z < -0.1f && camPos.position.z > -camDistance)
-			{
-				camPos.position = new Vector3(camPos.position.x, 0.08f, camPos.position.z + Input.GetAxis("Mouse Y") * Time.deltaTime * lookSpeed);
+				if (camPos.localPosition.z > zMax)
+				{
+					camPos.localPosition = new Vector3(camPos.localPosition.x, ySet, zMax);
+				}
 			}
-			else if (camPos.position.z <= -camDistance)
+			else if (camPos.localPosition.z < -camDistance)
 			{
-				camPos.position = new Vector3(camPos.position.x, 0.1f, -camDistance);
+				camPos.localPosition = new Vector3(camPos.localPosition.x, -0.2f, -camDistance);
 			}
-			else if (camPos.position.z >= -0.1f)
+			else if (camPos.localPosition.z > zMax)
 			{
-				Debug.Log("yo");
-				camPos.position = new Vector3(camPos.position.x, 0.08f, -0.1f);
+				camPos.localPosition = new Vector3(camPos.localPosition.x, ySet, zMax);
 			}
 
 		}
+		//Cam Y when in the air.
 		else
 		{
 			camPos.transform.RotateAround(transform.position, transform.right, -Input.GetAxis("Mouse Y") * Time.deltaTime * lookSpeed);
+			if (camPos.localPosition.z > -1f)
+			{
+				camPos.localPosition = new Vector3(camPos.localPosition.x, camPos.localPosition.y, -1f);
+			}
 		}
 
 		//Speed limit
+		float yVel = rb.velocity.y;
 		if (rb.velocity.magnitude > maxSpeed)
 		{
 			rb.AddForce(-rb.velocity * (0.1f * (rb.velocity.magnitude - maxSpeed)));
 		}
+		rb.velocity = new Vector3(rb.velocity.x, yVel, rb.velocity.z);
 
+		//Set gravity
 		if (Input.GetKey(KeyCode.Space))
 		{
 			currentGravity = lowGravity;
@@ -114,12 +144,28 @@ public class PlayerController : MonoBehaviour
 		{
 			currentGravity = gravity;
 		}
-
 	}
 
 	private void FixedUpdate()
 	{
 		//Add Gravity
 		rb.AddForce(new Vector3(0f, -currentGravity, 0f));
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		Debug.Log(collision.gameObject.tag);
+		if (collision.gameObject.tag == "ground")
+		{
+			isGrounded = true;
+		}
+	}
+
+	private void OnCollisionExit(Collision collision)
+	{
+		if (collision.gameObject.tag == "ground")
+		{
+			isGrounded = false;
+		}
 	}
 }
