@@ -253,8 +253,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.2
-      minScalar: 0.5
+      scalar: 0.5
+      minScalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -363,9 +363,9 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.9803922, g: 0.8745099, b: 0.72156864, a: 1}
-        key1: {r: 0.9921569, g: 0.7568628, b: 0.7568628, a: 1}
-        key2: {r: 0.2509804, g: 0.38823533, b: 0.60784316, a: 0}
+        key0: {r: 1, g: 1, b: 0.7372549, a: 1}
+        key1: {r: 1, g: 0.45098042, b: 0.74509805, a: 1}
+        key2: {r: 0.44705886, g: 0.67058825, b: 1, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -998,7 +998,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2
