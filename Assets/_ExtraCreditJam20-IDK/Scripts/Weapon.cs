@@ -1,17 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public enum FiringMode { Laser, RapidFire, Shotgun, Burst}
+    public enum FiringMode { Laser, RapidFire, Shotgun, Burst }
     public FiringMode fireMode = FiringMode.Laser;
 
     public int damage = 1;
     public float shotCooldown = 0.5f;
     public float shotLength = 100f;
     public float beamAliveTime = 0.5f;
-    
+
     public GameObject laser;
 
     public bool isPlayer = false;
@@ -27,15 +25,15 @@ public class Weapon : MonoBehaviour
 
         shotCD += Time.deltaTime;
 
-        if(laser.activeSelf)
+        if (laser.activeSelf)
         {
             fireQueued = false;
 
             //Do raycast damage here
-            
+
             beamTime += Time.deltaTime;
 
-            if(beamTime >= beamAliveTime)
+            if (beamTime >= beamAliveTime)
             {
                 beamTime = 0f;
                 laser.SetActive(false);
@@ -61,5 +59,6 @@ public class Weapon : MonoBehaviour
     public void Fire()
     {
         fireQueued = true;
+        laser.transform.localScale = new Vector3(laser.transform.localScale.x, laser.transform.localScale.y, shotLength * 3.0f);
     }
 }

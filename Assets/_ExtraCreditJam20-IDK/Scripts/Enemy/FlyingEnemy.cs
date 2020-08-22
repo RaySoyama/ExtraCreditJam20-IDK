@@ -2,7 +2,7 @@
 
 public class FlyingEnemy : EnemyController
 {
-
+    public Weapon laserWeapon = null;
 
     void Start()
     {
@@ -51,22 +51,29 @@ public class FlyingEnemy : EnemyController
     protected override void OnSearchStart()
     {
         base.OnSearchStart();
+        unitSphereVal = Random.insideUnitSphere.normalized * EnemyAttackRange;
+
+        if (unitSphereVal.y <= 0)
+        {
+            unitSphereVal = new Vector3(unitSphereVal.x, -unitSphereVal.y, unitSphereVal.z);
+        }
     }
     protected override void OnSearch()
     {
         base.OnSearch();
         //move to target Jank edition
-        transform.LookAt(TargetPylon.transform.position);
+        transform.LookAt(TargetPylon.transform.position + unitSphereVal);
         transform.Translate(Vector3.forward * EnemySpeed * Time.deltaTime);
 
         //distance check. Will not work if the enemy is too close
-        if (Vector3.Distance(transform.position, TargetPylon.transform.position) < EnemyAttackRange)
+        if (Vector3.Distance(transform.position, TargetPylon.transform.position + unitSphereVal) <= 0.1f)
         {
             OnSearchEnd();
         }
     }
     protected override void OnSearchEnd()
     {
+        transform.LookAt(TargetPylon.transform.position);
         base.OnSearchEnd();
     }
 
@@ -88,6 +95,27 @@ public class FlyingEnemy : EnemyController
             OnEnemyAttack?.Invoke();
 
             //Do damage
+            if (TargetPylon != null)
+            {
+                TargetPylon.TakeDamage(EnemyDamage);
+            }
+            else
+            {
+                Debug.LogError("Missing reference to Target Pylon");
+            }
+
+
+            //Show Laser
+            if (laserWeapon != null)
+            {
+                laserWeapon.shotLength = EnemyAttackRange;
+                laserWeapon.Fire();
+            }
+            else
+            {
+                Debug.LogError("Missing reference to Laser Weapon");
+            }
+
             Debug.Log("Enemy Attack");
             timeToNextAttack = 1.0f / EnemyAttackSpeed;
         }
