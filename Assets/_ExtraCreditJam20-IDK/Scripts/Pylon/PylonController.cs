@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+
 public class PylonController : MonoBehaviour
 {
     [SerializeField]
@@ -57,6 +59,8 @@ public class PylonController : MonoBehaviour
 
     private Material material = null;
 
+    public UnityEvent onStartCooling;
+    public UnityEvent onDoneCooling;
 
     private void Start()
     {
@@ -72,15 +76,18 @@ public class PylonController : MonoBehaviour
     [ContextMenu("ActivatePylon")]
     public void ActivatePylon()
     {
+        onStartCooling.Invoke();
 		Debug.Log("Active: " + this.name);
         isEnabled = true;
         PylonManager.instance.ActivatePylon(this);
         material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
         material.SetFloat("pylonActive", 1.0f);
     }
+
     [ContextMenu("DeActivatePylon")]
     public void DeActivatePylon()
     {
+        onDoneCooling.Invoke();
         isEnabled = false;
         PylonManager.instance.DeActivatePylon(this);
         material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
@@ -106,6 +113,7 @@ public class PylonController : MonoBehaviour
         if (PylonIsDestroyed)
         {
             //DEAD
+            onDoneCooling.Invoke();
             PylonManager.instance.DeActivatePylon(this);
         }
     }

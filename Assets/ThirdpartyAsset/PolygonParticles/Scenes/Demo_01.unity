@@ -66324,6 +66324,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432862d2757c375469416c0832f45566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatGain: 0
+  heatLoss: 0
+  heatThreshold: 0
+  heatLevel: 0
+  overheated: 0
+  portalLikelyHoodPerPylon: 0
+  portalSpawnTick: 0
+  portalPrefabs: []
   allPylons:
   - {fileID: 538080094}
   - {fileID: 538080093}
