@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     public float currentWaterStorage = 5f;
 
     public ParticleSystem epParticle;
+    public ParticleSystem movementParticle;
 
     public Animator corsshair;
 
@@ -94,6 +95,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (isGrounded)
+        {
+            ParticleSystem.EmissionModule module = movementParticle.emission;
+            module.rateOverDistance = 8;
+        }
+        else
+        {
+            ParticleSystem.EmissionModule module = movementParticle.emission;
+            module.rateOverDistance = 0;
+        }
+
         blastEnd.position = blastDestination;
         blastEnd.LookAt(transform.position);
         if (firing && Time.time >= firingStart + fireDuration)
@@ -272,14 +284,15 @@ public class PlayerController : MonoBehaviour
                     {
                         waterDiss = Mathf.Lerp(waterDiss, 1, 0.3f);
                         shakeMagnitude += Time.deltaTime * 1.5f;
-                        currentWaterStorage = Mathf.Clamp(currentWaterStorage + (Time.deltaTime * 1.5f), 0, waterStorageMax);
+                        currentWaterStorage = Mathf.Clamp(currentWaterStorage + (Time.deltaTime * 2f), 0, waterStorageMax);
+                        rb.AddForce(camPos.forward * 15, ForceMode.Acceleration);
                     }
                     else
                     {
                         if (hit.transform.gameObject.name != "Water" && currentWaterStorage > 0)
                         {
                             waterDiss = Mathf.Lerp(waterDiss, 1, 0.15f);
-                            currentWaterStorage = Mathf.Clamp(currentWaterStorage - Time.deltaTime * 2f, 0, waterStorageMax);
+                            currentWaterStorage = Mathf.Clamp(currentWaterStorage - Time.deltaTime * 3.5f, 0, waterStorageMax);
 
                             //Make player fly around
                             rb.AddForce(-camPos.forward * 75, ForceMode.Acceleration);
