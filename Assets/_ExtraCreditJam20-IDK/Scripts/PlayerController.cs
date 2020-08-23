@@ -183,6 +183,8 @@ public class PlayerController : MonoBehaviour
         //Keys
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            PlayerAnim.SetTrigger("jump");
+
             if (isGrounded)
             {
                 rb.AddForce(transform.up * jumpForce);
