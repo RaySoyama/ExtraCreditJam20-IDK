@@ -270,20 +270,19 @@ public class PlayerController : MonoBehaviour
                 GameObject rootObj = hit.transform.root.gameObject;
 
                 EnemyController enemyComp;
+				Bell bell;
                 if (rootObj.TryGetComponent<EnemyController>(out enemyComp))
                 {
                     enemyComp.TakeHit();
 					shakeMagnitude += 1f;
 				}
+				else if (rootObj.TryGetComponent<Bell>(out bell))
+				{
+					bell.TakeHit();
+					shakeMagnitude += 0.5f;
+				}
 
-                try
-                {
-                    audio.PlayOneShot(blastSounds[Random.Range((int)0, (int)blastSounds.Count)]);
-                }
-                catch
-                {
-
-                }
+				audio.PlayOneShot(blastSounds[Random.Range((int)0, (int)blastSounds.Count)]);
             }
         }
 

@@ -27,6 +27,8 @@ public class PylonManager : MonoBehaviour
 
 	public Transform groundPortalPoints;
 
+	private List<OceanObject> oceanObjects = new List<OceanObject>();
+
     [SerializeField, ReadOnlyField]
     private List<PylonController> allPylons = new List<PylonController>();
     public List<PylonController> AllPylons
@@ -215,4 +217,19 @@ public class PylonManager : MonoBehaviour
     {
         allActivePylons.Remove(pylon);
     }
+
+	public void NewOceanObject(OceanObject oo)
+	{
+		oceanObjects.Add(oo);
+		oo.SetSailing(!overheated);
+	}
+
+	public void RemoveOceanObject(OceanObject oo)
+	{
+		if (oceanObjects.Contains(oo))
+		{
+			oceanObjects.Remove(oo);
+		}
+	}
+
 }
