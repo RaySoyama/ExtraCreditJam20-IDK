@@ -69,7 +69,7 @@ MonoBehaviour:
   jumpForce: 800
   moveForce: 18
   maxSpeed: 12
-  lookSpeed: 70
+  lookSpeed: 100
   gravity: 38
   lowGravity: 27
   fireDuration: 1

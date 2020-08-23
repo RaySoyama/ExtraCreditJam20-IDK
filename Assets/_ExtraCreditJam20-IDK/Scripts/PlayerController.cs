@@ -24,7 +24,10 @@ public class PlayerController : MonoBehaviour
     private float currentGravity;
     private float camDistance;
 
-    private bool isGrounded = false;
+	private float shakeMagnitude = 0f;
+
+
+	private bool isGrounded = false;
 
     private bool firing = false;
     private float firingStart = 0f;
@@ -109,14 +112,18 @@ public class PlayerController : MonoBehaviour
 
 
 		//Camera Movement
-		//if (shakeMagnitude)
-		//{
-		//	Vector3 shake = new Vector3(Random.Range(-1f, 1) * shakeMagnitude, Random.Range(-1f, 1) * shakeMagnitude, Random.Range(-1f, 1) * shakeMagnitude);
-		//}
+		Vector3 shake = Vector3.zero;
+		if (shakeMagnitude > 0f)
+		{
+			shake = new Vector3(Random.Range(-0.1f, 0.1f) * shakeMagnitude, Random.Range(-0.1f, 0.1f) * shakeMagnitude, Random.Range(-0.1f, 0.1f) * shakeMagnitude);
+			shakeMagnitude -= 0.05f;
+		}
+		else if (shakeMagnitude < 0f)
+		{
+			shakeMagnitude = 0f;
+		}
 
-		
-		
-        cam.transform.position = camPos.position;
+		cam.transform.position = camPos.position + shake;
         cam.transform.LookAt(transform.position + lookOffset);
         camPos.LookAt(transform.position + lookOffset);
 
@@ -166,6 +173,8 @@ public class PlayerController : MonoBehaviour
                 firing = true;
                 firingStart = Time.time;
                 blastDiss = 1f;
+
+				shakeMagnitude += 1f;
 
                 GameObject rootObj = hit.transform.root.gameObject;
 
