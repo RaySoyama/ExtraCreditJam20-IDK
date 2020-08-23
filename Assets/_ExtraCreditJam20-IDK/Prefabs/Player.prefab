@@ -111,6 +111,10 @@ MonoBehaviour:
   epParticle: {fileID: 6609586135559001262}
   corsshair: {fileID: 2247298235866176443}
   jumpSound: {fileID: 8300000, guid: ab4f96a068da69340983ae00495b4f32, type: 3}
+  blastSounds:
+  - {fileID: 8300000, guid: 6857a85ff236a7146ad4398555794188, type: 3}
+  - {fileID: 8300000, guid: 75e961470c278cd4f9a7803916f46869, type: 3}
+  - {fileID: 8300000, guid: 4b2c00fc231167f429a891ff09015b68, type: 3}
   miniMap: {fileID: 3077704572339345944}
 --- !u!54 &4093502294593914856
 Rigidbody:
@@ -421,6 +425,21 @@ PrefabInstance:
       propertyPath: m_Sources.Array.data[0].sourceTransform
       value: 
       objectReference: {fileID: 1708310550327267445}
+    - target: {fileID: 7144445144533671994, guid: 788b214870f1ba44bbd45bf3cc1dab86,
+        type: 3}
+      propertyPath: m_RotationOffsets.Array.data[0].x
+      value: -32.538177
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144445144533671994, guid: 788b214870f1ba44bbd45bf3cc1dab86,
+        type: 3}
+      propertyPath: m_RotationOffsets.Array.data[0].y
+      value: -45.338093
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144445144533671994, guid: 788b214870f1ba44bbd45bf3cc1dab86,
+        type: 3}
+      propertyPath: m_RotationOffsets.Array.data[0].z
+      value: -102.690735
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 788b214870f1ba44bbd45bf3cc1dab86, type: 3}
 --- !u!1 &7820205351022097158 stripped

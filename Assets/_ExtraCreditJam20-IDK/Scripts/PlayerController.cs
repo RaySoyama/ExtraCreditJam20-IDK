@@ -28,8 +28,9 @@ public class PlayerController : MonoBehaviour
 
 
 	private bool isGrounded = false;
+	private bool isWalking = false;
 
-    private bool firing = false;
+	private bool firing = false;
     private float firingStart = 0f;
 
     public float fireDuration;
@@ -46,6 +47,7 @@ public class PlayerController : MonoBehaviour
     public Animator corsshair;
 
     public AudioClip jumpSound;
+	public List<AudioClip> blastSounds;
     private AudioSource audio;
 
 	public GameObject miniMap;
@@ -151,23 +153,29 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+		isWalking = false;
+
         if (Input.GetKey(KeyCode.W))
         {
             rb.AddForce(transform.forward * moveForce);
-        }
+			isWalking = true;
+		}
         else if (Input.GetKey(KeyCode.S))
         {
             rb.AddForce(-transform.forward * moveForce);
-        }
+			isWalking = true;
+		}
 
         if (Input.GetKey(KeyCode.A))
         {
             rb.AddForce(-transform.right * moveForce);
-        }
+			isWalking = true;
+		}
         else if (Input.GetKey(KeyCode.D))
         {
             rb.AddForce(transform.right * moveForce);
-        }
+			isWalking = true;
+		}
 
 		//minimap
 		if (Input.GetKeyDown(KeyCode.Tab))
@@ -203,6 +211,8 @@ public class PlayerController : MonoBehaviour
                     enemyComp.TakeHit();
 					shakeMagnitude += 1f;
 				}
+
+				audio.PlayOneShot(blastSounds[Random.Range((int)0, (int)blastSounds.Count)]);
             }
         }
 
@@ -273,7 +283,14 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{
-			rb.AddForce(new Vector3(0f, -currentGravity * 0.5f, 0f));
+			if (isWalking)
+			{
+				rb.AddForce(new Vector3(0f, -currentGravity * 0.5f, 0f));
+			}
+			else
+			{
+				rb.AddForce(new Vector3(0f, -currentGravity * 2f, 0f));
+			}
 		}
     }
 
