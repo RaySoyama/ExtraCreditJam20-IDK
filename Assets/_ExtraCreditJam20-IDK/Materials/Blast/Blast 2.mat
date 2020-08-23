@@ -75,7 +75,7 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - dissolve: 1
+    - dissolve: 0
     m_Colors:
     - Color_50929208: {r: 0.6698113, g: 0.2432805, b: 0.41913268, a: 0}
     - Color_64B8E14E: {r: 0.37976217, g: 0.6509434, b: 0.33468318, a: 0}
