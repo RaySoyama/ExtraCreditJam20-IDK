@@ -756,6 +756,11 @@ PrefabInstance:
       propertyPath: moveWithTransform
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4981130987302696851, guid: 444c4488e0ba07b4bbe771feeebc9333,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 4981431272704903789, guid: 444c4488e0ba07b4bbe771feeebc9333,
         type: 3}
       propertyPath: moveWithTransform
@@ -786,6 +791,21 @@ PrefabInstance:
       propertyPath: moveWithTransform
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4981438773632804795, guid: 444c4488e0ba07b4bbe771feeebc9333,
+        type: 3}
+      propertyPath: InitialModule.size3D
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981438773632804795, guid: 444c4488e0ba07b4bbe771feeebc9333,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981438773632804795, guid: 444c4488e0ba07b4bbe771feeebc9333,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5179876646699205539, guid: 444c4488e0ba07b4bbe771feeebc9333,
         type: 3}
       propertyPath: m_Name
@@ -799,7 +819,7 @@ PrefabInstance:
     - target: {fileID: 5183083981466558711, guid: 444c4488e0ba07b4bbe771feeebc9333,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.422
+      value: -1.787
       objectReference: {fileID: 0}
     - target: {fileID: 5183114827786018671, guid: 444c4488e0ba07b4bbe771feeebc9333,
         type: 3}
@@ -1318,7 +1338,7 @@ PrefabInstance:
     - target: {fileID: 3233746883283312642, guid: 550c211883ed6fd4ea6dd03002db5b27,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.422
+      value: -1.706
       objectReference: {fileID: 0}
     - target: {fileID: 3234016974037273778, guid: 550c211883ed6fd4ea6dd03002db5b27,
         type: 3}
@@ -1395,10 +1415,40 @@ PrefabInstance:
       propertyPath: moveWithTransform
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3327286055068671236, guid: 550c211883ed6fd4ea6dd03002db5b27,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327286055068671236, guid: 550c211883ed6fd4ea6dd03002db5b27,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3327885044516899732, guid: 550c211883ed6fd4ea6dd03002db5b27,
         type: 3}
       propertyPath: moveWithTransform
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327885044516899732, guid: 550c211883ed6fd4ea6dd03002db5b27,
+        type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327885044516899732, guid: 550c211883ed6fd4ea6dd03002db5b27,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327885044516899732, guid: 550c211883ed6fd4ea6dd03002db5b27,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327885044516899732, guid: 550c211883ed6fd4ea6dd03002db5b27,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.38
       objectReference: {fileID: 0}
     - target: {fileID: 3327924740141308836, guid: 550c211883ed6fd4ea6dd03002db5b27,
         type: 3}
