@@ -114,8 +114,6 @@ public class FlyingEnemy : EnemyController
     }
     protected override void OnAttack()
     {
-
-
         base.OnAttack();
 
         //"Attack"
@@ -131,6 +129,7 @@ public class FlyingEnemy : EnemyController
 
             animCtrl.SetTrigger("shoot");
             timeToNextAttack = 1.0f / EnemyAttackSpeed;
+			base.Attack();
         }
 
     }

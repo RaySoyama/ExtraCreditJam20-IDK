@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 lookOffset = new Vector3(0f, 2.5f, 0f);
 
-	
-
     public float jumpForce;
     public float moveForce;
 
@@ -42,6 +40,9 @@ public class PlayerController : MonoBehaviour
 
 	public ParticleSystem epParticle;
 
+	public AudioClip jumpSound;
+	private AudioSource audio;
+
 	private List<GameObject> grounds = new List<GameObject>();
 
 	private void Awake()
@@ -66,7 +67,9 @@ public class PlayerController : MonoBehaviour
 
         cam.transform.position = camPos.position;
         camDistance = Vector3.Distance(camPos.position, transform.position);
-    }
+
+		audio = GetComponent<AudioSource>();
+	}
 
     void Update()
     {
@@ -117,6 +120,8 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 rb.AddForce(transform.up * jumpForce);
+				audio.clip = jumpSound;
+				audio.Play();
             }
         }
 
@@ -155,6 +160,19 @@ public class PlayerController : MonoBehaviour
 				firing = true;
 				firingStart = Time.time;
 				blastDiss = 1f;
+
+				GameObject rootObj = hit.transform.root.gameObject;
+
+				Portal portalComp;
+				EnemyController enemyComp;
+				if (rootObj.TryGetComponent<Portal>(out portalComp))
+				{
+					portalComp.TakeHit();
+				}
+				else if (rootObj.TryGetComponent<EnemyController>(out enemyComp))
+				{
+					enemyComp.TakeHit();
+				}
 			}
         }
 

@@ -2,6 +2,10 @@
 
 public class EnemyController : MonoBehaviour
 {
+	private AudioSource audio;
+	public AudioClip attackSound;
+	public AudioClip deathSound;
+
     [SerializeField]
     protected State enemyState = State.IDLE;
     public State EnemyState
@@ -179,15 +183,33 @@ public class EnemyController : MonoBehaviour
     protected virtual void OnAttackStart()
     {
         enemyState = State.ATTACK;
-    }
-    protected virtual void OnAttack() { }
+	}
+    protected virtual void OnAttack()
+	{
+		
+	}
+
+	protected virtual void Attack()
+	{
+		timeToNextAttack = enemyAttackSpeed;
+
+		audio.clip = attackSound;
+		audio.Stop();
+		audio.Play();
+	}
+
     protected virtual void OnAttackEnd() { }
 
     protected virtual void OnDeathStart()
     {
         enemyState = State.DEATH;
-    }
-    protected virtual void OnDeath() { }
+		audio.clip = deathSound;
+		audio.Play();
+	}
+    protected virtual void OnDeath()
+	{
+		
+	}
     protected virtual void OnDeathEnd() { }
 
     private void OnDrawGizmosSelected()
@@ -201,4 +223,19 @@ public class EnemyController : MonoBehaviour
             Gizmos.DrawWireSphere(TargetPylon.transform.position + unitSphereVal, 0.5f);
         }
     }
+
+	public void TakeHit()
+	{
+		enemyHealth--;
+
+		if (enemyHealth <= 0)
+		{
+			OnDeathStart();
+		}
+	}
+
+	private void Awake()
+	{
+		audio = GetComponent<AudioSource>();
+	}
 }
