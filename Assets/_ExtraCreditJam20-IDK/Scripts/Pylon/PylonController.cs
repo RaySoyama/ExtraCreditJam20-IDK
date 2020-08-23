@@ -4,7 +4,12 @@ using UnityEngine.Events;
 
 public class PylonController : MonoBehaviour
 {
-    [SerializeField]
+	private AudioSource audio;
+	public AudioClip vent;
+	public AudioClip die;
+	public AudioClip deactivate;
+
+	[SerializeField]
     private float pylonStartHealth = 20;
     public float PylonStartHealth
     {
@@ -62,7 +67,12 @@ public class PylonController : MonoBehaviour
     public UnityEvent onStartCooling;
     public UnityEvent onDoneCooling;
 
-    private void Start()
+	private void Awake()
+	{
+		audio = GetComponent<AudioSource>();
+	}
+
+	private void Start()
     {
         PylonManager.instance.AddPylonToList(this);
 
@@ -77,11 +87,12 @@ public class PylonController : MonoBehaviour
     public void ActivatePylon()
     {
         onStartCooling.Invoke();
-		Debug.Log("Active: " + this.name);
         isEnabled = true;
         PylonManager.instance.ActivatePylon(this);
         material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
         material.SetFloat("pylonActive", 1.0f);
+
+		audio.PlayOneShot(vent);
     }
 
     [ContextMenu("DeActivatePylon")]
