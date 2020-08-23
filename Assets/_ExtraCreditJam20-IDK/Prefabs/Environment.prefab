@@ -532,7 +532,7 @@ MonoBehaviour:
   overheated: 0
   wave: 0
   portalLikelyHoodPerPylon: 0.16
-  portalSpawnTick: 8
+  portalSpawnTick: 6
   portalPrefabs:
   - {fileID: 1294141783613923284, guid: 18f06547edd5a3141a50dd879246c44f, type: 3}
   allPylons: []

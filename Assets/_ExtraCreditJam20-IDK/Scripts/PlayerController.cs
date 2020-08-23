@@ -46,6 +46,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     private AudioSource audio;
 
+	public GameObject miniMap;
+
     private List<GameObject> grounds = new List<GameObject>();
 
     private void Awake()
@@ -155,6 +157,12 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(transform.right * moveForce);
         }
+
+		//minimap
+		if (Input.GetKeyDown(KeyCode.Tab))
+		{
+			miniMap.SetActive(!miniMap.active);
+		}
 
         //Mouse
         //Clicks
