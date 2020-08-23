@@ -31,16 +31,25 @@ public class PlayerController : MonoBehaviour
 	private bool isWalking = false;
 
 	private bool firing = false;
+	private bool waterFiring = false;
     private float firingStart = 0f;
 
     public float fireDuration;
 
     private Vector3 blastDestination = Vector3.zero;
+    private Vector3 waterDestination = Vector3.zero;
 
     public Transform blastStart;
     public Transform blastEnd;
+    public Transform waterStart;
+    public Transform waterEnd;
     public List<GameObject> blasts;
+    public List<GameObject> waterBlasts;
     float blastDiss = 0f;
+    float waterDiss = 0f;
+
+    public float waterStorageMax = 5f;
+    public float currentWaterStorage = 5f;
 
     public ParticleSystem epParticle;
 
@@ -123,6 +132,10 @@ public class PlayerController : MonoBehaviour
             em.enabled = false;
         }
 
+        foreach (var water in waterBlasts)
+        {
+            water.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", waterDiss);
+        }
 
 		//Camera Movement
 		Vector3 shake = Vector3.zero;
@@ -212,10 +225,77 @@ public class PlayerController : MonoBehaviour
 					shakeMagnitude += 1f;
 				}
 
-				audio.PlayOneShot(blastSounds[Random.Range((int)0, (int)blastSounds.Count)]);
+                try
+                {
+                    audio.PlayOneShot(blastSounds[Random.Range((int)0, (int)blastSounds.Count)]);
+                }
+                catch
+                {
+
+                }
             }
         }
 
+        if (Input.GetMouseButton(1))
+        {
+            RaycastHit hit;
+            Vector3 heading = (transform.position + lookOffset) - camPos.position;
+            Vector3 rayVect = heading / heading.magnitude;
+
+            Ray r = new Ray(transform.position + lookOffset, rayVect);
+
+            if (Physics.Raycast(r, out hit))
+            {
+                waterFiring = true;
+
+                waterEnd.position = hit.point;
+                waterDestination = hit.point;
+
+                shakeMagnitude += Time.deltaTime * 1.1f;
+
+                GameObject rootObj = hit.transform.root.gameObject;
+
+                PylonController pylonOut;
+                if (currentWaterStorage > 0 && rootObj.TryGetComponent<PylonController>(out pylonOut))
+                {
+                    //DO HEALING HERE!!!!!!!!!!!!
+                    //pylonOut.Heal();
+                    waterDiss = Mathf.Lerp(waterDiss, 1, 0.2f);
+                    shakeMagnitude += 0.1f;
+                    currentWaterStorage = Mathf.Clamp(currentWaterStorage - (Time.deltaTime * 4), 0, waterStorageMax);
+                }
+                else
+                {
+                    if (currentWaterStorage < waterStorageMax && hit.transform.gameObject.name == "Water")
+                    {
+                        waterDiss = Mathf.Lerp(waterDiss, 1, 0.3f);
+                        shakeMagnitude += Time.deltaTime * 1.5f;
+                        currentWaterStorage = Mathf.Clamp(currentWaterStorage + (Time.deltaTime * 1.5f), 0, waterStorageMax);
+                    }
+                    else
+                    {
+                        if (hit.transform.gameObject.name != "Water" && currentWaterStorage > 0)
+                        {
+                            waterDiss = Mathf.Lerp(waterDiss, 1, 0.15f);
+                            currentWaterStorage = Mathf.Clamp(currentWaterStorage - Time.deltaTime * 2f, 0, waterStorageMax);
+
+                            //Make player fly around
+                            rb.AddForce(-camPos.forward * 75, ForceMode.Acceleration);
+                        }
+                        else
+                        {
+                            waterFiring = false;
+                            waterDiss = Mathf.Lerp(waterDiss, 0, 0.6f);
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            waterFiring = false;
+            waterDiss = Mathf.Lerp(waterDiss, 0, 0.06f);
+        }
         //Mouse moves
         transform.Rotate(new Vector3(0f, Input.GetAxis("Mouse X") * Time.deltaTime * lookSpeed, 0f));
 
