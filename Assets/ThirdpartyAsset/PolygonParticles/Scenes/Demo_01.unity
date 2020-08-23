@@ -45865,6 +45865,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 999567607, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1560056587144236016, guid: d4b38b352fdfe744a928ffd42107c06b,
         type: 3}
       propertyPath: m_Name
@@ -66291,6 +66295,7 @@ MonoBehaviour:
   portalLikelyHoodPerPylon: 0
   portalSpawnTick: 0
   portalPrefabs: []
+  groundPortalPoints: {fileID: 0}
   allPylons:
   - {fileID: 538080094}
   - {fileID: 538080093}
