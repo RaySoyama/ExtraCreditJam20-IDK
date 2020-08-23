@@ -24389,7 +24389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyState: 0
   enemyName: FlyingEnemy
-  enemySpeed: 3
+  enemySpeed: 4.5
   enemyStartHealth: 1
   enemyHealth: 1
   enemyDamage: 1
