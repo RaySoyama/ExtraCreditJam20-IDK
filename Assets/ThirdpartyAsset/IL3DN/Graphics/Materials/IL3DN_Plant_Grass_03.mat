@@ -99,6 +99,9 @@ Material:
     m_Floats:
     - GrassWiggleFloat: 1
     - Vector1_6F43CF3E: 5
+    - Vector1_70D2EDA: 0
+    - Vector1_876B821B: 0.2
+    - Vector1_F756F4C2: 0.5
     - WindSpeedFloat: 0.1
     - WindStrenghtFloat: 0.8
     - WindTurbulenceFloat: 0.4
@@ -166,8 +169,9 @@ Material:
     - __dirty: 1
     m_Colors:
     - Color_2F3B5C2A: {r: 0.25080538, g: 1, b: 0, a: 0}
+    - Vector2_D3F210DE: {r: 2, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 0.3841225, g: 0.6132076, b: 0.3268512, a: 1}
-    - _Color: {r: 0.6509434, g: 0.42004892, b: 0.26713228, a: 1}
+    - _Color: {r: 0.2012513, g: 0.509434, b: 0.14177644, a: 1}
     - _Color0: {r: 1, g: 0.9847094, b: 0, a: 1}
     - _Color1: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
