@@ -108,7 +108,14 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        //Camera Movement
+		//Camera Movement
+		//if (shakeMagnitude)
+		//{
+		//	Vector3 shake = new Vector3(Random.Range(-1f, 1) * shakeMagnitude, Random.Range(-1f, 1) * shakeMagnitude, Random.Range(-1f, 1) * shakeMagnitude);
+		//}
+
+		
+		
         cam.transform.position = camPos.position;
         cam.transform.LookAt(transform.position + lookOffset);
         camPos.LookAt(transform.position + lookOffset);
@@ -182,7 +189,7 @@ public class PlayerController : MonoBehaviour
         {
             if (camPos.localPosition.z <= zMax && camPos.localPosition.z >= -camDistance)
             {
-                camPos.localPosition = new Vector3(camPos.localPosition.x, ySet, camPos.localPosition.z + Input.GetAxis("Mouse Y") * Time.deltaTime * lookSpeed / 3f);
+                camPos.localPosition = new Vector3(camPos.localPosition.x, ySet, camPos.localPosition.z + Input.GetAxis("Mouse Y") * Time.deltaTime * lookSpeed / 5f);
 
                 if (camPos.localPosition.z > zMax)
                 {
@@ -234,6 +241,10 @@ public class PlayerController : MonoBehaviour
 		if (!isGrounded)
 		{
 			rb.AddForce(new Vector3(0f, -currentGravity, 0f));
+		}
+		else
+		{
+			rb.AddForce(new Vector3(0f, -currentGravity * 0.5f, 0f));
 		}
     }
 
