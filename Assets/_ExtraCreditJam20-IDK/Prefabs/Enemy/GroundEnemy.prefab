@@ -46,7 +46,7 @@ Animator:
   m_GameObject: {fileID: 4765515328327778989}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: af6460202a06bb24bbde7d173c2519f9, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -185,9 +185,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5019327257976583478}
+  - component: {fileID: 5684645680389386125}
+  - component: {fileID: 1606211968370106896}
   - component: {fileID: 4765515328679334616}
   - component: {fileID: 4765515328679334619}
-  - component: {fileID: 5684645680389386125}
   - component: {fileID: 1069685600}
   m_Layer: 0
   m_Name: GroundEnemy
@@ -208,9 +209,61 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4765515328327778986}
+  - {fileID: 6002804019154085831}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5684645680389386125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684645680389386124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ef10dc15665804f9acf9d72152abcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyState: 0
+  enemyName: GroundEnemey
+  enemySpeed: 1
+  enemyStartHealth: 1
+  enemyHealth: 1
+  enemyDamage: 1
+  timeToNextAttack: 0
+  enemyAttackSpeed: 1
+  enemyAttackRange: 5
+  targetPylon: {fileID: 0}
+  laserWeapon: {fileID: 1606211968370106896}
+  debris: []
+  debrisIntensity: 1000
+  debrisDuration: 5
+  debrisIsReadyToDestroy: 0
+  debrisTime: 0
+  animationEvent: {fileID: 4765515328327778987}
+  animCtrl: {fileID: 4765515328327778984}
+  navAgent: {fileID: 4765515328679334616}
+--- !u!114 &1606211968370106896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684645680389386124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb9b892a1d25f5479e95aecc9f13be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireMode: 0
+  damage: 1
+  shotCooldown: 0.5
+  shotLength: 100
+  beamAliveTime: 0.5
+  laser: {fileID: 6342738292223982973}
+  isPlayer: 0
+  fireQueued: 0
 --- !u!195 &4765515328679334616
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -249,36 +302,6 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.75, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &5684645680389386125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5684645680389386124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6ef10dc15665804f9acf9d72152abcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyState: 0
-  enemyName: BigChungus
-  enemySpeed: 1
-  enemyStartHealth: 1
-  enemyHealth: 1
-  enemyDamage: 1
-  timeToNextAttack: 0
-  enemyAttackSpeed: 1
-  enemyAttackRange: 10
-  targetPylon: {fileID: 0}
-  debris: []
-  debrisIntensity: 1000
-  debrisDuration: 5
-  debrisIsReadyToDestroy: 0
-  debrisTime: 0
-  animationEvent: {fileID: 4765515328327778987}
-  animCtrl: {fileID: 4765515328327778984}
-  navAgent: {fileID: 4765515328679334616}
 --- !u!136 &1069685600
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -464,3 +487,104 @@ Transform:
   m_Father: {fileID: 5339881737814814900}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &8540865148483391011
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5019327257976583478}
+    m_Modifications:
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3351471175499445086, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_Name
+      value: LaserBeam
+      objectReference: {fileID: 0}
+    - target: {fileID: 3351471175499445086, guid: 69144c4918c2ddd4ca7d3f06189df273,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 69144c4918c2ddd4ca7d3f06189df273, type: 3}
+--- !u!1 &6342738292223982973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3351471175499445086, guid: 69144c4918c2ddd4ca7d3f06189df273,
+    type: 3}
+  m_PrefabInstance: {fileID: 8540865148483391011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6002804019154085831 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+    type: 3}
+  m_PrefabInstance: {fileID: 8540865148483391011}
+  m_PrefabAsset: {fileID: 0}

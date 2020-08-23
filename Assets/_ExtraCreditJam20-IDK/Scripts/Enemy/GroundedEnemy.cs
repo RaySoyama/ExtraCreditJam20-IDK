@@ -3,15 +3,20 @@ using UnityEngine;
 
 public class GroundedEnemy : EnemyController
 {
+    [SerializeField]
+    private Weapon laserWeapon = null;
+
+
     [SerializeField] private List<Rigidbody> debris = new List<Rigidbody>();
     public float debrisIntensity = 1000;
     [SerializeField] private float debrisDuration = 5.0f;
     [SerializeField] private bool debrisIsReadyToDestroy = false;
     [SerializeField, ReadOnlyField] private float debrisTime = 0.0f;
+
     [SerializeField] private AnimationEventCallback animationEvent;
     [SerializeField] private Animator animCtrl;
     [SerializeField] private UnityEngine.AI.NavMeshAgent navAgent;
-    
+
     void Start()
     {
         OnSpawnStart();
@@ -58,32 +63,39 @@ public class GroundedEnemy : EnemyController
     {
         base.OnSpawnEnd();
     }
-    
+
     protected override void OnSearchStart()
     {
         base.OnSearchStart();
         animCtrl.ResetTrigger("shoot");
         animCtrl.SetTrigger("stopShoot");
+
+        if (TargetPylon != null)
+        {
+            navAgent.destination = TargetPylon.shootTarget.position;
+        }
     }
 
     protected override void OnSearch()
     {
+        base.OnSearch();
+
         if (TargetPylon == null || TargetPylon.PylonIsDestroyed == true)
         {
             OnSearchStart();
             return;
         }
 
-        base.OnSearch();
-
         //move to target Good edition
-        navAgent.destination = TargetPylon.shootTarget.position;
-
-        if (Vector3.Distance(transform.position, TargetPylon.shootTarget.position) <= navAgent.stoppingDistance + 0.01f)
+        if (Vector3.Distance(transform.position, TargetPylon.shootTarget.position) <= navAgent.stoppingDistance + EnemyAttackRange)
         {
             navAgent.isStopped = true;
             OnSearchEnd();
-        } else navAgent.isStopped = false;
+        }
+        else
+        {
+            navAgent.isStopped = false;
+        }
     }
 
     protected override void OnSearchEnd()
@@ -91,7 +103,7 @@ public class GroundedEnemy : EnemyController
         transform.LookAt(TargetPylon.shootTarget.position);
         base.OnSearchEnd();
     }
-    
+
     protected override void OnAttackStart()
     {
         base.OnAttackStart();
@@ -180,6 +192,22 @@ public class GroundedEnemy : EnemyController
         {
             Debug.LogError("Missing reference to Target Pylon");
         }
+
+
+        //Show Laser
+        if (laserWeapon != null)
+        {
+            laserWeapon.shotLength = EnemyAttackRange;
+            laserWeapon.Fire();
+        }
+        else
+        {
+            Debug.LogError("Missing reference to Laser Weapon");
+        }
+
+        //play audio
+        //audioSrc.PlayOneShot(attackSound);
+
     }
 
     private void Explode(string eventName)
