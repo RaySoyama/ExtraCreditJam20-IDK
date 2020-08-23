@@ -103,7 +103,9 @@ public class PylonController : MonoBehaviour
         PylonManager.instance.DeActivatePylon(this);
         material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
         material.SetFloat("pylonActive", 0.0f);
-    }
+
+		audio.PlayOneShot(deactivate);
+	}
 
     public void TakeDamage(float damage)
     {

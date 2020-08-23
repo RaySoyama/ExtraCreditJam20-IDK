@@ -143,7 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vent: {fileID: 8300000, guid: acec0b8c7e3734148be62464b75f1b1a, type: 3}
   die: {fileID: 0}
-  deactivate: {fileID: 0}
+  deactivate: {fileID: 8300000, guid: 8cd3c46c932ba584eb2477af5a046211, type: 3}
   pylonStartHealth: 20
   pylonCurrentHealth: 20
   shootTarget: {fileID: 5729423563015913239}

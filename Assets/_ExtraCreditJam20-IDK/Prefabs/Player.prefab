@@ -70,8 +70,8 @@ MonoBehaviour:
   moveForce: 18
   maxSpeed: 12
   lookSpeed: 70
-  gravity: 28
-  lowGravity: 17
+  gravity: 38
+  lowGravity: 27
   fireDuration: 1
   blastStart: {fileID: 5038158746472429877}
   blastEnd: {fileID: 929438301597964978}
