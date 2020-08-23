@@ -102,6 +102,10 @@ public class PylonManager : MonoBehaviour
 		{
 			heatLevel += 50;
 		}
+		else if (Input.GetKeyDown(KeyCode.E))
+		{
+			heatLevel -= 50;
+		}
 	}
 
 	private void FixedUpdate()
@@ -110,19 +114,45 @@ public class PylonManager : MonoBehaviour
 		{
 			wave++;
 			overheated = true;
+
 			//activate some pylons
+			int pylonsToActivate = Random.Range(Mathf.Clamp(1 + (int)(wave / 6f), 1, allPylons.Count + 1), Mathf.Clamp((int)(wave / 4f) + 2, 1, allPylons.Count + 1));
+				
+			if (wave == 1)
+			{
+				pylonsToActivate = 1;
+			}
+
+			Debug.Log("Pylons to activate: " + pylonsToActivate);
+
+			int alivePylons = 0;
 			foreach (var pylon in AllPylons)
 			{
-				if (Random.Range(0.0f, 1.0f) >= 0.5f)
+				if (!pylon.GetComponent<PylonController>().PylonIsDestroyed)
 				{
-					pylon.ActivatePylon();
+					alivePylons++;
 				}
 			}
 
-			//If no pylons were activated pick a random one to activate.
-			if (allActivePylons.Count == 0)
+			if (alivePylons < pylonsToActivate)
 			{
-				allPylons[Random.Range((int)0, allPylons.Count)].ActivatePylon();
+				pylonsToActivate = alivePylons;
+			}
+
+			int tryStart = Random.Range((int)0, (int)allPylons.Count);
+			while (pylonsToActivate > 0)
+			{
+				if (!allPylons[tryStart].IsEnabled && !allPylons[tryStart].PylonIsDestroyed)
+				{
+					allPylons[tryStart].ActivatePylon();
+					pylonsToActivate--;
+				}
+
+				tryStart++;
+				if (tryStart == allPylons.Count)
+				{
+					tryStart = 0;
+				}
 			}
 		}
 		else if (overheated && heatLevel <= 0f)

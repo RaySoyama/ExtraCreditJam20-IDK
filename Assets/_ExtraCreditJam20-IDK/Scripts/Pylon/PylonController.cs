@@ -9,6 +9,8 @@ public class PylonController : MonoBehaviour
 	public AudioClip die;
 	public AudioClip deactivate;
 
+	public GameObject crystal;
+
 	[SerializeField]
     private float pylonStartHealth = 20;
     public float PylonStartHealth
@@ -130,4 +132,13 @@ public class PylonController : MonoBehaviour
             PylonManager.instance.DeActivatePylon(this);
         }
     }
+
+	private void Update()
+	{
+		if (isEnabled)
+		{
+			//crystal.transform.rotation = Quaternion.Euler(new Vector3(crystal.transform.rotation.x, 10f + crystal.transform.rotation.y, crystal.transform.rotation.z));
+			crystal.transform.Rotate(0f, 1f, 0f);
+		}
+	}
 }

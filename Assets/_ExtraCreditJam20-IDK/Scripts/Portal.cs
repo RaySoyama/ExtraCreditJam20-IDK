@@ -20,7 +20,6 @@ public class Portal : MonoBehaviour
 	public void Death()
 	{
 		//Called when wave ends.
-		Debug.Log("destroy");
 		Destroy(gameObject);
 	}
 }
