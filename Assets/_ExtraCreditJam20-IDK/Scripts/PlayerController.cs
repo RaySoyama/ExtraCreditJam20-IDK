@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
 
     public ParticleSystem epParticle;
 
+    public Animator corsshair;
+
     public AudioClip jumpSound;
     private AudioSource audio;
 
@@ -85,6 +87,10 @@ public class PlayerController : MonoBehaviour
         {
             firing = false;
             blastDiss = 0f;
+
+            corsshair.ResetTrigger("shoot");
+            corsshair.SetTrigger("stopShoot");
+
             foreach (var blast in blasts)
             {
                 blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
@@ -100,6 +106,8 @@ public class PlayerController : MonoBehaviour
             //blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * ((firingStart + fireDuration) - Time.time));
             var em = epParticle.emission;
             em.enabled = true;
+
+            corsshair.SetTrigger("shoot");
 
             foreach (var blast in blasts)
             {

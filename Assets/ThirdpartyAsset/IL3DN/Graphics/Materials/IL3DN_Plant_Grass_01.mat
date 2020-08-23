@@ -126,7 +126,7 @@ Material:
     - _MaxWindStrength: 0.1
     - _Metallic: 0
     - _Mode: 0
-    - _NearClip: 5
+    - _NearClip: 3
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _QueueOffset: 0

@@ -81,6 +81,7 @@ MonoBehaviour:
   - {fileID: 2125749225820894629}
   - {fileID: 7820205351022097158}
   epParticle: {fileID: 6931329931682407880}
+  corsshair: {fileID: 2247298235866176443}
   jumpSound: {fileID: 8300000, guid: ab4f96a068da69340983ae00495b4f32, type: 3}
   miniMap: {fileID: 3077704572339345944}
 --- !u!54 &4093502294593914856
@@ -5300,6 +5301,12 @@ PrefabInstance:
 --- !u!224 &5778299680050821611 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1218051187414130622, guid: 5ae3ad9f3fcd02847948f4e3603b1a36,
+    type: 3}
+  m_PrefabInstance: {fileID: 4672422938792781397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2247298235866176443 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6910710127075737070, guid: 5ae3ad9f3fcd02847948f4e3603b1a36,
     type: 3}
   m_PrefabInstance: {fileID: 4672422938792781397}
   m_PrefabAsset: {fileID: 0}
