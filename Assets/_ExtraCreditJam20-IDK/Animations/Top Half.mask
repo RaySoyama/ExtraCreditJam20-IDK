@@ -38,27 +38,27 @@ AvatarMask:
   - m_Path: Joints
     m_Weight: 1
   - m_Path: Joints/Root
-    m_Weight: 1
-  - m_Path: Joints/Root/Waist
-    m_Weight: 1
-  - m_Path: Joints/Root/Waist/Hip_L
-    m_Weight: 1
-  - m_Path: Joints/Root/Waist/Hip_L/Knee_L
-    m_Weight: 1
-  - m_Path: Joints/Root/Waist/Hip_L/Knee_L/Ankle_L
-    m_Weight: 1
-  - m_Path: Joints/Root/Waist/Hip_L/Knee_L/Ankle_L/Foot_L_End
-    m_Weight: 1
-  - m_Path: Joints/Root/Waist/Hip_R
-    m_Weight: 1
-  - m_Path: Joints/Root/Waist/Hip_R/Knee_R
-    m_Weight: 1
-  - m_Path: Joints/Root/Waist/Hip_R/Knee_R/Ankle_R
-    m_Weight: 1
-  - m_Path: Joints/Root/Waist/Hip_R/Knee_R/Ankle_R/Foot_R_End
-    m_Weight: 1
-  - m_Path: Joints/Root/Spine_1
     m_Weight: 0
+  - m_Path: Joints/Root/Waist
+    m_Weight: 0
+  - m_Path: Joints/Root/Waist/Hip_L
+    m_Weight: 0
+  - m_Path: Joints/Root/Waist/Hip_L/Knee_L
+    m_Weight: 0
+  - m_Path: Joints/Root/Waist/Hip_L/Knee_L/Ankle_L
+    m_Weight: 0
+  - m_Path: Joints/Root/Waist/Hip_L/Knee_L/Ankle_L/Foot_L_End
+    m_Weight: 0
+  - m_Path: Joints/Root/Waist/Hip_R
+    m_Weight: 0
+  - m_Path: Joints/Root/Waist/Hip_R/Knee_R
+    m_Weight: 0
+  - m_Path: Joints/Root/Waist/Hip_R/Knee_R/Ankle_R
+    m_Weight: 0
+  - m_Path: Joints/Root/Waist/Hip_R/Knee_R/Ankle_R/Foot_R_End
+    m_Weight: 0
+  - m_Path: Joints/Root/Spine_1
+    m_Weight: 1
   - m_Path: Joints/Root/Spine_1/Spine_2
     m_Weight: 1
   - m_Path: Joints/Root/Spine_1/Spine_2/Chest
