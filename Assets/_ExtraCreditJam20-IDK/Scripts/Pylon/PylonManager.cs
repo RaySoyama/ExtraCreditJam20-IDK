@@ -12,6 +12,7 @@ public class PylonManager : MonoBehaviour
 	private bool overheated = false;
 	[SerializeField, ReadOnlyField]
 	public int wave = 0;
+	private int portalsSpawmnedThisWave = 0;
 
 	public float portalLikelyHoodPerPylon;
 	public float portalSpawnTick;
@@ -69,13 +70,18 @@ public class PylonManager : MonoBehaviour
 
 			foreach (PylonController p in allActivePylons)
 			{
-				float roll = Random.Range(0f, 1f);
+				float mod = 0f;
 
-				if (roll <= portalLikelyHoodPerPylon)
+				if (portalsSpawmnedThisWave < 1)
+				{
+					mod = 0.5f;
+				}
+
+				float roll = Random.Range(0f, 1f);
+				if (roll <= portalLikelyHoodPerPylon + mod)
 				{
 					GameObject portalToSpawn = portalPrefabs[Random.Range((int)0, portalPrefabs.Count)];
-					bool portalIsAGroundEnemySpawner = false;
-					if (portalIsAGroundEnemySpawner)
+					if (portalToSpawn.GetComponent<Portal>().groundPortal)
 					{
 						//Spawn based on nav mesh
 					}
@@ -93,6 +99,8 @@ public class PylonManager : MonoBehaviour
 						//Save new portal.
 						portals.Add(newPortal);
 					}
+
+					portalsSpawmnedThisWave++;
 				}
 			}
 		}
@@ -114,6 +122,7 @@ public class PylonManager : MonoBehaviour
 		{
 			wave++;
 			overheated = true;
+			portalsSpawmnedThisWave = 0;
 
 			//activate some pylons
 			int pylonsToActivate = Random.Range(Mathf.Clamp(1 + (int)(wave / 6f), 1, allPylons.Count + 1), Mathf.Clamp((int)(wave / 4f) + 2, 1, allPylons.Count + 1));
