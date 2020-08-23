@@ -120,8 +120,7 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 rb.AddForce(transform.up * jumpForce);
-				audio.clip = jumpSound;
-				audio.Play();
+				audio.PlayOneShot(jumpSound);
             }
         }
 

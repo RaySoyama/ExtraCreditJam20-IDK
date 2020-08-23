@@ -10,6 +10,8 @@ public class PylonManager : MonoBehaviour
 	private float heatLevel = 200;
 	[SerializeField, ReadOnlyField]
 	private bool overheated = false;
+	[SerializeField, ReadOnlyField]
+	private int wave = 0;
 
 	public float portalLikelyHoodPerPylon;
 	public float portalSpawnTick;
@@ -101,7 +103,7 @@ public class PylonManager : MonoBehaviour
 	{
 		if (!overheated && heatLevel >= heatThreshold)
 		{
-			
+			wave++;
 			overheated = true;
 			//activate some pylons
 			foreach (var pylon in AllPylons)
