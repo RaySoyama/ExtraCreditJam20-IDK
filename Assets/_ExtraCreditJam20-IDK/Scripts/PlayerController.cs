@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rb;
 
-    private Vector3 lookOffset = new Vector3(0f, 2.5f, 0f);
+    private Vector3 lookOffset = new Vector3(0f, 4f, 0f);
 
     public float jumpForce;
     public float moveForce;
@@ -365,7 +365,7 @@ public class PlayerController : MonoBehaviour
 		{
 			if (isWalking)
 			{
-				rb.AddForce(new Vector3(0f, -currentGravity * 0.5f, 0f));
+				rb.AddForce(new Vector3(0f, -currentGravity * 0.25f, 0f));
 			}
 			else
 			{

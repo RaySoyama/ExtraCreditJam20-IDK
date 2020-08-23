@@ -138,7 +138,7 @@ public class PylonController : MonoBehaviour
 		if (isEnabled)
 		{
 			//crystal.transform.rotation = Quaternion.Euler(new Vector3(crystal.transform.rotation.x, 10f + crystal.transform.rotation.y, crystal.transform.rotation.z));
-			crystal.transform.Rotate(0f, 1f, 0f);
+			//crystal.transform.Rotate(0f, 1f, 0f);
 		}
 	}
 }
