@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-	private int health = 15;
 
     // Start is called before the first frame update
     void Start()
@@ -18,13 +17,10 @@ public class Portal : MonoBehaviour
         
     }
 
-	public void TakeHit()
+	public void Death()
 	{
-		health--;
-
-		if (health == 0)
-		{
-			Destroy(this);
-		}
+		//Called when wave ends.
+		Debug.Log("destroy");
+		Destroy(gameObject);
 	}
 }

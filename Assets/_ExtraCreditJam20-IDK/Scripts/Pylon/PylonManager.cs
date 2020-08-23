@@ -22,6 +22,8 @@ public class PylonManager : MonoBehaviour
 
     public static PylonManager instance = null;
 
+	private List<GameObject> portals = new List<GameObject>();
+
     [SerializeField, ReadOnlyField]
     private List<PylonController> allPylons = new List<PylonController>();
     public List<PylonController> AllPylons
@@ -87,6 +89,9 @@ public class PylonManager : MonoBehaviour
 
 						GameObject newPortal = Instantiate(portalToSpawn, spawnPoint, Quaternion.identity);
 						newPortal.transform.LookAt(p.gameObject.transform.position);
+
+						//Save new portal.
+						portals.Add(newPortal);
 					}
 				}
 			}
@@ -124,10 +129,18 @@ public class PylonManager : MonoBehaviour
 		{
 			overheated = false;
 			//deactivate all pylons
-			foreach (var pylon in allActivePylons)
+			while (allActivePylons.Count > 0)
 			{
-				pylon.DeActivatePylon();
+				allActivePylons[0].DeActivatePylon();
 			}
+
+			//Destroy portals
+			foreach (GameObject p in portals)
+			{
+				p.GetComponent<Portal>().Death();
+			}
+
+			portals = new List<GameObject>();
 		}
 
 		if (overheated)

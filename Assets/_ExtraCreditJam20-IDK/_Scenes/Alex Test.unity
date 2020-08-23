@@ -188,21 +188,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5095187935541389137, guid: d4b38b352fdfe744a928ffd42107c06b,
-        type: 3}
-      propertyPath: heatThreshold
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 5095187935541389137, guid: d4b38b352fdfe744a928ffd42107c06b,
-        type: 3}
-      propertyPath: heatLoss
-      value: 0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 5095187935541389137, guid: d4b38b352fdfe744a928ffd42107c06b,
-        type: 3}
-      propertyPath: heatGain
-      value: 0.06
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
 --- !u!1 &322363767
@@ -570,6 +555,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778299680050821611, guid: 97de1ae5719671643b2d0dd22f6b82a3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97de1ae5719671643b2d0dd22f6b82a3, type: 3}

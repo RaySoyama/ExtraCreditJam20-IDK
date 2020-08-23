@@ -162,13 +162,8 @@ public class PlayerController : MonoBehaviour
 
 				GameObject rootObj = hit.transform.root.gameObject;
 
-				Portal portalComp;
 				EnemyController enemyComp;
-				if (rootObj.TryGetComponent<Portal>(out portalComp))
-				{
-					portalComp.TakeHit();
-				}
-				else if (rootObj.TryGetComponent<EnemyController>(out enemyComp))
+				if (rootObj.TryGetComponent<EnemyController>(out enemyComp))
 				{
 					enemyComp.TakeHit();
 				}
