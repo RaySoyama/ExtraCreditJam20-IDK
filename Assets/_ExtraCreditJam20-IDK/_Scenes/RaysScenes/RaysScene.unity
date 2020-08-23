@@ -176,6 +176,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 718677242, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 805520166, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020174106, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226405072, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1281957913, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405013208, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430456724, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754490053, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2108068053, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115695201, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1560056587144236016, guid: d4b38b352fdfe744a928ffd42107c06b,
         type: 3}
       propertyPath: m_Name
@@ -246,7 +286,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 718677242, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
 --- !u!1 &294512763
 GameObject:
