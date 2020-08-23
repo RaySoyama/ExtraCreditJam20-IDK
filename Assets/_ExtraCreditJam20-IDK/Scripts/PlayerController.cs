@@ -193,7 +193,8 @@ public class PlayerController : MonoBehaviour
                 if (rootObj.TryGetComponent<EnemyController>(out enemyComp))
                 {
                     enemyComp.TakeHit();
-                }
+					shakeMagnitude += 1f;
+				}
             }
         }
 
