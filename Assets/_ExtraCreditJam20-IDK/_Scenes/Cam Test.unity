@@ -609,20 +609,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 377482380164451408, guid: 97de1ae5719671643b2d0dd22f6b82a3,
+        type: 3}
+      propertyPath: m_TranslationOffsets.Array.data[0].x
+      value: 0.013562202
+      objectReference: {fileID: 0}
+    - target: {fileID: 377482380164451408, guid: 97de1ae5719671643b2d0dd22f6b82a3,
+        type: 3}
+      propertyPath: m_TranslationOffsets.Array.data[0].y
+      value: 1.4042492
+      objectReference: {fileID: 0}
+    - target: {fileID: 377482380164451408, guid: 97de1ae5719671643b2d0dd22f6b82a3,
+        type: 3}
+      propertyPath: m_TranslationOffsets.Array.data[0].z
+      value: -0.31956768
+      objectReference: {fileID: 0}
     - target: {fileID: 1708310550327267445, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.33680916
+      value: 0.50521374
       objectReference: {fileID: 0}
     - target: {fileID: 1708310550327267445, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5654659
+      value: 0.8481989
       objectReference: {fileID: 0}
     - target: {fileID: 1708310550327267445, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.21066521
+      value: -0.31599784
       objectReference: {fileID: 0}
     - target: {fileID: 3077704573617376693, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
@@ -697,57 +712,57 @@ PrefabInstance:
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].x
-      value: 0.02712822
+      value: 0.013562202
       objectReference: {fileID: 0}
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].y
-      value: 1.3558321
+      value: 1.4042492
       objectReference: {fileID: 0}
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].z
-      value: 0.022288322
+      value: -0.31956768
       objectReference: {fileID: 0}
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_TranslationAtRest.z
-      value: 0.91400003
+      value: 0.9140009
       objectReference: {fileID: 0}
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_RotationAtRest.x
-      value: -18.59327
+      value: -18.593273
       objectReference: {fileID: 0}
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_RotationAtRest.y
-      value: 88.75353
+      value: 88.75337
       objectReference: {fileID: 0}
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_RotationAtRest.z
-      value: 83.67732
+      value: 83.677284
       objectReference: {fileID: 0}
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_RotationOffsets.Array.data[0].x
-      value: -27.876827
+      value: -27.876966
       objectReference: {fileID: 0}
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_RotationOffsets.Array.data[0].y
-      value: -24.420858
+      value: -24.420788
       objectReference: {fileID: 0}
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_RotationOffsets.Array.data[0].z
-      value: -29.838362
+      value: -29.838495
       objectReference: {fileID: 0}
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_TranslationAtRest.y
-      value: 0.34799987
+      value: 0.34799874
       objectReference: {fileID: 0}
     - target: {fileID: 8833993704324099252, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
