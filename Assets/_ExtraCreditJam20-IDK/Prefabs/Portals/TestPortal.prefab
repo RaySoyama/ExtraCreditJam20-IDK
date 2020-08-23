@@ -18905,6 +18905,14 @@ MonoBehaviour:
         type: 3}
       spawnCost: 8
       startRotation: {x: 0, y: 0, z: 0}
+    - enemyPrefab: {fileID: 8231819236580495732, guid: 03c962ec7777f7f46b3c5c87300e2f0e,
+        type: 3}
+      spawnCost: 3
+      startRotation: {x: 0, y: 0, z: 0}
+    - enemyPrefab: {fileID: 8025760032058427795, guid: 1d14af94cfe64ca4588505a771c7c4b5,
+        type: 3}
+      spawnCost: 2
+      startRotation: {x: 0, y: 0, z: 0}
     - enemyPrefab: {fileID: 8745537704839173118, guid: 5182374bfd6d89d4b926298922b6b3c7,
         type: 3}
       spawnCost: 1

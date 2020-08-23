@@ -151,7 +151,11 @@ public class MinimapManager : MonoBehaviour
         {
             if (AllTrackerData[i].tracker == tracker)
             {
-                AllTrackerData[i].pin.gameObject.SetActive(false);
+                if (AllTrackerData[i].pin != null) //On Game end incase the img gets destroyed
+                {
+                    AllTrackerData[i].pin.gameObject.SetActive(false);
+                }
+
                 AllTrackerData[i].tracker = null;
                 return;
             }
