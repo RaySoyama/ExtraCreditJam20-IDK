@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
 
 	public ParticleSystem epParticle;
 
+	private List<GameObject> grounds = new List<GameObject>();
+
 	private void Awake()
     {
         if (instance == null)
@@ -189,9 +191,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             camPos.transform.RotateAround(transform.position, transform.right, -Input.GetAxis("Mouse Y") * Time.deltaTime * lookSpeed);
-            if (camPos.localPosition.z > -1f)
+            if (camPos.localPosition.z > -3f)
             {
-                camPos.localPosition = new Vector3(camPos.localPosition.x, camPos.localPosition.y, -1f);
+                camPos.localPosition = new Vector3(camPos.localPosition.x, camPos.localPosition.y, -3f);
             }
         }
 
@@ -224,15 +226,36 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "ground")
         {
-            isGrounded = true;
+			grounds.Add(collision.gameObject);
         }
+
+		if (grounds.Count > 0)
+		{
+			isGrounded = true;
+		}
+		else
+		{
+			isGrounded = false;
+		}
     }
 
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "ground")
         {
-            isGrounded = false;
-        }
-    }
+			if (grounds.Contains(collision.gameObject))
+			{
+				grounds.Remove(collision.gameObject);
+			}
+		}
+
+		if (grounds.Count > 0)
+		{
+			isGrounded = true;
+		}
+		else
+		{
+			isGrounded = false;
+		}
+	}
 }

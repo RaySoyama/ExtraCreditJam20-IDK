@@ -7,7 +7,7 @@ public class PylonManager : MonoBehaviour
 	public float heatLoss;
 	public float heatThreshold;
 	[SerializeField, ReadOnlyField]
-	private float heatLevel;
+	private float heatLevel = 200;
 	[SerializeField, ReadOnlyField]
 	private bool overheated = false;
 
@@ -89,7 +89,13 @@ public class PylonManager : MonoBehaviour
 				}
 			}
 		}
-    }
+
+		//Debuging, add 50 heat.
+		if (Input.GetKeyDown(KeyCode.Q))
+		{
+			heatLevel += 50;
+		}
+	}
 
 	private void FixedUpdate()
 	{
