@@ -230,8 +230,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Add Gravity
-        rb.AddForce(new Vector3(0f, -currentGravity, 0f));
+		//Add Gravity
+		if (!isGrounded)
+		{
+			rb.AddForce(new Vector3(0f, -currentGravity, 0f));
+		}
     }
 
     private void OnCollisionEnter(Collision collision)
