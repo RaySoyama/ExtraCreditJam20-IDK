@@ -8,8 +8,9 @@ public class OceanObject : MonoBehaviour
 
 	private float speed = 1f;
 	private float diveSpeed = 0.5f;
-	private float zDivePoint = 1000f;
-	private float yDespawnPoint = -20f;
+	private float zDivePoint = -2000f;
+	private float yDespawnPoint = -200f;
+	private float yTargetPoint = 20f;
 
     void Start()
     {
@@ -22,17 +23,21 @@ public class OceanObject : MonoBehaviour
 		if (isSailing)
 		{
 			//Move
-			transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed);
+			transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - speed);
 
-			if (transform.position.z >= zDivePoint)
+			if (transform.position.z <= zDivePoint)
 			{
 				transform.position = new Vector3(transform.position.x, transform.position.y - diveSpeed, transform.position.z);
+			}
+			else if(transform.position.y < yTargetPoint)
+			{
+				transform.position = new Vector3(transform.position.x, transform.position.y + diveSpeed, transform.position.z);
 			}
 
 			if (transform.position.y <= yDespawnPoint)
 			{
 				FindObjectOfType<PylonManager>().RemoveOceanObject(this);
-				Destroy(this);
+				Destroy(gameObject);
 			}
 
 		}

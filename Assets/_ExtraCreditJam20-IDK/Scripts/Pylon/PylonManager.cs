@@ -174,6 +174,13 @@ public class PylonManager : MonoBehaviour
 					tryStart = 0;
 				}
 			}
+
+			//Tell all ocean objects we overheated
+			foreach (OceanObject oo in oceanObjects)
+			{
+				oo.SetSailing(false);
+			}
+
 		}
 		else if (overheated && heatLevel <= 0f)
 		{
@@ -191,6 +198,12 @@ public class PylonManager : MonoBehaviour
 			}
 
 			portals = new List<GameObject>();
+
+			//Tell all ocean objects to sail again
+			foreach (OceanObject oo in oceanObjects)
+			{
+				oo.SetSailing(true);
+			}
 		}
 
 		if (overheated)
@@ -230,6 +243,11 @@ public class PylonManager : MonoBehaviour
 		{
 			oceanObjects.Remove(oo);
 		}
+	}
+
+	public bool IsOverheated()
+	{
+		return overheated;
 	}
 
 }

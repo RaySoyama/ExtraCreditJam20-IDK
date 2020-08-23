@@ -8,6 +8,8 @@ public class Bell : MonoBehaviour
 
 	public AudioClip ring;
 
+	private int timesRung = 0;
+
     void Start()
     {
 		audio = GetComponent<AudioSource>();
@@ -18,5 +20,7 @@ public class Bell : MonoBehaviour
 		audio.Stop();
 		//audio.PlayOneShot(rings[Random.Range(0, rings.Count)]);
 		audio.PlayOneShot(ring);
+
+		timesRung++;
 	}
 }
