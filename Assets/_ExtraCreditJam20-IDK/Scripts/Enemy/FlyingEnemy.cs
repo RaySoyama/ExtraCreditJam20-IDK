@@ -22,6 +22,15 @@ public class FlyingEnemy : EnemyController
 
     [SerializeField]
     private Animator animCtrl;
+
+    [SerializeField]
+    private AudioSource audioSrc;
+    [SerializeField]
+    private AudioClip attackSound;
+    [SerializeField]
+    private AudioClip deathSound;
+
+
     void Start()
     {
         OnSpawnStart();
@@ -129,7 +138,6 @@ public class FlyingEnemy : EnemyController
 
             animCtrl.SetTrigger("shoot");
             timeToNextAttack = 1.0f / EnemyAttackSpeed;
-			base.Attack();
         }
 
     }
@@ -143,6 +151,7 @@ public class FlyingEnemy : EnemyController
     {
         base.OnDeathStart();
         animCtrl.SetTrigger("die");
+        audioSrc.PlayOneShot(deathSound);
     }
     protected override void OnDeath()
     {
@@ -176,6 +185,10 @@ public class FlyingEnemy : EnemyController
         Destroy(gameObject);
     }
 
+    public override void TakeHit()
+    {
+        base.TakeHit();
+    }
 
     private void Blast(string eventName)
     {
@@ -206,7 +219,8 @@ public class FlyingEnemy : EnemyController
         {
             Debug.LogError("Missing reference to Laser Weapon");
         }
-
+        //play audio
+        audioSrc.PlayOneShot(attackSound);
     }
 
     private void Explode(string eventName)
