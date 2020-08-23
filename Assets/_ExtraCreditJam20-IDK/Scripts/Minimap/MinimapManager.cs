@@ -6,10 +6,10 @@ public class MinimapManager : MonoBehaviour
 {
     public static MinimapManager instance = null;
 
-    private struct TrackerData
+    private class TrackerData
     {
-        public MinimapTracker tracker;
-        public Image pin;
+        public MinimapTracker tracker = null;
+        public Image pin = null;
     }
 
     public enum TrackType
@@ -99,7 +99,6 @@ public class MinimapManager : MonoBehaviour
         }
     }
 
-
     private TrackerData NewTrackerData()
     {
         TrackerData data = new TrackerData();
@@ -145,18 +144,18 @@ public class MinimapManager : MonoBehaviour
                 data.pin.transform.localScale = Vector3.one;
                 break;
         }
-
-        AllTrackerData.Add(data);
     }
     public void RemoveTracker(MinimapTracker tracker)
     {
-        foreach (TrackerData data in AllTrackerData)
+        for (int i = 0; i < AllTrackerData.Count; i++)
         {
-            if (data.tracker == tracker)
+            if (AllTrackerData[i].tracker == tracker)
             {
-                AllTrackerData.Remove(data);
+                AllTrackerData[i].pin.gameObject.SetActive(false);
+                AllTrackerData[i].tracker = null;
                 return;
             }
+
         }
     }
 }
