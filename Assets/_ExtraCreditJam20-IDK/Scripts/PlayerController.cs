@@ -26,26 +26,26 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded = false;
 
-	private bool firing = false;
-	private float firingStart = 0f;
+    private bool firing = false;
+    private float firingStart = 0f;
 
-	public float fireDuration;
+    public float fireDuration;
 
-	private Vector3 blastDestination = Vector3.zero;
+    private Vector3 blastDestination = Vector3.zero;
 
-	public Transform blastStart;
-	public Transform blastEnd;
-	public List<GameObject> blasts;
-	float blastDiss = 0f;
+    public Transform blastStart;
+    public Transform blastEnd;
+    public List<GameObject> blasts;
+    float blastDiss = 0f;
 
-	public ParticleSystem epParticle;
+    public ParticleSystem epParticle;
 
-	public AudioClip jumpSound;
-	private AudioSource audio;
+    public AudioClip jumpSound;
+    private AudioSource audio;
 
-	private List<GameObject> grounds = new List<GameObject>();
+    private List<GameObject> grounds = new List<GameObject>();
 
-	private void Awake()
+    private void Awake()
     {
         if (instance == null)
         {
@@ -68,48 +68,48 @@ public class PlayerController : MonoBehaviour
         cam.transform.position = camPos.position;
         camDistance = Vector3.Distance(camPos.position, transform.position);
 
-		audio = GetComponent<AudioSource>();
-	}
+        audio = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
-		blastEnd.position = blastDestination;
-		blastEnd.LookAt(transform.position);
-		if (firing && Time.time >= firingStart + fireDuration)
-		{
-			firing = false;
-			blastDiss = 0f;
-            foreach(var blast in blasts)
+        blastEnd.position = blastDestination;
+        blastEnd.LookAt(transform.position);
+        if (firing && Time.time >= firingStart + fireDuration)
+        {
+            firing = false;
+            blastDiss = 0f;
+            foreach (var blast in blasts)
             {
                 blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
             }
-		}
-		else if (firing)
-		{
-			blastEnd.position = blastDestination;
+        }
+        else if (firing)
+        {
+            blastEnd.position = blastDestination;
 
-			//firing
-			blastDiss = ((firingStart + fireDuration) - Time.time) / fireDuration;
-			//blastDiss = Mathf.Lerp(blastDiss, 0f, Time.deltaTime + fireDuration * 0.05f);
-			//blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * ((firingStart + fireDuration) - Time.time));
-			var em = epParticle.emission;
-			em.enabled = true;
+            //firing
+            blastDiss = ((firingStart + fireDuration) - Time.time) / fireDuration;
+            //blastDiss = Mathf.Lerp(blastDiss, 0f, Time.deltaTime + fireDuration * 0.05f);
+            //blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * ((firingStart + fireDuration) - Time.time));
+            var em = epParticle.emission;
+            em.enabled = true;
 
-			foreach (var blast in blasts)
+            foreach (var blast in blasts)
             {
                 blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
             }
         }
         else if (!firing)
         {
-			blastDiss = 0f;
-			var em = epParticle.emission;
-			em.enabled = false;
-		}
-		
+            blastDiss = 0f;
+            var em = epParticle.emission;
+            em.enabled = false;
+        }
 
-		//Camera Movement
-		cam.transform.position = camPos.position;
+
+        //Camera Movement
+        cam.transform.position = camPos.position;
         cam.transform.LookAt(transform.position + lookOffset);
         camPos.LookAt(transform.position + lookOffset);
 
@@ -120,7 +120,7 @@ public class PlayerController : MonoBehaviour
             if (isGrounded)
             {
                 rb.AddForce(transform.up * jumpForce);
-				audio.PlayOneShot(jumpSound);
+                audio.PlayOneShot(jumpSound);
             }
         }
 
@@ -154,20 +154,20 @@ public class PlayerController : MonoBehaviour
 
             if (Physics.Raycast(r, out hit))
             {
-				blastEnd.position = hit.point;
-				blastDestination = hit.point;
-				firing = true;
-				firingStart = Time.time;
-				blastDiss = 1f;
+                blastEnd.position = hit.point;
+                blastDestination = hit.point;
+                firing = true;
+                firingStart = Time.time;
+                blastDiss = 1f;
 
-				GameObject rootObj = hit.transform.root.gameObject;
+                GameObject rootObj = hit.transform.root.gameObject;
 
-				EnemyController enemyComp;
-				if (rootObj.TryGetComponent<EnemyController>(out enemyComp))
-				{
-					enemyComp.TakeHit();
-				}
-			}
+                EnemyController enemyComp;
+                if (rootObj.TryGetComponent<EnemyController>(out enemyComp))
+                {
+                    enemyComp.TakeHit();
+                }
+            }
         }
 
         //Mouse moves
@@ -238,36 +238,36 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "ground")
         {
-			grounds.Add(collision.gameObject);
+            grounds.Add(collision.gameObject);
         }
 
-		if (grounds.Count > 0)
-		{
-			isGrounded = true;
-		}
-		else
-		{
-			isGrounded = false;
-		}
+        if (grounds.Count > 0)
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "ground")
         {
-			if (grounds.Contains(collision.gameObject))
-			{
-				grounds.Remove(collision.gameObject);
-			}
-		}
+            if (grounds.Contains(collision.gameObject))
+            {
+                grounds.Remove(collision.gameObject);
+            }
+        }
 
-		if (grounds.Count > 0)
-		{
-			isGrounded = true;
-		}
-		else
-		{
-			isGrounded = false;
-		}
-	}
+        if (grounds.Count > 0)
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+    }
 }

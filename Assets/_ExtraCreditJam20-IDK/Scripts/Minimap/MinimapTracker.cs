@@ -31,4 +31,5 @@ public class MinimapTracker : MonoBehaviour
     {
         MinimapManager.instance.RemoveTracker(this);
     }
+
 }
