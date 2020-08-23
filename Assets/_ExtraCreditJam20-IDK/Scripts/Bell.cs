@@ -6,7 +6,7 @@ public class Bell : MonoBehaviour
 {
 	private AudioSource audio;
 
-	public List<AudioClip> rings;
+	public AudioClip ring;
 
     void Start()
     {
@@ -16,6 +16,7 @@ public class Bell : MonoBehaviour
 	public void TakeHit()
 	{
 		audio.Stop();
-		audio.PlayOneShot(rings[Random.Range(0, rings.Count)]);
+		//audio.PlayOneShot(rings[Random.Range(0, rings.Count)]);
+		audio.PlayOneShot(ring);
 	}
 }
