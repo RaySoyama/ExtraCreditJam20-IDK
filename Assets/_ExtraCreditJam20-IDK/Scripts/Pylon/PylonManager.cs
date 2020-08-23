@@ -11,7 +11,7 @@ public class PylonManager : MonoBehaviour
 	[SerializeField, ReadOnlyField]
 	private bool overheated = false;
 	[SerializeField, ReadOnlyField]
-	private int wave = 0;
+	public int wave = 0;
 
 	public float portalLikelyHoodPerPylon;
 	public float portalSpawnTick;
