@@ -19028,6 +19028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50168e0866db624ab9b638baa520e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundPortal: 1
 --- !u!82 &6078899040706110592
 AudioSource:
   m_ObjectHideFlags: 0

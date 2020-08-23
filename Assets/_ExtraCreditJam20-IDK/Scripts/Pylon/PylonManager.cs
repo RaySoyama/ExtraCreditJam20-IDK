@@ -25,6 +25,8 @@ public class PylonManager : MonoBehaviour
 
 	private List<GameObject> portals = new List<GameObject>();
 
+	public Transform groundPortalPoints;
+
     [SerializeField, ReadOnlyField]
     private List<PylonController> allPylons = new List<PylonController>();
     public List<PylonController> AllPylons
@@ -83,7 +85,14 @@ public class PylonManager : MonoBehaviour
 					GameObject portalToSpawn = portalPrefabs[Random.Range((int)0, portalPrefabs.Count)];
 					if (portalToSpawn.GetComponent<Portal>().groundPortal)
 					{
-						//Spawn based on nav mesh
+						//Spawn on ground
+						Vector3 spawnPoint = groundPortalPoints.GetChild(Random.Range(0, groundPortalPoints.childCount)).position;
+
+						GameObject newPortal = Instantiate(portalToSpawn, spawnPoint, Quaternion.identity);
+						newPortal.transform.LookAt(p.gameObject.transform.position);
+
+						//Save new portal.
+						portals.Add(newPortal);
 					}
 					else
 					{
