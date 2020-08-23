@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour
     public Animator corsshair;
 
     public Animator PlayerAnim;
+    float lRotate = 0;
+    float rRotate = 0;
 
     public AudioClip jumpSound;
 	public List<AudioClip> blastSounds;
@@ -80,7 +82,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Start()
-    {
+    {      
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
 
@@ -98,6 +100,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerAnim.SetBool("isRunning", isWalking);
+
+        PlayerAnim.SetLayerWeight(2, lRotate);
+        PlayerAnim.SetLayerWeight(3, rRotate);
 
         if (isGrounded)
         {
@@ -191,26 +196,49 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(transform.forward * moveForce);
 			isWalking = true;
-		}
+
+            if(lRotate > .5)
+            {
+                lRotate = Mathf.Lerp(lRotate, 0.5f, Time.deltaTime * 10);
+            }
+            if (rRotate > .5)
+            {
+                rRotate = Mathf.Lerp(rRotate, 0.5f, Time.deltaTime * 10);
+            }
+        }
         else if (Input.GetKey(KeyCode.S))
         {
             rb.AddForce(-transform.forward * moveForce);
-			isWalking = true;
-		}
+			isWalking = true;            
+        }
 
         if (Input.GetKey(KeyCode.A))
         {
             rb.AddForce(-transform.right * moveForce);
 			isWalking = true;
-		}
+
+            lRotate = Mathf.Lerp(lRotate, 1, Time.deltaTime * 2);
+        }
         else if (Input.GetKey(KeyCode.D))
         {
             rb.AddForce(transform.right * moveForce);
 			isWalking = true;
-		}
 
-		//minimap
-		if (Input.GetKeyDown(KeyCode.Tab))
+            rRotate = Mathf.Lerp(rRotate, 1, Time.deltaTime * 2);
+        }
+
+        if (!Input.GetKey(KeyCode.A))
+        {
+            lRotate = Mathf.Lerp(lRotate, 0, Time.deltaTime * 3);
+        }
+
+        if (!Input.GetKey(KeyCode.D))
+        {
+            rRotate = Mathf.Lerp(rRotate, 0, Time.deltaTime * 3);
+        }
+
+        //minimap
+        if (Input.GetKeyDown(KeyCode.Tab))
 		{
 			miniMap.SetActive(!miniMap.active);
 		}
