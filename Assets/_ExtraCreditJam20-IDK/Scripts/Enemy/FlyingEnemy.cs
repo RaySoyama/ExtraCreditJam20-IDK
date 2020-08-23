@@ -116,7 +116,6 @@ public class FlyingEnemy : EnemyController
     }
 
 
-
     protected override void OnAttackStart()
     {
         base.OnAttackStart();
@@ -145,6 +144,7 @@ public class FlyingEnemy : EnemyController
     {
         base.OnAttackEnd();
     }
+
 
     [ContextMenu("Kill")]
     protected override void OnDeathStart()
@@ -184,6 +184,7 @@ public class FlyingEnemy : EnemyController
         base.OnDeathEnd();
         Destroy(gameObject);
     }
+
 
     public override void TakeHit()
     {
