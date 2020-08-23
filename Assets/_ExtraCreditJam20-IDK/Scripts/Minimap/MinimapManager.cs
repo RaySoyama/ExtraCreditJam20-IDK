@@ -40,6 +40,9 @@ public class MinimapManager : MonoBehaviour
     private Sprite pylonInactiveImg = null;
 
     [SerializeField]
+    private Sprite pylonDestroyedImg = null;
+
+    [SerializeField]
     private Sprite enemyImg = null;
 
     [SerializeField]
@@ -89,7 +92,11 @@ public class MinimapManager : MonoBehaviour
 
                 if (item.tracker.Type == TrackType.PYLON)
                 {
-                    if (item.tracker.PylonManager.IsEnabled == false)
+                    if (item.tracker.PylonManager.PylonIsDestroyed == true)
+                    {
+                        item.pin.sprite = pylonDestroyedImg;
+                    }
+                    else if (item.tracker.PylonManager.IsEnabled == false)
                     {
                         item.pin.sprite = pylonInactiveImg;
                     }
