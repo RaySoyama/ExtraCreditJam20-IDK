@@ -60,6 +60,7 @@ MonoBehaviour:
     type: 3}
   pylonImg: {fileID: 21300000, guid: 07ea9a04176a86345a850e892f10824b, type: 3}
   pylonInactiveImg: {fileID: 21300000, guid: a2001c13faebf434fa1132fa91f34bc2, type: 3}
+  pylonDestroyedImg: {fileID: 21300000, guid: 417a697369791584f8d638e004c9a07c, type: 3}
   enemyImg: {fileID: 21300000, guid: f6bdc0f90afccb947badd4f8a386358c, type: 3}
   playerImg: {fileID: 21300000, guid: 58ccf133d123aac4088aaf1000e0d54a, type: 3}
 --- !u!223 &7236323895012524873
