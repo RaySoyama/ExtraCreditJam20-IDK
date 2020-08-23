@@ -24387,8 +24387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca80fbc2ffa54ba4cb5b3f46ebf2ecaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSound: {fileID: 8300000, guid: ed46cb913f3e3b948b7a7c9fe3744387, type: 3}
-  deathSound: {fileID: 8300000, guid: f2b6eaf647747d94ba746a82d9404c29, type: 3}
   enemyState: 0
   enemyName: DevEnemy
   enemySpeed: 3
@@ -24409,6 +24407,9 @@ MonoBehaviour:
   debrisTime: 0
   animationEvent: {fileID: 7349174332237502173}
   animCtrl: {fileID: 1553616412297822941}
+  audio: {fileID: 6865697532650791368}
+  attackSound: {fileID: 8300000, guid: ed46cb913f3e3b948b7a7c9fe3744387, type: 3}
+  deathSound: {fileID: 8300000, guid: f2b6eaf647747d94ba746a82d9404c29, type: 3}
 --- !u!114 &8745537704839173112
 MonoBehaviour:
   m_ObjectHideFlags: 0
