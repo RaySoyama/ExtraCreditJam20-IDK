@@ -123,7 +123,7 @@ public class PylonManager : MonoBehaviour
 				pylonsToActivate = 1;
 			}
 
-			Debug.Log("Pylons to activate: " + pylonsToActivate);
+			Debug.Log("Pylons to activate: " + pylonsToActivate + " Wave: " + wave);
 
 			int alivePylons = 0;
 			foreach (var pylon in AllPylons)
