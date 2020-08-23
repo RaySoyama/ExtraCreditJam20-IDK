@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Malee.List;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -14,13 +15,18 @@ public class EnemySpawner : MonoBehaviour
         public Vector3 startRotation = Vector3.zero;
     }
 
+    [System.Serializable]
+    public class EnemyList : ReorderableArray<Enemy>
+    {
+    }
+
     public float difficulty = 1f;
     public AnimationCurve difficultyProgression;
     public float waveFrequency = 5.0f;
     public float stackTimer = 0.1f;
     public float spawnRadius = 0.5f;
     public Vector3 spawnOffset = Vector3.zero;
-    public List<Enemy> spawnables = new List<Enemy>();
+    [SerializeField, Reorderable(paginate = true, pageSize = 0, elementNameProperty = "myString")] EnemyList spawnables;
     [ReadOnlyField] public float currentDifficulty = 0f;
 
     List<Enemy> toSpawn = new List<Enemy>();
