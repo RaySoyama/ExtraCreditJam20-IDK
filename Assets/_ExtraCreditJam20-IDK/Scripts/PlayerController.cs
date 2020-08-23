@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
 
     public Animator corsshair;
 
+    public Animator PlayerAnim;
+
     public AudioClip jumpSound;
 	public List<AudioClip> blastSounds;
     private AudioSource audio;
@@ -95,6 +97,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        PlayerAnim.SetBool("isRunning", isWalking);
+
         if (isGrounded)
         {
             ParticleSystem.EmissionModule module = movementParticle.emission;
@@ -116,6 +120,9 @@ public class PlayerController : MonoBehaviour
             corsshair.ResetTrigger("shoot");
             corsshair.SetTrigger("stopShoot");
 
+            PlayerAnim.ResetTrigger("attack");
+            PlayerAnim.SetTrigger("stopAttack");
+
             foreach (var blast in blasts)
             {
                 blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
@@ -130,9 +137,7 @@ public class PlayerController : MonoBehaviour
             //blastDiss = Mathf.Lerp(blastDiss, 0f, Time.deltaTime + fireDuration * 0.05f);
             //blastDiss = Mathf.Lerp(blastDiss, 0, Time.deltaTime * ((firingStart + fireDuration) - Time.time));
             var em = epParticle.emission;
-            em.enabled = true;
-
-            corsshair.SetTrigger("shoot");
+            em.enabled = true;          
 
             foreach (var blast in blasts)
             {
@@ -228,7 +233,11 @@ public class PlayerController : MonoBehaviour
                 firingStart = Time.time;
                 blastDiss = 1f;
 
-				shakeMagnitude += 1f;
+                corsshair.SetTrigger("shoot");
+
+                PlayerAnim.SetTrigger("attack");
+
+                shakeMagnitude += 1f;
 
                 GameObject rootObj = hit.transform.root.gameObject;
 
