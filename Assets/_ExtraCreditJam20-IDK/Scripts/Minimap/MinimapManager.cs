@@ -93,6 +93,10 @@ public class MinimapManager : MonoBehaviour
                     {
                         item.pin.sprite = pylonInactiveImg;
                     }
+                    else
+                    {
+                        item.pin.sprite = pylonImg;
+                    }
                 }
 
             }

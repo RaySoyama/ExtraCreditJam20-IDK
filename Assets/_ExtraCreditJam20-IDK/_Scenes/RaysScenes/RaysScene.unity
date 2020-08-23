@@ -717,6 +717,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Minimap Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7236323895012524878, guid: ea7442ca024fda841bc4801cf72dd9e0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea7442ca024fda841bc4801cf72dd9e0, type: 3}
 --- !u!1001 &7709941031227007381
