@@ -108,11 +108,15 @@ public class PlayerController : MonoBehaviour
         {
             ParticleSystem.EmissionModule module = movementParticle.emission;
             module.rateOverDistance = 8;
+
+            PlayerAnim.SetBool("isFalling", false);
         }
         else
         {
             ParticleSystem.EmissionModule module = movementParticle.emission;
             module.rateOverDistance = 0;
+
+            PlayerAnim.SetBool("isFalling", true);
         }
 
         blastEnd.position = blastDestination;
