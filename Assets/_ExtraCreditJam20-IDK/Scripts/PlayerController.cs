@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
 	public GameObject miniMap;
 
     private List<GameObject> grounds = new List<GameObject>();
+    private Vector3 currentShake;
 
     private void Awake()
     {
@@ -125,7 +126,9 @@ public class PlayerController : MonoBehaviour
 			shakeMagnitude = 0f;
 		}
 
-		cam.transform.position = camPos.position + shake;
+        currentShake = Vector3.Lerp(currentShake, shake * 2, shakeMagnitude * 0.4f);
+
+		cam.transform.position = camPos.position + currentShake;
         cam.transform.LookAt(transform.position + lookOffset);
         camPos.LookAt(transform.position + lookOffset);
 
