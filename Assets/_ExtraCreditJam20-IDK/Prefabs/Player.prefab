@@ -751,6 +751,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4093502294593914859}
     m_Modifications:
+    - target: {fileID: 4981130987302696851, guid: 444c4488e0ba07b4bbe771feeebc9333,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981431272704903789, guid: 444c4488e0ba07b4bbe771feeebc9333,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4981438773632804795, guid: 444c4488e0ba07b4bbe771feeebc9333,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.g
@@ -770,6 +780,11 @@ PrefabInstance:
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 4981438773632804795, guid: 444c4488e0ba07b4bbe771feeebc9333,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5179876646699205539, guid: 444c4488e0ba07b4bbe771feeebc9333,
         type: 3}
@@ -866,7 +881,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -1.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5179550403606528221, guid: 444c4488e0ba07b4bbe771feeebc9333, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 444c4488e0ba07b4bbe771feeebc9333, type: 3}
 --- !u!4 &8845858676818125985 stripped
 Transform:
@@ -1373,6 +1389,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327286055068671236, guid: 550c211883ed6fd4ea6dd03002db5b27,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327885044516899732, guid: 550c211883ed6fd4ea6dd03002db5b27,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3327924740141308836, guid: 550c211883ed6fd4ea6dd03002db5b27,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3237540235949096728, guid: 550c211883ed6fd4ea6dd03002db5b27, type: 3}
