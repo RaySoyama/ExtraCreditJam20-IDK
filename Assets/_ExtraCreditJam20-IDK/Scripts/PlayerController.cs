@@ -88,6 +88,8 @@ public class PlayerController : MonoBehaviour
         camDistance = Vector3.Distance(camPos.position, transform.position);
 
         audio = GetComponent<AudioSource>();
+
+		Debug.Log("kys");
     }
 
     void Update()
