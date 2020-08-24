@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -43,8 +44,9 @@ public class PlayerController : MonoBehaviour
     public Transform blastEnd;
     public Transform waterStart;
     public Transform waterEnd;
-    public List<GameObject> blasts;
-    public List<GameObject> waterBlasts;
+    public List<SkinnedMeshRenderer> blasts;
+    public List<SkinnedMeshRenderer> waterBlasts;
+    public MeshRenderer waterFillMat;
     float blastDiss = 0f;
     float waterDiss = 0f;
 
@@ -68,6 +70,9 @@ public class PlayerController : MonoBehaviour
 
     private List<GameObject> grounds = new List<GameObject>();
     private Vector3 currentShake;
+
+    public UnityEvent onFillingWaterOrb;
+    public UnityEvent notFillingWaterOrb;
 
     private void Awake()
     {
@@ -93,8 +98,6 @@ public class PlayerController : MonoBehaviour
         camDistance = Vector3.Distance(camPos.position, transform.position);
 
         audio = GetComponent<AudioSource>();
-
-		Debug.Log("kys");
     }
 
     void Update()
@@ -134,7 +137,7 @@ public class PlayerController : MonoBehaviour
 
             foreach (var blast in blasts)
             {
-                blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
+                blast.material.SetFloat("dissolve", blastDiss);
             }
         }
         else if (firing)
@@ -150,7 +153,7 @@ public class PlayerController : MonoBehaviour
 
             foreach (var blast in blasts)
             {
-                blast.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", blastDiss);
+                blast.material.SetFloat("dissolve", blastDiss);
             }
         }
         else if (!firing)
@@ -162,10 +165,12 @@ public class PlayerController : MonoBehaviour
 
         foreach (var water in waterBlasts)
         {
-            water.GetComponent<SkinnedMeshRenderer>().material.SetFloat("dissolve", waterDiss);
+            water.material.SetFloat("dissolve", waterDiss);
         }
 
-		//Camera Movement
+        waterFillMat.material.SetFloat("fill", (currentWaterStorage / waterStorageMax) + 0.55f);
+		
+        //Camera Movement
 		Vector3 shake = Vector3.zero;
 		if (shakeMagnitude > 0f)
 		{
@@ -319,6 +324,7 @@ public class PlayerController : MonoBehaviour
                     waterDiss = Mathf.Lerp(waterDiss, 1, 0.2f);
                     shakeMagnitude += 0.1f;
                     currentWaterStorage = Mathf.Clamp(currentWaterStorage - (Time.deltaTime * 4), 0, waterStorageMax);
+                    notFillingWaterOrb.Invoke();
                 }
                 else
                 {
@@ -328,6 +334,7 @@ public class PlayerController : MonoBehaviour
                         shakeMagnitude += Time.deltaTime * 1.5f;
                         currentWaterStorage = Mathf.Clamp(currentWaterStorage + (Time.deltaTime * 2f), 0, waterStorageMax);
                         rb.AddForce(camPos.forward * 15, ForceMode.Acceleration);
+                        onFillingWaterOrb.Invoke();
                     }
                     else
                     {
@@ -338,11 +345,13 @@ public class PlayerController : MonoBehaviour
 
                             //Make player fly around
                             rb.AddForce(-camPos.forward * 75, ForceMode.Acceleration);
+                            notFillingWaterOrb.Invoke();
                         }
                         else
                         {
                             waterFiring = false;
                             waterDiss = Mathf.Lerp(waterDiss, 0, 0.6f);
+                            notFillingWaterOrb.Invoke();
                         }
                     }
                 }
@@ -350,6 +359,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            notFillingWaterOrb.Invoke();
             waterFiring = false;
             waterDiss = Mathf.Lerp(waterDiss, 0, 0.06f);
         }
