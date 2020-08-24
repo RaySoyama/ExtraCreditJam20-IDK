@@ -1883,7 +1883,7 @@ MonoBehaviour:
   - {fileID: 2475852645555370953, guid: e45445aadac33af4eaeceb32fe2f06be, type: 3}
   - {fileID: 2475852645555370953, guid: f482ba9f58e1cda4d937da6e84dd3fff, type: 3}
   spawnIntervalMin: 5
-  spawnIntervalMax: 30
+  spawnIntervalMax: 25
 --- !u!114 &630373781
 MonoBehaviour:
   m_ObjectHideFlags: 0
