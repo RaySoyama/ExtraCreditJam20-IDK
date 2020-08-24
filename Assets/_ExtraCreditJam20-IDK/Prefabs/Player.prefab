@@ -10310,6 +10310,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4093502294593914859}
     m_Modifications:
+    - target: {fileID: -8788076128805308467, guid: 184e8d0c2fa75a94ab13ee644e7185b0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b72d1065076d5c945a892ac0ccfac9c1, type: 2}
     - target: {fileID: -8679921383154817045, guid: 184e8d0c2fa75a94ab13ee644e7185b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10365,11 +10370,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -139.844
       objectReference: {fileID: 0}
+    - target: {fileID: 292098251499744024, guid: 184e8d0c2fa75a94ab13ee644e7185b0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b72d1065076d5c945a892ac0ccfac9c1, type: 2}
     - target: {fileID: 919132149155446097, guid: 184e8d0c2fa75a94ab13ee644e7185b0,
         type: 3}
       propertyPath: m_Name
       value: TurtleStaff
       objectReference: {fileID: 0}
+    - target: {fileID: 3162424704344314017, guid: 184e8d0c2fa75a94ab13ee644e7185b0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b72d1065076d5c945a892ac0ccfac9c1, type: 2}
+    - target: {fileID: 3238670181830180541, guid: 184e8d0c2fa75a94ab13ee644e7185b0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b72d1065076d5c945a892ac0ccfac9c1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184e8d0c2fa75a94ab13ee644e7185b0, type: 3}
 --- !u!4 &1708310550327267445 stripped
