@@ -283,4 +283,9 @@ public class PylonManager : MonoBehaviour
 
 	}
 
+	public float GetHeatPercent()
+	{
+		return heatLevel / heatThreshold;
+	}
+
 }
