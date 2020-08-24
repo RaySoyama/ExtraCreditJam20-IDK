@@ -553,8 +553,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  wavesToWin: 10
-  winSceneName: 
+  wavesToWin: 1
+  winSceneName: Win Screen
 --- !u!4 &977988935
 Transform:
   m_ObjectHideFlags: 0
