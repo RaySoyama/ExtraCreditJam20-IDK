@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     public float currentWaterStorage = 5f;
 
     public ParticleSystem epParticle;
+    public ParticleSystem epWaterParticle;
     public ParticleSystem movementParticle;
 
     public Animator corsshair;
@@ -347,10 +348,15 @@ public class PlayerController : MonoBehaviour
                             //Make player fly around
                             rb.AddForce(-camPos.forward * 75, ForceMode.Acceleration);
                             notFillingWaterOrb.Invoke();
+
+                            var em = epWaterParticle.emission;
+                            em.enabled = true;
                         }
                         else
                         {
                             waterFiring = false;
+                            var em = epWaterParticle.emission;
+                            em.enabled = false;
                             waterDiss = Mathf.Lerp(waterDiss, 0, 0.6f);
                             notFillingWaterOrb.Invoke();
                         }
