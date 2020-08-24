@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     public float currentWaterStorage = 5f;
 
     public ParticleSystem epParticle;
+    public ParticleSystem epWaterParticle;
     public ParticleSystem movementParticle;
 
     public Animator corsshair;
@@ -381,6 +382,7 @@ public class PlayerController : MonoBehaviour
                             notFillingWaterOrb.Invoke();
 
 
+                            var em = epWaterParticle.emission;
                             em.enabled = true;
 
                         }
