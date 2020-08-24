@@ -525,7 +525,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.gameObject.name.Contains("Pickup_WaterCapacity"))
         {
-            waterStorageMax += 10f;
+            waterStorageMax += 2f;
             Destroy(other.gameObject);
         }
     }
