@@ -35,7 +35,6 @@ RectTransform:
   - {fileID: 4026867312867535735}
   - {fileID: 4026867313362611679}
   - {fileID: 4026867312933652751}
-  - {fileID: 4026867311677583375}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -61,9 +60,9 @@ MonoBehaviour:
   - {fileID: 4026867312867535734}
   - {fileID: 4026867313362611678}
   - {fileID: 4026867312933652750}
-  - {fileID: 4026867311677583374}
   currentSlide: 0
   sceneFunc: {fileID: 0}
+  targetScene: exit
 --- !u!223 &272687946658141588
 Canvas:
   m_ObjectHideFlags: 0
@@ -134,8 +133,8 @@ PrefabInstance:
     - target: {fileID: 3758964458239725775, guid: 8652a1615bf165946b62d9faa78f3bb9,
         type: 3}
       propertyPath: m_text
-      value: 'Slide #3, Plceholder Text, Plceholder Text, Plceholder Text, Plceholder
-        Text, Plceholder Text, '
+      value: Pylons get hot over time and need to be cooled off. When pylons get
+        hot enemies are able to pinpoint your location, take care of them!
       objectReference: {fileID: 0}
     - target: {fileID: 3758964458860825672, guid: 8652a1615bf165946b62d9faa78f3bb9,
         type: 3}
@@ -306,8 +305,9 @@ PrefabInstance:
     - target: {fileID: 3758964458239725775, guid: 8652a1615bf165946b62d9faa78f3bb9,
         type: 3}
       propertyPath: m_text
-      value: 'Slide #4, Plceholder Text, Plceholder Text, Plceholder Text, Plceholder
-        Text, Plceholder Text, '
+      value: 'Power ups!
+
+        Pick up numerious powerups for different effects'
       objectReference: {fileID: 0}
     - target: {fileID: 3758964458860825672, guid: 8652a1615bf165946b62d9faa78f3bb9,
         type: 3}
@@ -478,8 +478,10 @@ PrefabInstance:
     - target: {fileID: 3758964458239725775, guid: 8652a1615bf165946b62d9faa78f3bb9,
         type: 3}
       propertyPath: m_text
-      value: 'Slide #2, Plceholder Text, Plceholder Text, Plceholder Text, Plceholder
-        Text, Plceholder Text, '
+      value: 'Left clicking will blast a charge particle beam
+
+        Hit enemies
+        and zap them back to wherever they came from!'
       objectReference: {fileID: 0}
     - target: {fileID: 3758964458860825672, guid: 8652a1615bf165946b62d9faa78f3bb9,
         type: 3}
@@ -640,178 +642,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 272687946814280990}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &272687947802742374
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 272687946658141595}
-    m_Modifications:
-    - target: {fileID: 3758964458239725775, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_text
-      value: 'Slide #5, Plceholder Text, Plceholder Text, Plceholder Text, Plceholder
-        Text, Plceholder Text, '
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458860825672, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458860825672, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458860825672, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458860825672, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 272687946658141594}
-    - target: {fileID: 3758964458860825672, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextSlide
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458860825672, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064360, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_Name
-      value: TutorialSlide 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064360, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8652a1615bf165946b62d9faa78f3bb9, type: 3}
---- !u!1 &4026867311677583374 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3758964458924064360, guid: 8652a1615bf165946b62d9faa78f3bb9,
-    type: 3}
-  m_PrefabInstance: {fileID: 272687947802742374}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &4026867311677583375 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3758964458924064361, guid: 8652a1615bf165946b62d9faa78f3bb9,
-    type: 3}
-  m_PrefabInstance: {fileID: 272687947802742374}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4026867311741767563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -822,8 +652,14 @@ PrefabInstance:
     - target: {fileID: 3758964458239725775, guid: 8652a1615bf165946b62d9faa78f3bb9,
         type: 3}
       propertyPath: m_text
-      value: 'Slide #1, Plceholder Text, Plceholder Text, Plceholder Text, Plceholder
-        Text, Plceholder Text, '
+      value: 'WASD - Move
+
+        Mouse - aim
+
+        Left click - shoot
+
+        Right
+        click - spray water'
       objectReference: {fileID: 0}
     - target: {fileID: 3758964458860825672, guid: 8652a1615bf165946b62d9faa78f3bb9,
         type: 3}
