@@ -381,11 +381,14 @@ public class PlayerController : MonoBehaviour
                             notFillingWaterOrb.Invoke();
 
 
+                            em.enabled = true;
 
                         }
                         else
                         {
                             waterFiring = false;
+                            var em = epWaterParticle.emission;
+                            em.enabled = false;
                             waterDiss = Mathf.Lerp(waterDiss, 0, 0.6f);
                             notFillingWaterOrb.Invoke();
                         }
