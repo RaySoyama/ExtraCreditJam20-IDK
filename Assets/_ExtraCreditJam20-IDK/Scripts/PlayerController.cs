@@ -223,7 +223,10 @@ public class PlayerController : MonoBehaviour
 		
         //Camera Movement
 		Vector3 shake = Vector3.zero;
-		if (shakeMagnitude > 0f)
+
+        shakeMagnitude = Mathf.Clamp(shakeMagnitude, 0, 2.5f);
+
+        if (shakeMagnitude > 0f)
 		{
 			shake = new Vector3(Random.Range(-0.1f, 0.1f) * shakeMagnitude, Random.Range(-0.1f, 0.1f) * shakeMagnitude, Random.Range(-0.1f, 0.1f) * shakeMagnitude);
 			shakeMagnitude -= 0.05f;
