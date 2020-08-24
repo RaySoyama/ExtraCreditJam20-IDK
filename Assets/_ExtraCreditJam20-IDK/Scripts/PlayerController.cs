@@ -103,6 +103,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerAnim.SetBool("isRunning", isWalking);
+        PlayerAnim.SetBool("isSpraying", waterFiring);
 
         PlayerAnim.SetLayerWeight(2, lRotate);
         PlayerAnim.SetLayerWeight(3, rRotate);
