@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/_ExtraCreditJam20-IDK/_Scenes/Main Menu.unity
+    guid: d701998a9268c9a40b070ec3d73b3c75
+  - enabled: 1
+    path: Assets/_ExtraCreditJam20-IDK/_Scenes/Lose Screen.unity
+    guid: 95be18286cabbcb4080152fd2c27e540
   m_configObjects: {}
