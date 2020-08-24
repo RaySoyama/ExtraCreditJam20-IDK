@@ -203,6 +203,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 19
       objectReference: {fileID: 0}
+    - target: {fileID: 5095187935541389137, guid: d4b38b352fdfe744a928ffd42107c06b,
+        type: 3}
+      propertyPath: heatThreshold
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 5095187935541389137, guid: d4b38b352fdfe744a928ffd42107c06b,
+        type: 3}
+      propertyPath: heatGain
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5095187935541389137, guid: d4b38b352fdfe744a928ffd42107c06b,
+        type: 3}
+      propertyPath: heatLoss
+      value: 0.09
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4b38b352fdfe744a928ffd42107c06b, type: 3}
 --- !u!1 &1604842839
