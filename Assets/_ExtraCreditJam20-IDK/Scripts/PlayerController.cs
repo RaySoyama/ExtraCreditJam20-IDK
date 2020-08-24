@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
 	private bool firing = false;
 	private bool waterFiring = false;
+	private bool waterWasFiringLastFrame = false;
     private float firingStart = 0f;
 
     public float fireDuration;
@@ -64,6 +65,13 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip jumpSound;
 	public List<AudioClip> blastSounds;
+
+	public AudioClip waterStartSound;
+	public AudioClip waterLoopSound;
+	public AudioClip waterStopSound;
+
+	private float waterSoundStartTime = 0;
+
     private AudioSource audio;
 
 	public GameObject miniMap;
@@ -102,6 +110,31 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+		//Water sounds
+		if (waterFiring && !waterWasFiringLastFrame)
+		{
+			//Start water sound
+			waterSoundStartTime = Time.time;
+			audio.PlayOneShot(waterStartSound);
+		}
+		else if (waterFiring && waterWasFiringLastFrame)
+		{
+			if (audio.clip == waterStartSound && waterSoundStartTime + waterStartSound.length >= Time.time)
+			{
+				audio.Stop();
+				audio.clip = waterLoopSound;
+				audio.loop = true;
+			}
+		}
+		else if (!waterFiring && waterWasFiringLastFrame)
+		{
+			audio.Stop();
+			audio.loop = false;
+			audio.PlayOneShot(waterStopSound);
+		}
+
+		waterWasFiringLastFrame = waterFiring;
+
         PlayerAnim.SetBool("isRunning", isWalking);
         PlayerAnim.SetBool("isSpraying", waterFiring);
 
@@ -288,7 +321,7 @@ public class PlayerController : MonoBehaviour
                     enemyComp.TakeHit();
 					shakeMagnitude += 1f;
 				}
-				else if (rootObj.TryGetComponent<Bell>(out bell))
+				else if (hit.transform.TryGetComponent<Bell>(out bell))
 				{
 					bell.TakeHit();
 					shakeMagnitude += 0.5f;
@@ -297,8 +330,7 @@ public class PlayerController : MonoBehaviour
 				audio.PlayOneShot(blastSounds[Random.Range((int)0, (int)blastSounds.Count)]);
             }
         }
-
-        if (Input.GetMouseButton(1))
+        else if (Input.GetMouseButton(1))
         {
             RaycastHit hit;
             Vector3 heading = (transform.position + lookOffset) - camPos.position;
@@ -347,6 +379,9 @@ public class PlayerController : MonoBehaviour
                             //Make player fly around
                             rb.AddForce(-camPos.forward * 75, ForceMode.Acceleration);
                             notFillingWaterOrb.Invoke();
+
+
+
                         }
                         else
                         {

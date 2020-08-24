@@ -6,11 +6,11 @@ public class OceanObject : MonoBehaviour
 {
 	private bool isSailing = false;
 
-	private float speed = 1f;
+	private float speed = 0.6f;
 	private float diveSpeed = 0.5f;
 	private float zDivePoint = -2000f;
 	private float yDespawnPoint = -200f;
-	private float yTargetPoint = 20f;
+	private float yTargetPoint = 0f;
 
     void Start()
     {

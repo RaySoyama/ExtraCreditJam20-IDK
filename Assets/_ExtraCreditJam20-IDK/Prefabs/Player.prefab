@@ -291,6 +291,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6857a85ff236a7146ad4398555794188, type: 3}
   - {fileID: 8300000, guid: 75e961470c278cd4f9a7803916f46869, type: 3}
   - {fileID: 8300000, guid: 4b2c00fc231167f429a891ff09015b68, type: 3}
+  waterStartSound: {fileID: 8300000, guid: 5d986673204ede648a1512a84c4ce7b9, type: 3}
+  waterLoopSound: {fileID: 8300000, guid: 0133e9e870a85c141a90f09858e3dec9, type: 3}
+  waterStopSound: {fileID: 8300000, guid: cae315012ad7e834988b7fe14e402d06, type: 3}
   miniMap: {fileID: 3077704572339345944}
   onFillingWaterOrb:
     m_PersistentCalls:
@@ -390,13 +393,13 @@ AudioSource:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.10443115
+      time: 0.35333252
       value: 0
-      inSlope: -1.002004
-      outSlope: -1.002004
+      inSlope: -0.31518736
+      outSlope: -0.31518736
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.3223283
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -10691,7 +10694,7 @@ PrefabInstance:
     - target: {fileID: 7144445144533671994, guid: 788b214870f1ba44bbd45bf3cc1dab86,
         type: 3}
       propertyPath: m_RotationOffsets.Array.data[0].x
-      value: -27.87698
+      value: -27.876984
       objectReference: {fileID: 0}
     - target: {fileID: 7144445144533671994, guid: 788b214870f1ba44bbd45bf3cc1dab86,
         type: 3}
@@ -11713,7 +11716,7 @@ PrefabInstance:
     - target: {fileID: 7144445144533671994, guid: 788b214870f1ba44bbd45bf3cc1dab86,
         type: 3}
       propertyPath: m_RotationOffsets.Array.data[0].x
-      value: -27.87698
+      value: -27.876984
       objectReference: {fileID: 0}
     - target: {fileID: 7144445144533671994, guid: 788b214870f1ba44bbd45bf3cc1dab86,
         type: 3}
