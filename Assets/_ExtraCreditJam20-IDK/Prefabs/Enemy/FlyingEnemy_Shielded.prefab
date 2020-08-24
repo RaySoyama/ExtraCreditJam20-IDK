@@ -34524,6 +34524,12 @@ MonoBehaviour:
   enemyAttackSpeed: 0.2
   enemyAttackRange: 12
   targetPylon: {fileID: 0}
+  partsToDisable:
+  - {fileID: 2653680839998563235}
+  - {fileID: 1945053520595102679}
+  - {fileID: 1945053522095181053}
+  - {fileID: 1945053520427931770}
+  - {fileID: 1945053521553422359}
   laserWeapon: {fileID: 8025760032058427797}
   debris:
   - {fileID: 5364820628785936295}

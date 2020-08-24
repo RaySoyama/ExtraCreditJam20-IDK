@@ -74,7 +74,7 @@ public class GroundedEnemy : EnemyController
         }
         else
         {
-            Debug.LogError("Missing ref to animator");
+            Debug.Log("Missing ref to animator");
         }
 
         if (TargetPylon != null)
@@ -157,7 +157,7 @@ public class GroundedEnemy : EnemyController
         }
         else
         {
-            Debug.LogError("Missing ref to animator");
+            Debug.Log("Missing ref to animator");
         }
     }
 

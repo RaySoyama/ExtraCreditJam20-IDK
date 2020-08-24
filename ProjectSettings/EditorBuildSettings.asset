@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/_ExtraCreditJam20-IDK/_Scenes/FinalScenes/Main Menu.unity
     guid: d701998a9268c9a40b070ec3d73b3c75

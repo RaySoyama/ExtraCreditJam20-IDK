@@ -9956,6 +9956,12 @@ MonoBehaviour:
   enemyAttackSpeed: 0.2
   enemyAttackRange: 12
   targetPylon: {fileID: 0}
+  partsToDisable:
+  - {fileID: 6933177244716346521}
+  - {fileID: 6780842747177592045}
+  - {fileID: 6780842745962906567}
+  - {fileID: 6780842747479103296}
+  - {fileID: 6780842746487519021}
   laserWeapon: {fileID: 3136028612543809199}
   debris:
   - {fileID: 1051582414377547933}
@@ -30725,6 +30731,12 @@ PrefabInstance:
 --- !u!4 &6934580092967449121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3668074720268652908, guid: cf34690f8af5d294ab522a8265bfa8cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 5970380422295970637}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6933177244716346521 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3669477829336518612, guid: cf34690f8af5d294ab522a8265bfa8cf,
     type: 3}
   m_PrefabInstance: {fileID: 5970380422295970637}
   m_PrefabAsset: {fileID: 0}

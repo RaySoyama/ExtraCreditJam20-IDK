@@ -539,6 +539,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.name == "Water")
+            transform.position = new Vector3(0, 15, 0);
+
         if (collision.gameObject.tag == "ground")
         {
             grounds.Add(collision.gameObject);
