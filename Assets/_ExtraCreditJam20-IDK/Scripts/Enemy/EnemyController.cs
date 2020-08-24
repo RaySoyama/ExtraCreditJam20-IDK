@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class EnemyController : MonoBehaviour
 {
@@ -114,6 +115,7 @@ public class EnemyController : MonoBehaviour
     public EnemyEvent OnEnemyHit;
     public EnemyEvent OnEnemyDeath;
 
+    public List<GameObject> partsToDisable = new List<GameObject>();
 
     public enum State
     {
@@ -188,6 +190,9 @@ public class EnemyController : MonoBehaviour
 
     protected virtual void OnDeathStart()
     {
+        foreach (GameObject part in partsToDisable)
+            part.SetActive(false);
+
         enemyState = State.DEATH;
     }
     protected virtual void OnDeath()

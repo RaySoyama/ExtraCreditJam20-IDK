@@ -67,8 +67,15 @@ public class GroundedEnemy : EnemyController
     protected override void OnSearchStart()
     {
         base.OnSearchStart();
-        animCtrl.ResetTrigger("shoot");
-        animCtrl.SetTrigger("stopShoot");
+        if (animCtrl != null)
+        {
+            animCtrl.ResetTrigger("shoot");
+            animCtrl.SetTrigger("stopShoot");
+        }
+        else
+        {
+            Debug.Log("Missing ref to animator");
+        }
 
         if (TargetPylon != null)
         {
@@ -123,8 +130,14 @@ public class GroundedEnemy : EnemyController
                 OnSearchStart();
                 return;
             }
-
-            animCtrl.SetTrigger("shoot");
+            if (animCtrl != null)
+            {
+                animCtrl.SetTrigger("shoot");
+            }
+            else
+            {
+                Debug.LogError("Missing ref to animator");
+            }
             timeToNextAttack = 1.0f / EnemyAttackSpeed;
         }
     }
@@ -138,7 +151,14 @@ public class GroundedEnemy : EnemyController
     protected override void OnDeathStart()
     {
         base.OnDeathStart();
-        animCtrl.SetTrigger("die");
+        if (animCtrl != null)
+        {
+            animCtrl.SetTrigger("die");
+        }
+        else
+        {
+            Debug.Log("Missing ref to animator");
+        }
     }
 
     protected override void OnDeath()
