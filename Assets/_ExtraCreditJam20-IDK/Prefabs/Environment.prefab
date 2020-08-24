@@ -4321,7 +4321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432862d2757c375469416c0832f45566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heatGain: 0.15
+  heatGain: 0.5
   heatLoss: 0.1
   heatThreshold: 200
   heatLevel: 0

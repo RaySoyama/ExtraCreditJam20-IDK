@@ -160,6 +160,6 @@ public class PylonController : MonoBehaviour
 
     public void ReduceHeat()
     {
-        PylonManager.instance.Cool(0.15f);
+        PylonManager.instance.Cool(0.1f);
     }
 }
