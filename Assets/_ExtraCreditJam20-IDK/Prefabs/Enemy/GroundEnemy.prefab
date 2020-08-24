@@ -2573,6 +2573,7 @@ GameObject:
   - component: {fileID: 4765515328679334616}
   - component: {fileID: 4765515328679334619}
   - component: {fileID: 1069685600}
+  - component: {fileID: -8771704283667279648}
   m_Layer: 0
   m_Name: GroundEnemy
   m_TagString: Untagged
@@ -2700,6 +2701,20 @@ CapsuleCollider:
   m_Height: 2.8276644
   m_Direction: 1
   m_Center: {x: 0, y: 1.1736255, z: 0}
+--- !u!114 &-8771704283667279648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5684645680389386124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 108d71d14e3a16047a4f371ef4f9cfaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 2
+  pylonManager: {fileID: 0}
 --- !u!1 &5907165785014690076
 GameObject:
   m_ObjectHideFlags: 0
@@ -4502,15 +4517,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69144c4918c2ddd4ca7d3f06189df273, type: 3}
---- !u!1 &6342738292223982973 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3351471175499445086, guid: 69144c4918c2ddd4ca7d3f06189df273,
-    type: 3}
-  m_PrefabInstance: {fileID: 8540865148483391011}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6002804019154085831 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2722709555869559268, guid: 69144c4918c2ddd4ca7d3f06189df273,
+    type: 3}
+  m_PrefabInstance: {fileID: 8540865148483391011}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6342738292223982973 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3351471175499445086, guid: 69144c4918c2ddd4ca7d3f06189df273,
     type: 3}
   m_PrefabInstance: {fileID: 8540865148483391011}
   m_PrefabAsset: {fileID: 0}
