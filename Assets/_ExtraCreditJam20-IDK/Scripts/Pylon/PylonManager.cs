@@ -70,7 +70,93 @@ public class PylonManager : MonoBehaviour
 
     void Update()
     {
-		if (Time.time >= lastPortalSpawnTick + portalSpawnTick)
+        if (!overheated && heatLevel >= heatThreshold)
+        {
+            wave++;
+            overheated = true;
+            portalsSpawmnedThisWave = 0;
+
+            //activate some pylons
+            int pylonsToActivate = Random.Range(Mathf.Clamp(1 + (int)(wave / 6f), 1, allPylons.Count + 1), Mathf.Clamp((int)(wave / 4f) + 2, 1, allPylons.Count + 1));
+
+            if (wave == 1)
+            {
+                pylonsToActivate = 1;
+            }
+
+            Debug.Log("Pylons to activate: " + pylonsToActivate + " Wave: " + wave);
+
+            int alivePylons = 0;
+            foreach (var pylon in AllPylons)
+            {
+                if (!pylon.GetComponent<PylonController>().PylonIsDestroyed)
+                {
+                    alivePylons++;
+                }
+            }
+
+            if (alivePylons < pylonsToActivate)
+            {
+                pylonsToActivate = alivePylons;
+            }
+
+            int tryStart = Random.Range((int)0, (int)allPylons.Count);
+            while (pylonsToActivate > 0)
+            {
+                if (!allPylons[tryStart].IsEnabled && !allPylons[tryStart].PylonIsDestroyed)
+                {
+                    allPylons[tryStart].ActivatePylon();
+                    pylonsToActivate--;
+                }
+
+                tryStart++;
+                if (tryStart == allPylons.Count)
+                {
+                    tryStart = 0;
+                }
+            }
+
+            //Tell all ocean objects we overheated
+            foreach (OceanObject oo in oceanObjects)
+            {
+                oo.SetSailing(false);
+            }
+
+        }
+        else if (overheated && heatLevel <= 0f)
+        {
+            overheated = false;
+            //deactivate all pylons
+            while (allActivePylons.Count > 0)
+            {
+                allActivePylons[0].DeActivatePylon();
+            }
+
+            //Destroy portals
+            foreach (GameObject p in portals)
+            {
+                p.GetComponent<Portal>().Death();
+            }
+
+            portals = new List<GameObject>();
+
+            //Tell all ocean objects to sail again
+            foreach (OceanObject oo in oceanObjects)
+            {
+                oo.SetSailing(true);
+            }
+        }
+
+        if (overheated)
+        {
+            heatLevel -= heatLoss;
+        }
+        else
+        {
+            heatLevel += heatGain;
+        }
+
+        if (Time.time >= lastPortalSpawnTick + portalSpawnTick)
 		{
 			lastPortalSpawnTick = Time.time;
 
@@ -143,91 +229,7 @@ public class PylonManager : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		if (!overheated && heatLevel >= heatThreshold)
-		{
-			wave++;
-			overheated = true;
-			portalsSpawmnedThisWave = 0;
-
-			//activate some pylons
-			int pylonsToActivate = Random.Range(Mathf.Clamp(1 + (int)(wave / 6f), 1, allPylons.Count + 1), Mathf.Clamp((int)(wave / 4f) + 2, 1, allPylons.Count + 1));
-				
-			if (wave == 1)
-			{
-				pylonsToActivate = 1;
-			}
-
-			Debug.Log("Pylons to activate: " + pylonsToActivate + " Wave: " + wave);
-
-			int alivePylons = 0;
-			foreach (var pylon in AllPylons)
-			{
-				if (!pylon.GetComponent<PylonController>().PylonIsDestroyed)
-				{
-					alivePylons++;
-				}
-			}
-
-			if (alivePylons < pylonsToActivate)
-			{
-				pylonsToActivate = alivePylons;
-			}
-
-			int tryStart = Random.Range((int)0, (int)allPylons.Count);
-			while (pylonsToActivate > 0)
-			{
-				if (!allPylons[tryStart].IsEnabled && !allPylons[tryStart].PylonIsDestroyed)
-				{
-					allPylons[tryStart].ActivatePylon();
-					pylonsToActivate--;
-				}
-
-				tryStart++;
-				if (tryStart == allPylons.Count)
-				{
-					tryStart = 0;
-				}
-			}
-
-			//Tell all ocean objects we overheated
-			foreach (OceanObject oo in oceanObjects)
-			{
-				oo.SetSailing(false);
-			}
-
-		}
-		else if (overheated && heatLevel <= 0f)
-		{
-			overheated = false;
-			//deactivate all pylons
-			while (allActivePylons.Count > 0)
-			{
-				allActivePylons[0].DeActivatePylon();
-			}
-
-			//Destroy portals
-			foreach (GameObject p in portals)
-			{
-				p.GetComponent<Portal>().Death();
-			}
-
-			portals = new List<GameObject>();
-
-			//Tell all ocean objects to sail again
-			foreach (OceanObject oo in oceanObjects)
-			{
-				oo.SetSailing(true);
-			}
-		}
-
-		if (overheated)
-		{
-			heatLevel -= heatLoss;
-		}
-		else
-		{
-			heatLevel += heatGain;
-		}
+		
 	}
 
 	public void AddPylonToList(PylonController pylon)
