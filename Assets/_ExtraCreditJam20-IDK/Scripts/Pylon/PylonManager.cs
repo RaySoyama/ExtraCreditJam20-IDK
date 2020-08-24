@@ -250,4 +250,9 @@ public class PylonManager : MonoBehaviour
 		return overheated;
 	}
 
+	public int GetActivePortalCount()
+	{
+		return portals.Count;
+	}
+
 }
