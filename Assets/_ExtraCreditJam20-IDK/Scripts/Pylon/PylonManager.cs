@@ -3,33 +3,33 @@ using UnityEngine;
 
 public class PylonManager : MonoBehaviour
 {
-	public float heatGain;
-	public float heatLoss;
-	public float heatThreshold;
-	[SerializeField, ReadOnlyField]
-	private float heatLevel = 200;
-	[SerializeField, ReadOnlyField]
-	private bool overheated = false;
-	[SerializeField, ReadOnlyField]
-	public int wave = 0;
-	private int portalsSpawmnedThisWave = 0;
+    public float heatGain;
+    public float heatLoss;
+    public float heatThreshold;
+    [SerializeField, ReadOnlyField]
+    private float heatLevel = 200;
+    [SerializeField, ReadOnlyField]
+    private bool overheated = false;
+    [SerializeField, ReadOnlyField]
+    public int wave = 0;
+    private int portalsSpawmnedThisWave = 0;
 
-	public float portalLikelyHoodPerPylon;
-	public float portalSpawnTick;
+    public float portalLikelyHoodPerPylon;
+    public float portalSpawnTick;
 
-	public List<GameObject> portalPrefabs;
+    public List<GameObject> portalPrefabs;
 
-	private float lastPortalSpawnTick = 0f;
+    private float lastPortalSpawnTick = 0f;
 
     public static PylonManager instance = null;
 
-	private List<GameObject> portals = new List<GameObject>();
+    private List<GameObject> portals = new List<GameObject>();
 
-	public Transform groundPortalPoints;
+    public Transform groundPortalPoints;
 
     public SceneFunctions sceneFunctions;
 
-	private List<OceanObject> oceanObjects = new List<OceanObject>();
+    private List<OceanObject> oceanObjects = new List<OceanObject>();
 
     [SerializeField, ReadOnlyField]
     private List<PylonController> allPylons = new List<PylonController>();
@@ -65,8 +65,8 @@ public class PylonManager : MonoBehaviour
     }
     void Start()
     {
-		
-	}
+
+    }
 
     void Update()
     {
@@ -149,90 +149,90 @@ public class PylonManager : MonoBehaviour
 
         if (overheated)
         {
-            heatLevel -= heatLoss;
+            heatLevel -= heatLoss * Time.deltaTime * 60;
         }
         else
         {
-            heatLevel += heatGain;
+            heatLevel += heatGain * Time.deltaTime * 60;
         }
 
         if (Time.time >= lastPortalSpawnTick + portalSpawnTick)
-		{
-			lastPortalSpawnTick = Time.time;
+        {
+            lastPortalSpawnTick = Time.time;
 
-			foreach (PylonController p in allActivePylons)
-			{
-				float mod = 0f;
+            foreach (PylonController p in allActivePylons)
+            {
+                float mod = 0f;
 
-				if (portalsSpawmnedThisWave < 1)
-				{
-					mod = 0.5f;
-				}
+                if (portalsSpawmnedThisWave < 1)
+                {
+                    mod = 0.5f;
+                }
 
-				float roll = Random.Range(0f, 1f);
-				if (roll <= portalLikelyHoodPerPylon + mod)
-				{
-					GameObject portalToSpawn = portalPrefabs[Random.Range((int)0, portalPrefabs.Count)];
-					if (portalToSpawn.GetComponent<Portal>().groundPortal)
-					{
-						//Spawn on ground
-						Vector3 spawnPoint = groundPortalPoints.GetChild(Random.Range(0, groundPortalPoints.childCount)).position;
+                float roll = Random.Range(0f, 1f);
+                if (roll <= portalLikelyHoodPerPylon + mod)
+                {
+                    GameObject portalToSpawn = portalPrefabs[Random.Range((int)0, portalPrefabs.Count)];
+                    if (portalToSpawn.GetComponent<Portal>().groundPortal)
+                    {
+                        //Spawn on ground
+                        Vector3 spawnPoint = groundPortalPoints.GetChild(Random.Range(0, groundPortalPoints.childCount)).position;
 
-						GameObject newPortal = Instantiate(portalToSpawn, spawnPoint, Quaternion.identity);
-						newPortal.transform.LookAt(p.gameObject.transform.position);
+                        GameObject newPortal = Instantiate(portalToSpawn, spawnPoint, Quaternion.identity);
+                        newPortal.transform.LookAt(p.gameObject.transform.position);
 
-						//Save new portal.
-						portals.Add(newPortal);
-					}
-					else
-					{
-						float x = Random.Range(0f, 25f);
-						float y = Random.Range(40f, 60f);
-						float z = Random.Range(0f, 25f);
+                        //Save new portal.
+                        portals.Add(newPortal);
+                    }
+                    else
+                    {
+                        float x = Random.Range(0f, 25f);
+                        float y = Random.Range(40f, 60f);
+                        float z = Random.Range(0f, 25f);
 
-						Vector3 spawnPoint = new Vector3(x, y, z) + p.gameObject.transform.position;
+                        Vector3 spawnPoint = new Vector3(x, y, z) + p.gameObject.transform.position;
 
-						GameObject newPortal = Instantiate(portalToSpawn, spawnPoint, Quaternion.identity);
-						newPortal.transform.LookAt(p.gameObject.transform.position);
+                        GameObject newPortal = Instantiate(portalToSpawn, spawnPoint, Quaternion.identity);
+                        newPortal.transform.LookAt(p.gameObject.transform.position);
 
-						//Save new portal.
-						portals.Add(newPortal);
-					}
+                        //Save new portal.
+                        portals.Add(newPortal);
+                    }
 
-					portalsSpawmnedThisWave++;
-				}
-			}
-		}
+                    portalsSpawmnedThisWave++;
+                }
+            }
+        }
 
-		//Debuging, add 50 heat.
-		if (Input.GetKeyDown(KeyCode.Q))
-		{
-			heatLevel += 50;
-		}
-		else if (Input.GetKeyDown(KeyCode.E))
-		{
-			heatLevel -= 50;
-		}
+        ////Debuging, add 50 heat.
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //  heatLevel += 50;
+        //}
+        //else if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //  heatLevel -= 50;
+        //}
 
         bool isGameOver = true;
 
-        foreach(PylonController controller in allPylons)
+        foreach (PylonController controller in allPylons)
         {
             if (!controller.PylonIsDestroyed) isGameOver = false;
         }
 
-        if(isGameOver)
+        if (isGameOver)
         {
             sceneFunctions.ChangeScene("Lose Screen");
         }
-	}
+    }
 
-	private void FixedUpdate()
-	{
-		
-	}
+    private void FixedUpdate()
+    {
 
-	public void AddPylonToList(PylonController pylon)
+    }
+
+    public void AddPylonToList(PylonController pylon)
     {
         allPylons.Add(pylon);
     }
@@ -247,71 +247,71 @@ public class PylonManager : MonoBehaviour
         allActivePylons.Remove(pylon);
     }
 
-	public void NewOceanObject(OceanObject oo)
-	{
-		oceanObjects.Add(oo);
-		oo.SetSailing(!overheated);
-	}
+    public void NewOceanObject(OceanObject oo)
+    {
+        oceanObjects.Add(oo);
+        oo.SetSailing(!overheated);
+    }
 
-	public void RemoveOceanObject(OceanObject oo)
-	{
-		if (oceanObjects.Contains(oo))
-		{
-			oceanObjects.Remove(oo);
-		}
-	}
+    public void RemoveOceanObject(OceanObject oo)
+    {
+        if (oceanObjects.Contains(oo))
+        {
+            oceanObjects.Remove(oo);
+        }
+    }
 
-	public bool IsOverheated()
-	{
-		return overheated;
-	}
+    public bool IsOverheated()
+    {
+        return overheated;
+    }
 
-	public int GetActivePortalCount()
-	{
-		return portals.Count;
-	}
+    public int GetActivePortalCount()
+    {
+        return portals.Count;
+    }
 
-	public void HealLowestPylon(float amount)
-	{
-		PylonController lowestHealthPlyon = null;
-		float lowestHealth = 100000f;
-		foreach (PylonController p in allPylons)
-		{
-			if (p.PylonCurrentHealth > 0f)
-			{
-				if (lowestHealthPlyon == null)
-				{
-					lowestHealthPlyon = p;
-					lowestHealth = p.PylonCurrentHealth;
-				}
-				else if (p.PylonCurrentHealth < lowestHealth)
-				{
-					lowestHealthPlyon = p;
-					lowestHealth = p.PylonCurrentHealth;
-				}
-			}
-		}
+    public void HealLowestPylon(float amount)
+    {
+        PylonController lowestHealthPlyon = null;
+        float lowestHealth = 100000f;
+        foreach (PylonController p in allPylons)
+        {
+            if (p.PylonCurrentHealth > 0f)
+            {
+                if (lowestHealthPlyon == null)
+                {
+                    lowestHealthPlyon = p;
+                    lowestHealth = p.PylonCurrentHealth;
+                }
+                else if (p.PylonCurrentHealth < lowestHealth)
+                {
+                    lowestHealthPlyon = p;
+                    lowestHealth = p.PylonCurrentHealth;
+                }
+            }
+        }
 
-		if (lowestHealthPlyon != null)
-		{
-			lowestHealthPlyon.AddHealth(amount);
-		}
+        if (lowestHealthPlyon != null)
+        {
+            lowestHealthPlyon.AddHealth(amount);
+        }
 
-	}
+    }
 
-	public float GetHeatPercent()
-	{
-		return heatLevel / heatThreshold;
-	}
+    public float GetHeatPercent()
+    {
+        return heatLevel / heatThreshold;
+    }
 
-	public void Cool(float amount)
-	{
-		heatLevel -= amount;
+    public void Cool(float amount)
+    {
+        heatLevel -= amount;
 
-		if (heatLevel < 0f)
-		{
-			heatLevel = 0f;
-		}
-	}
+        if (heatLevel < 0f)
+        {
+            heatLevel = 0f;
+        }
+    }
 
 }
