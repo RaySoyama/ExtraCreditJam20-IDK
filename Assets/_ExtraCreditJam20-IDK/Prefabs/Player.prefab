@@ -10787,7 +10787,7 @@ PrefabInstance:
     - target: {fileID: 7144445144533671994, guid: 788b214870f1ba44bbd45bf3cc1dab86,
         type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].y
-      value: 1.4042487
+      value: 1.4042492
       objectReference: {fileID: 0}
     - target: {fileID: 7144445144533671994, guid: 788b214870f1ba44bbd45bf3cc1dab86,
         type: 3}
@@ -12093,7 +12093,7 @@ PrefabInstance:
     - target: {fileID: 7144445144533671994, guid: 788b214870f1ba44bbd45bf3cc1dab86,
         type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].y
-      value: 1.4042487
+      value: 1.4042492
       objectReference: {fileID: 0}
     - target: {fileID: 7144445144533671994, guid: 788b214870f1ba44bbd45bf3cc1dab86,
         type: 3}
