@@ -376,10 +376,10 @@ public class PlayerController : MonoBehaviour
                 GameObject rootObj = hit.transform.root.gameObject;
 
                 PylonController pylonOut;
-                if (currentWaterStorage > 0 && rootObj.TryGetComponent<PylonController>(out pylonOut))
+                
+                if (currentWaterStorage > 0 && hit.transform.gameObject.TryGetComponent<PylonController>(out pylonOut))
                 {
-                    //DO HEALING HERE!!!!!!!!!!!!
-                    //pylonOut.Heal();
+                    pylonOut.ReduceHeat();
                     waterDiss = Mathf.Lerp(waterDiss, 1, 0.2f);
                     shakeMagnitude += 0.1f;
                     currentWaterStorage = Mathf.Clamp(currentWaterStorage - (Time.deltaTime * 4), 0, waterStorageMax);
@@ -405,10 +405,6 @@ public class PlayerController : MonoBehaviour
                             //Make player fly around
                             rb.AddForce(-camPos.forward * 75, ForceMode.Acceleration);
                             notFillingWaterOrb.Invoke();
-
-
-                            
-
                         }
                         else
                         {
