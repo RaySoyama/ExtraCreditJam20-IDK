@@ -158,6 +158,16 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.5052142
       objectReference: {fileID: 0}
+    - target: {fileID: 2547502240165861618, guid: 97de1ae5719671643b2d0dd22f6b82a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 977988933}
+    - target: {fileID: 2547502240165861618, guid: 97de1ae5719671643b2d0dd22f6b82a3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene
+      objectReference: {fileID: 0}
     - target: {fileID: 4093502294593914859, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_LocalPosition.x
