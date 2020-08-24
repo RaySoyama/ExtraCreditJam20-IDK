@@ -58,8 +58,7 @@ public class PowerupSpawner : MonoBehaviour
                 finalPosition = hit.position;
             }
         }
-
-        Debug.Log(finalPosition);
+        
         Instantiate(powerups[Random.Range(0, powerups.Count)], finalPosition + Vector3.up, Quaternion.identity);
 
         yield return null;
