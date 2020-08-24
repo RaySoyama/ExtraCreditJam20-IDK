@@ -362,6 +362,9 @@ public class PlayerController : MonoBehaviour
             {
                 waterFiring = true;
 
+                var emW = epWaterParticle.emission;
+                emW.enabled = true;
+
                 waterEnd.position = hit.point;
                 waterDestination = hit.point;
 
@@ -401,15 +404,13 @@ public class PlayerController : MonoBehaviour
                             notFillingWaterOrb.Invoke();
 
 
-                            var em = epWaterParticle.emission;
-                            em.enabled = true;
+                            
 
                         }
                         else
                         {
                             waterFiring = false;
-                            var em = epWaterParticle.emission;
-                            em.enabled = false;
+                            emW.enabled = false;
                             waterDiss = Mathf.Lerp(waterDiss, 0, 0.6f);
                             notFillingWaterOrb.Invoke();
                         }
@@ -421,6 +422,8 @@ public class PlayerController : MonoBehaviour
         {
             notFillingWaterOrb.Invoke();
             waterFiring = false;
+            var emW = epWaterParticle.emission;
+            emW.enabled = false;
             waterDiss = Mathf.Lerp(waterDiss, 0, 0.06f);
         }
         //Mouse moves
