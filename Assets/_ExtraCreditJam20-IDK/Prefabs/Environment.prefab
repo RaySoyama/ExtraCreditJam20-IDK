@@ -2084,7 +2084,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oceanObjectPrefabs:
-  - {fileID: 2475852645555370953, guid: 9cab3be65ca44ee4796710d351a385d1, type: 3}
+  - {fileID: 2475852645555370953, guid: 0378f97f8f536a04584c1d7ba995b14d, type: 3}
+  - {fileID: 2475852645555370953, guid: e45445aadac33af4eaeceb32fe2f06be, type: 3}
+  - {fileID: 2475852645555370953, guid: f482ba9f58e1cda4d937da6e84dd3fff, type: 3}
   spawnIntervalMin: 5
   spawnIntervalMax: 30
 --- !u!114 &630373781
