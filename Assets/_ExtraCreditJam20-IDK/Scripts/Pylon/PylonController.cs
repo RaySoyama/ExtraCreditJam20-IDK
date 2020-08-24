@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PylonController : MonoBehaviour
 {
-	private AudioSource audio;
-	public AudioClip vent;
-	public AudioClip die;
-	public AudioClip deactivate;
+    private AudioSource audio;
+    public AudioClip vent;
+    public AudioClip die;
+    public AudioClip deactivate;
 
-	public GameObject crystal;
+    public GameObject crystal;
 
-	[SerializeField]
+    [SerializeField]
     private float pylonStartHealth = 20;
     public float PylonStartHealth
     {
@@ -69,12 +69,12 @@ public class PylonController : MonoBehaviour
     public UnityEvent onStartCooling;
     public UnityEvent onDoneCooling;
 
-	private void Awake()
-	{
-		audio = GetComponent<AudioSource>();
-	}
+    private void Awake()
+    {
+        audio = GetComponent<AudioSource>();
+    }
 
-	private void Start()
+    private void Start()
     {
         PylonManager.instance.AddPylonToList(this);
 
@@ -94,7 +94,7 @@ public class PylonController : MonoBehaviour
         material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
         material.SetFloat("pylonActive", 1.0f);
 
-		audio.PlayOneShot(vent);
+        audio.PlayOneShot(vent);
     }
 
     [ContextMenu("DeActivatePylon")]
@@ -106,8 +106,14 @@ public class PylonController : MonoBehaviour
         material.SetFloat("pylonHealth", PylonCurrentHealth / PylonStartHealth);
         material.SetFloat("pylonActive", 0.0f);
 
-		audio.PlayOneShot(deactivate);
-	}
+        audio.PlayOneShot(deactivate);
+    }
+
+    [ContextMenu("DestroyPylon")]
+    public void DestroyPylon()
+    {
+        TakeDamage(PylonCurrentHealth);
+    }
 
     public void TakeDamage(float damage)
     {
@@ -133,27 +139,27 @@ public class PylonController : MonoBehaviour
         }
     }
 
-	private void Update()
-	{
-		if (isEnabled)
-		{
-			//crystal.transform.rotation = Quaternion.Euler(new Vector3(crystal.transform.rotation.x, 10f + crystal.transform.rotation.y, crystal.transform.rotation.z));
-			//crystal.transform.Rotate(0f, 1f, 0f);
-		}
-	}
+    private void Update()
+    {
+        if (isEnabled)
+        {
+            //crystal.transform.rotation = Quaternion.Euler(new Vector3(crystal.transform.rotation.x, 10f + crystal.transform.rotation.y, crystal.transform.rotation.z));
+            //crystal.transform.Rotate(0f, 1f, 0f);
+        }
+    }
 
-	public void AddHealth(float amount)
-	{
-		pylonCurrentHealth += amount;
+    public void AddHealth(float amount)
+    {
+        pylonCurrentHealth += amount;
 
-		if (pylonCurrentHealth > pylonStartHealth)
-		{
-			pylonCurrentHealth = pylonStartHealth;
-		}
-	}
+        if (pylonCurrentHealth > pylonStartHealth)
+        {
+            pylonCurrentHealth = pylonStartHealth;
+        }
+    }
 
-	public void ReduceHeat()
-	{
-		PylonManager.instance.Cool(0.01f);
-	}
+    public void ReduceHeat()
+    {
+        PylonManager.instance.Cool(0.01f);
+    }
 }
