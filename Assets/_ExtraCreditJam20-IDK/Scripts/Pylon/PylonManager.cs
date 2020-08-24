@@ -288,4 +288,14 @@ public class PylonManager : MonoBehaviour
 		return heatLevel / heatThreshold;
 	}
 
+	public void Cool(float amount)
+	{
+		heatLevel -= amount;
+
+		if (heatLevel < 0f)
+		{
+			heatLevel = 0f;
+		}
+	}
+
 }

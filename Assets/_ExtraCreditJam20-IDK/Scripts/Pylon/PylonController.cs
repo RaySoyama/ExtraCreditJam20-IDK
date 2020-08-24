@@ -151,4 +151,9 @@ public class PylonController : MonoBehaviour
 			pylonCurrentHealth = pylonStartHealth;
 		}
 	}
+
+	public void ReduceHeat()
+	{
+		PylonManager.instance.Cool(0.01f);
+	}
 }
