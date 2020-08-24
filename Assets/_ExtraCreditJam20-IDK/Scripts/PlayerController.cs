@@ -227,6 +227,7 @@ public class PlayerController : MonoBehaviour
 		{
 			shake = new Vector3(Random.Range(-0.1f, 0.1f) * shakeMagnitude, Random.Range(-0.1f, 0.1f) * shakeMagnitude, Random.Range(-0.1f, 0.1f) * shakeMagnitude);
 			shakeMagnitude -= 0.05f;
+			shakeMagnitude = Mathf.Clamp(shakeMagnitude, 0f, 3f);
 		}
 		else if (shakeMagnitude < 0f)
 		{

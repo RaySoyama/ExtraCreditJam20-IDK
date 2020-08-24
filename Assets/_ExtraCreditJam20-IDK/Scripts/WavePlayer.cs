@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MusicPlayer : MonoBehaviour
+public class WavePlayer : MonoBehaviour
 {
 	private PylonManager pm;
 	private AudioSource audio;
@@ -11,27 +11,27 @@ public class MusicPlayer : MonoBehaviour
 
 	public float fadeSpeed;
 
-    void Start()
-    {
+	void Start()
+	{
 		pm = FindObjectOfType<PylonManager>();
 		audio = GetComponent<AudioSource>();
 
 		startVolume = audio.volume;
 		audio.volume = 0f;
-    }
+	}
 
-    void Update()
-    {
-		if (pm.GetActivePortalCount() > 0)
+	void Update()
+	{
+		if (!pm.IsOverheated())
 		{
-			//Fade music in
+			//Fade waves in
 			audio.volume = Mathf.Clamp(audio.volume + fadeSpeed, 0f, startVolume);
 		}
 		else
 		{
-			//fade music out
+			//fade waves out
 			audio.volume = Mathf.Clamp(audio.volume - fadeSpeed, 0f, startVolume);
 		}
 
-    }
+	}
 }
