@@ -186,7 +186,7 @@ public class FlyingEnemy : EnemyController
     }
 
 
-    public override void TakeHit()
+    public override void TakeHit(int damage = 1)
     {
         base.TakeHit();
     }

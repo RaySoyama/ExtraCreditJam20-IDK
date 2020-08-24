@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
 
 	private float shakeMagnitude = 0f;
 
+    float fireRateTimeRemaining = 0f;
+    float speedTimeRemaining = 0f;
+    float instaKillTimeRemaining = 0f;
 
 	private bool isGrounded = false;
 	private bool isWalking = false;
@@ -57,6 +60,10 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem epParticle;
     public ParticleSystem epWaterParticle;
     public ParticleSystem movementParticle;
+
+    public GameObject powerup_FireRate;
+    public GameObject powerup_SpeedBoost;
+    public GameObject powerup_InstaKill;
 
     public Animator corsshair;
 
@@ -111,8 +118,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-		//Water sounds
-		if (waterFiring && !waterWasFiringLastFrame)
+        fireRateTimeRemaining -= Time.deltaTime;
+        powerup_FireRate.SetActive(fireRateTimeRemaining > 0);
+        speedTimeRemaining -= Time.deltaTime;
+        powerup_SpeedBoost.SetActive(speedTimeRemaining > 0);
+        instaKillTimeRemaining -= Time.deltaTime;
+        powerup_InstaKill.SetActive(instaKillTimeRemaining > 0);
+
+        fireDuration = fireRateTimeRemaining > 0 ? 0.1f : 1f;
+
+        //Water sounds
+        if (waterFiring && !waterWasFiringLastFrame)
 		{
 			//Start water sound
 			waterSoundStartTime = Time.time;
@@ -238,9 +254,11 @@ public class PlayerController : MonoBehaviour
 
 		isWalking = false;
 
+        float speedAlteration = speedTimeRemaining > 0 ? 2.5f : 1f;
+
         if (Input.GetKey(KeyCode.W))
         {
-            rb.AddForce(transform.forward * moveForce);
+            rb.AddForce(transform.forward * speedAlteration * moveForce);
 			isWalking = true;
 
             if(lRotate > .5)
@@ -254,20 +272,20 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.S))
         {
-            rb.AddForce(-transform.forward * moveForce);
+            rb.AddForce(-transform.forward * speedAlteration * moveForce);
 			isWalking = true;            
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            rb.AddForce(-transform.right * moveForce);
+            rb.AddForce(-transform.right * speedAlteration * moveForce);
 			isWalking = true;
 
             lRotate = Mathf.Lerp(lRotate, 1, Time.deltaTime * 2);
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            rb.AddForce(transform.right * moveForce);
+            rb.AddForce(transform.right * speedAlteration * moveForce);
 			isWalking = true;
 
             rRotate = Mathf.Lerp(rRotate, 1, Time.deltaTime * 2);
@@ -286,7 +304,7 @@ public class PlayerController : MonoBehaviour
         //minimap
         if (Input.GetKeyDown(KeyCode.Tab))
 		{
-			miniMap.SetActive(!miniMap.active);
+			miniMap.SetActive(!miniMap.activeSelf);
 		}
 
         //Mouse
@@ -319,7 +337,7 @@ public class PlayerController : MonoBehaviour
 				Bell bell;
                 if (rootObj.TryGetComponent<EnemyController>(out enemyComp))
                 {
-                    enemyComp.TakeHit();
+                    enemyComp.TakeHit(instaKillTimeRemaining > 0 ? 999 : 1);
 					shakeMagnitude += 1f;
 				}
 				else if (hit.transform.TryGetComponent<Bell>(out bell))
@@ -480,6 +498,36 @@ public class PlayerController : MonoBehaviour
 				rb.AddForce(new Vector3(0f, -currentGravity * 2f, 0f));
 			}
 		}
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name.Contains("Pickup_FireRate"))
+        {
+            fireRateTimeRemaining = 12f;
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.name.Contains("Pickup_HealRandomDamagedPylon"))
+        {
+            //Heal pylon
+            PylonManager.instance.HealLowestPylon(5f);
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.name.Contains("Pickup_InstaKill"))
+        {
+            instaKillTimeRemaining = 12f;
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.name.Contains("Pickup_SpeedBoost"))
+        {
+            speedTimeRemaining = 12f;
+            Destroy(other.gameObject);
+        }
+        else if (other.gameObject.name.Contains("Pickup_WaterCapacity"))
+        {
+            waterStorageMax += 10f;
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -197,9 +197,9 @@ public class EnemyController : MonoBehaviour
     protected virtual void OnDeathEnd() { }
 
 
-    public virtual void TakeHit()
+    public virtual void TakeHit(int damage = 1)
     {
-        enemyHealth--;
+        enemyHealth -= damage;
 
         if (enemyHealth <= 0)
         {
