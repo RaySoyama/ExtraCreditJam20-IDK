@@ -27,6 +27,8 @@ public class PylonManager : MonoBehaviour
 
 	public Transform groundPortalPoints;
 
+    public SceneFunctions sceneFunctions;
+
 	private List<OceanObject> oceanObjects = new List<OceanObject>();
 
     [SerializeField, ReadOnlyField]
@@ -125,6 +127,18 @@ public class PylonManager : MonoBehaviour
 		{
 			heatLevel -= 50;
 		}
+
+        bool isGameOver = true;
+
+        foreach(PylonController controller in allPylons)
+        {
+            if (!controller.PylonIsDestroyed) isGameOver = false;
+        }
+
+        if(isGameOver)
+        {
+            sceneFunctions.ChangeScene("Lose Screen");
+        }
 	}
 
 	private void FixedUpdate()

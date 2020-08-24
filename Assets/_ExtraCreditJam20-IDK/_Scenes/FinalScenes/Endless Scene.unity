@@ -131,7 +131,7 @@ PrefabInstance:
     - target: {fileID: 377482380164451408, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_RotationOffsets.Array.data[0].x
-      value: -27.876984
+      value: -27.87698
       objectReference: {fileID: 0}
     - target: {fileID: 377482380164451408, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
       propertyPath: m_RotationOffsets.Array.data[0].x
-      value: -27.876984
+      value: -27.87698
       objectReference: {fileID: 0}
     - target: {fileID: 6390286036077941084, guid: 97de1ae5719671643b2d0dd22f6b82a3,
         type: 3}
@@ -487,6 +487,7 @@ MonoBehaviour:
   portalSpawnTick: 0
   portalPrefabs: []
   groundPortalPoints: {fileID: 0}
+  sceneFunctions: {fileID: 0}
   allPylons:
   - {fileID: 538080094}
   - {fileID: 538080093}
@@ -760,7 +761,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
