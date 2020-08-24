@@ -141,4 +141,14 @@ public class PylonController : MonoBehaviour
 			//crystal.transform.Rotate(0f, 1f, 0f);
 		}
 	}
+
+	public void AddHealth(float amount)
+	{
+		pylonCurrentHealth += amount;
+
+		if (pylonCurrentHealth > pylonStartHealth)
+		{
+			pylonCurrentHealth = pylonStartHealth;
+		}
+	}
 }

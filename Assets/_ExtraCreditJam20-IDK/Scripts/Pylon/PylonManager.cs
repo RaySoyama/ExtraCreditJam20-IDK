@@ -255,4 +255,32 @@ public class PylonManager : MonoBehaviour
 		return portals.Count;
 	}
 
+	public void HealLowestPylon(float amount)
+	{
+		PylonController lowestHealthPlyon = null;
+		float lowestHealth = 100000f;
+		foreach (PylonController p in allPylons)
+		{
+			if (p.PylonCurrentHealth > 0f)
+			{
+				if (lowestHealthPlyon == null)
+				{
+					lowestHealthPlyon = p;
+					lowestHealth = p.PylonCurrentHealth;
+				}
+				else if (p.PylonCurrentHealth < lowestHealth)
+				{
+					lowestHealthPlyon = p;
+					lowestHealth = p.PylonCurrentHealth;
+				}
+			}
+		}
+
+		if (lowestHealthPlyon != null)
+		{
+			lowestHealthPlyon.AddHealth(amount);
+		}
+
+	}
+
 }
