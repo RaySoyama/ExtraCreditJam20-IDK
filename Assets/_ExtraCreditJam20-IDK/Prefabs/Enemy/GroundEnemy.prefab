@@ -396,6 +396,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &6035641459881985971
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7282362942464758015}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 748789e74a1a19d4680943f122be691d, type: 3}
+  m_Controller: {fileID: 9100000, guid: 0a42058861de9c8459bf6bf96079dae4, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7343905971839284688
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,11 +589,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spider_Rigged
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5866666021909216657, guid: 748789e74a1a19d4680943f122be691d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0a42058861de9c8459bf6bf96079dae4, type: 2}
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 748789e74a1a19d4680943f122be691d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 748789e74a1a19d4680943f122be691d, type: 3}
 --- !u!4 &1359356521629042774 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 748789e74a1a19d4680943f122be691d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1537942922768560061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7282362942464758015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1132663605579825342, guid: 748789e74a1a19d4680943f122be691d,
     type: 3}
   m_PrefabInstance: {fileID: 1537942922768560061}
   m_PrefabAsset: {fileID: 0}
