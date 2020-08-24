@@ -309,7 +309,7 @@ public class PlayerController : MonoBehaviour
 
         //Mouse
         //Clicks
-        if (Input.GetMouseButtonDown(0) && !firing)
+        if (Input.GetMouseButton(0) && !firing)
         {
             RaycastHit hit;
             Vector3 heading = (transform.position + lookOffset) - camPos.position;
