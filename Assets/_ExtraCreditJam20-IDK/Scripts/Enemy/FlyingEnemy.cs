@@ -83,11 +83,16 @@ public class FlyingEnemy : EnemyController
         animCtrl.ResetTrigger("shoot");
         animCtrl.SetTrigger("stopShoot");
 
+        if (TargetPylon == null || TargetPylon.PylonIsDestroyed == true)
+        {
+            return;
+        }
+
         unitSphereVal = Random.insideUnitSphere.normalized * EnemyAttackRange;
 
-        if (unitSphereVal.y <= 0)
+        if (unitSphereVal.y <= TargetPylon.transform.position.y)
         {
-            unitSphereVal = new Vector3(unitSphereVal.x, -unitSphereVal.y, unitSphereVal.z);
+            unitSphereVal = new Vector3(unitSphereVal.x, TargetPylon.transform.position.y + (TargetPylon.transform.position.y - unitSphereVal.y), unitSphereVal.z);
         }
     }
     protected override void OnSearch()
