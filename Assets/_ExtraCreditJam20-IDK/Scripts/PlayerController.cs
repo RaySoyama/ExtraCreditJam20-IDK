@@ -53,12 +53,15 @@ public class PlayerController : MonoBehaviour
     public MeshRenderer waterFillMat;
     float blastDiss = 0f;
     float waterDiss = 0f;
+    float waterSucc = 1f;
 
     public float waterStorageMax = 5f;
     public float currentWaterStorage = 5f;
 
     public ParticleSystem epParticle;
-    public ParticleSystem epWaterParticle;
+    public ParticleSystem epWaterParticleShoot;
+    public ParticleSystem epWaterParticleSteam;
+    public ParticleSystem epWaterParticleSuck;
     public ParticleSystem movementParticle;
 
     public GameObject powerup_FireRate;
@@ -133,7 +136,7 @@ public class PlayerController : MonoBehaviour
 			//Start water sound
 			waterSoundStartTime = Time.time;
 			audio.PlayOneShot(waterStartSound);
-		}
+        }
 		else if (waterFiring && waterWasFiringLastFrame)
 		{
 			if (audio.clip == waterStartSound && waterSoundStartTime + waterStartSound.length >= Time.time)
@@ -217,6 +220,7 @@ public class PlayerController : MonoBehaviour
         foreach (var water in waterBlasts)
         {
             water.material.SetFloat("dissolve", waterDiss);
+            water.material.SetFloat("succ", waterSucc);
         }
 
         waterFillMat.material.SetFloat("fill", (currentWaterStorage / waterStorageMax) + 0.55f);
@@ -365,10 +369,8 @@ public class PlayerController : MonoBehaviour
             {
                 waterFiring = true;
 
-                var emW = epWaterParticle.emission;
-                emW.enabled = true;
-
                 waterEnd.position = hit.point;
+                waterEnd.LookAt(transform.position);
                 waterDestination = hit.point;
 
                 shakeMagnitude += Time.deltaTime * 1.1f;
@@ -384,6 +386,16 @@ public class PlayerController : MonoBehaviour
                     shakeMagnitude += 0.1f;
                     currentWaterStorage = Mathf.Clamp(currentWaterStorage - (Time.deltaTime * 4), 0, waterStorageMax);
                     notFillingWaterOrb.Invoke();
+
+                    //controls direction of white movement lines
+                    waterSucc = 1f;
+
+                    //controls which part icle systerm gets enambled
+                    var emWS = epWaterParticleSteam.emission;
+                    emWS.enabled = true;
+
+                    var emW = epWaterParticleShoot.emission;
+                    emW.enabled = true;
                 }
                 else
                 {
@@ -394,6 +406,12 @@ public class PlayerController : MonoBehaviour
                         currentWaterStorage = Mathf.Clamp(currentWaterStorage + (Time.deltaTime * 2f), 0, waterStorageMax);
                         rb.AddForce(camPos.forward * 15, ForceMode.Acceleration);
                         onFillingWaterOrb.Invoke();
+
+                        //succ effect
+                        waterSucc = -1f;
+
+                        var emWSu = epWaterParticleSuck.emission;
+                        emWSu.enabled = true;
                     }
                     else
                     {
@@ -405,11 +423,21 @@ public class PlayerController : MonoBehaviour
                             //Make player fly around
                             rb.AddForce(-camPos.forward * 75, ForceMode.Acceleration);
                             notFillingWaterOrb.Invoke();
+
+                            waterSucc = 1f;
+
+                            var emW = epWaterParticleShoot.emission;
+                            emW.enabled = true;
                         }
                         else
                         {
                             waterFiring = false;
+                            var emW = epWaterParticleShoot.emission;
                             emW.enabled = false;
+                            var emWS = epWaterParticleSteam.emission;
+                            emWS.enabled = false;
+                            var emWSu = epWaterParticleSuck.emission;
+                            emWSu.enabled = false;
                             waterDiss = Mathf.Lerp(waterDiss, 0, 0.6f);
                             notFillingWaterOrb.Invoke();
                         }
@@ -421,8 +449,12 @@ public class PlayerController : MonoBehaviour
         {
             notFillingWaterOrb.Invoke();
             waterFiring = false;
-            var emW = epWaterParticle.emission;
+            var emW = epWaterParticleShoot.emission;
             emW.enabled = false;
+            var emWS = epWaterParticleSteam.emission;
+            emWS.enabled = false;
+            var emWSu = epWaterParticleSuck.emission;
+            emWSu.enabled = false;
             waterDiss = Mathf.Lerp(waterDiss, 0, 0.06f);
         }
         //Mouse moves
